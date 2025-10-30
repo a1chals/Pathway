@@ -1,0 +1,51 @@
+[
+  {
+    "start_company": "Bain & Company",
+    "start_role": "Associate Consultant",
+    "exit_company": "Blackstone",
+    "exit_role": "Private Equity Analyst",
+    "industry": "Private Equity",
+    "avg_years_before_exit": 2.5
+  },
+  {
+    "start_company": "Bain & Company",
+    "start_role": "Consultant",
+    "exit_company": "Sequoia Capital",
+    "exit_role": "Investment Associate",
+    "industry": "Venture Capital",
+    "avg_years_before_exit": 3.0
+  },
+  {
+    "start_company": "Bain & Company",
+    "start_role": "Associate Consultant",
+    "exit_company": "Google",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 3.2
+  },
+  {
+    "start_company": "Bain & Company",
+    "start_role": "Consultant",
+    "exit_company": "Harvard Business School",
+    "exit_role": "MBA Candidate",
+    "industry": "Graduate Education",
+    "avg_years_before_exit": 2.8
+  },
+  {
+    "start_company": "Bain & Company",
+    "start_role": "Senior Associate Consultant",
+    "exit_company": "Stripe",
+    "exit_role": "Strategy & Ops Manager",
+    "industry": "Fintech",
+    "avg_years_before_exit": 3.5
+  },
+  {
+    "start_company": "Bain & Company",
+    "start_role": "Consultant",
+    "exit_company": "Andreessen Horowitz",
+    "exit_role": "Portfolio Ops Associate",
+    "industry": "Venture Capital",
+    "avg_years_before_exit": 3.1
+  }
+]
+
