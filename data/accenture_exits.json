@@ -1,0 +1,147 @@
+[
+  {
+    "start_company": "Accenture",
+    "start_role": "Consultant",
+    "exit_company": "Amazon",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 2.9
+  },
+  {
+    "start_company": "Accenture",
+    "start_role": "Senior Consultant",
+    "exit_company": "Microsoft",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 3.1
+  },
+  {
+    "start_company": "Accenture",
+    "start_role": "Consultant",
+    "exit_company": "Duke Fuqua",
+    "exit_role": "MBA Candidate",
+    "industry": "Graduate Education",
+    "avg_years_before_exit": 2.7
+  },
+  {
+    "start_company": "Accenture",
+    "start_role": "Senior Consultant",
+    "exit_company": "Google",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 3.0
+  },
+  {
+    "start_company": "Accenture",
+    "start_role": "Consultant",
+    "exit_company": "McKinsey & Company",
+    "exit_role": "Associate",
+    "industry": "Consulting",
+    "avg_years_before_exit": 2.5
+  },
+  {
+    "start_company": "Accenture",
+    "start_role": "Senior Consultant",
+    "exit_company": "Salesforce",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 2.8
+  },
+  {
+    "start_company": "Accenture",
+    "start_role": "Consultant",
+    "exit_company": "NYU Stern",
+    "exit_role": "MBA Candidate",
+    "industry": "Graduate Education",
+    "avg_years_before_exit": 2.6
+  },
+  {
+    "start_company": "Accenture",
+    "start_role": "Senior Consultant",
+    "exit_company": "Apple",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 3.0
+  },
+  {
+    "start_company": "Accenture",
+    "start_role": "Consultant",
+    "exit_company": "Boston Consulting Group",
+    "exit_role": "Consultant",
+    "industry": "Consulting",
+    "avg_years_before_exit": 2.4
+  },
+  {
+    "start_company": "Accenture",
+    "start_role": "Senior Consultant",
+    "exit_company": "Adobe",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 2.9
+  },
+  {
+    "start_company": "Accenture",
+    "start_role": "Consultant",
+    "exit_company": "USC Marshall",
+    "exit_role": "MBA Candidate",
+    "industry": "Graduate Education",
+    "avg_years_before_exit": 2.8
+  },
+  {
+    "start_company": "Accenture",
+    "start_role": "Senior Consultant",
+    "exit_company": "Netflix",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 3.1
+  },
+  {
+    "start_company": "Accenture",
+    "start_role": "Consultant",
+    "exit_company": "Deloitte",
+    "exit_role": "Consultant",
+    "industry": "Consulting",
+    "avg_years_before_exit": 2.3
+  },
+  {
+    "start_company": "Accenture",
+    "start_role": "Senior Consultant",
+    "exit_company": "Meta",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 3.0
+  },
+  {
+    "start_company": "Accenture",
+    "start_role": "Consultant",
+    "exit_company": "Cornell Johnson",
+    "exit_role": "MBA Candidate",
+    "industry": "Graduate Education",
+    "avg_years_before_exit": 2.7
+  },
+  {
+    "start_company": "Accenture",
+    "start_role": "Senior Consultant",
+    "exit_company": "Oracle",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 2.8
+  },
+  {
+    "start_company": "Accenture",
+    "start_role": "Consultant",
+    "exit_company": "EY",
+    "exit_role": "Senior Consultant",
+    "industry": "Consulting",
+    "avg_years_before_exit": 2.5
+  },
+  {
+    "start_company": "Accenture",
+    "start_role": "Senior Consultant",
+    "exit_company": "Uber",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 2.9
+  }
+]
+

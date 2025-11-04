@@ -62,6 +62,101 @@
     "exit_role": "Private Equity Analyst",
     "industry": "Private Equity",
     "avg_years_before_exit": 3.0
+  },
+  {
+    "start_company": "McKinsey & Company",
+    "start_role": "Business Analyst",
+    "exit_company": "JPMorgan Chase",
+    "exit_role": "Investment Banking Analyst",
+    "industry": "Investment Banking",
+    "avg_years_before_exit": 2.3
+  },
+  {
+    "start_company": "McKinsey & Company",
+    "start_role": "Associate",
+    "exit_company": "Apple",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 2.9
+  },
+  {
+    "start_company": "McKinsey & Company",
+    "start_role": "Business Analyst",
+    "exit_company": "Wharton School",
+    "exit_role": "MBA Candidate",
+    "industry": "Graduate Education",
+    "avg_years_before_exit": 2.4
+  },
+  {
+    "start_company": "McKinsey & Company",
+    "start_role": "Associate",
+    "exit_company": "Blackstone",
+    "exit_role": "Private Equity Associate",
+    "industry": "Private Equity",
+    "avg_years_before_exit": 3.1
+  },
+  {
+    "start_company": "McKinsey & Company",
+    "start_role": "Business Analyst",
+    "exit_company": "Netflix",
+    "exit_role": "Strategy Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 2.8
+  },
+  {
+    "start_company": "McKinsey & Company",
+    "start_role": "Associate",
+    "exit_company": "Morgan Stanley",
+    "exit_role": "Investment Banking Analyst",
+    "industry": "Investment Banking",
+    "avg_years_before_exit": 2.4
+  },
+  {
+    "start_company": "McKinsey & Company",
+    "start_role": "Business Analyst",
+    "exit_company": "Bain Capital",
+    "exit_role": "Private Equity Analyst",
+    "industry": "Private Equity",
+    "avg_years_before_exit": 2.9
+  },
+  {
+    "start_company": "McKinsey & Company",
+    "start_role": "Associate",
+    "exit_company": "Tesla",
+    "exit_role": "Business Development Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 3.0
+  },
+  {
+    "start_company": "McKinsey & Company",
+    "start_role": "Business Analyst",
+    "exit_company": "MIT Sloan",
+    "exit_role": "MBA Candidate",
+    "industry": "Graduate Education",
+    "avg_years_before_exit": 2.6
+  },
+  {
+    "start_company": "McKinsey & Company",
+    "start_role": "Associate",
+    "exit_company": "Sequoia Capital",
+    "exit_role": "Investment Associate",
+    "industry": "Venture Capital",
+    "avg_years_before_exit": 3.2
+  },
+  {
+    "start_company": "McKinsey & Company",
+    "start_role": "Business Analyst",
+    "exit_company": "Salesforce",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 2.7
+  },
+  {
+    "start_company": "McKinsey & Company",
+    "start_role": "Associate",
+    "exit_company": "Carlyle Group",
+    "exit_role": "Private Equity Associate",
+    "industry": "Private Equity",
+    "avg_years_before_exit": 3.1
   }
 ]
-

@@ -62,6 +62,85 @@
     "exit_role": "Solutions Architect",
     "industry": "Tech",
     "avg_years_before_exit": 3.3
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Staff Consultant",
+    "exit_company": "Goldman Sachs",
+    "exit_role": "Investment Banking Analyst",
+    "industry": "Investment Banking",
+    "avg_years_before_exit": 2.5
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Senior Consultant",
+    "exit_company": "Microsoft",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 3.0
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Staff Consultant",
+    "exit_company": "Cornell Johnson",
+    "exit_role": "MBA Candidate",
+    "industry": "Graduate Education",
+    "avg_years_before_exit": 2.8
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Senior Consultant",
+    "exit_company": "Procter & Gamble",
+    "exit_role": "Brand Manager",
+    "industry": "Corporate",
+    "avg_years_before_exit": 3.1
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Staff Consultant",
+    "exit_company": "JPMorgan Chase",
+    "exit_role": "Investment Banking Analyst",
+    "industry": "Investment Banking",
+    "avg_years_before_exit": 2.6
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Senior Consultant",
+    "exit_company": "SAP",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 3.2
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Staff Consultant",
+    "exit_company": "USC Marshall",
+    "exit_role": "MBA Candidate",
+    "industry": "Graduate Education",
+    "avg_years_before_exit": 2.7
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Senior Consultant",
+    "exit_company": "Cisco",
+    "exit_role": "Business Development Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 3.0
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Staff Consultant",
+    "exit_company": "Unilever",
+    "exit_role": "Marketing Manager",
+    "industry": "Corporate",
+    "avg_years_before_exit": 2.9
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Senior Consultant",
+    "exit_company": "Salesforce",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 2.8
   }
 ]
-

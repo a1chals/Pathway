@@ -62,6 +62,101 @@
     "exit_role": "Investment Associate",
     "industry": "Venture Capital",
     "avg_years_before_exit": 3.3
+  },
+  {
+    "start_company": "Boston Consulting Group",
+    "start_role": "Associate",
+    "exit_company": "Amazon",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 2.8
+  },
+  {
+    "start_company": "Boston Consulting Group",
+    "start_role": "Consultant",
+    "exit_company": "Blackstone",
+    "exit_role": "Private Equity Associate",
+    "industry": "Private Equity",
+    "avg_years_before_exit": 3.0
+  },
+  {
+    "start_company": "Boston Consulting Group",
+    "start_role": "Associate",
+    "exit_company": "Harvard Business School",
+    "exit_role": "MBA Candidate",
+    "industry": "Graduate Education",
+    "avg_years_before_exit": 2.5
+  },
+  {
+    "start_company": "Boston Consulting Group",
+    "start_role": "Consultant",
+    "exit_company": "Google",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 3.1
+  },
+  {
+    "start_company": "Boston Consulting Group",
+    "start_role": "Associate",
+    "exit_company": "KKR",
+    "exit_role": "Private Equity Analyst",
+    "industry": "Private Equity",
+    "avg_years_before_exit": 2.9
+  },
+  {
+    "start_company": "Boston Consulting Group",
+    "start_role": "Consultant",
+    "exit_company": "Meta",
+    "exit_role": "Strategy & Operations Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 3.0
+  },
+  {
+    "start_company": "Boston Consulting Group",
+    "start_role": "Associate",
+    "exit_company": "Stanford GSB",
+    "exit_role": "MBA Candidate",
+    "industry": "Graduate Education",
+    "avg_years_before_exit": 2.8
+  },
+  {
+    "start_company": "Boston Consulting Group",
+    "start_role": "Consultant",
+    "exit_company": "Sequoia Capital",
+    "exit_role": "Investment Associate",
+    "industry": "Venture Capital",
+    "avg_years_before_exit": 3.2
+  },
+  {
+    "start_company": "Boston Consulting Group",
+    "start_role": "Associate",
+    "exit_company": "Netflix",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 2.7
+  },
+  {
+    "start_company": "Boston Consulting Group",
+    "start_role": "Consultant",
+    "exit_company": "Goldman Sachs",
+    "exit_role": "Investment Banking Analyst",
+    "industry": "Investment Banking",
+    "avg_years_before_exit": 2.5
+  },
+  {
+    "start_company": "Boston Consulting Group",
+    "start_role": "Associate",
+    "exit_company": "Andreessen Horowitz",
+    "exit_role": "Investment Associate",
+    "industry": "Venture Capital",
+    "avg_years_before_exit": 3.1
+  },
+  {
+    "start_company": "Boston Consulting Group",
+    "start_role": "Consultant",
+    "exit_company": "Stripe",
+    "exit_role": "Strategy & Ops Manager",
+    "industry": "Fintech",
+    "avg_years_before_exit": 3.0
   }
 ]
-

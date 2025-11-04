@@ -1,0 +1,147 @@
+[
+  {
+    "start_company": "KPMG",
+    "start_role": "Associate",
+    "exit_company": "Bank of America",
+    "exit_role": "Investment Banking Analyst",
+    "industry": "Investment Banking",
+    "avg_years_before_exit": 2.7
+  },
+  {
+    "start_company": "KPMG",
+    "start_role": "Senior Associate",
+    "exit_company": "Deloitte",
+    "exit_role": "Consultant",
+    "industry": "Consulting",
+    "avg_years_before_exit": 2.5
+  },
+  {
+    "start_company": "KPMG",
+    "start_role": "Associate",
+    "exit_company": "Cornell Johnson",
+    "exit_role": "MBA Candidate",
+    "industry": "Graduate Education",
+    "avg_years_before_exit": 2.8
+  },
+  {
+    "start_company": "KPMG",
+    "start_role": "Senior Associate",
+    "exit_company": "Microsoft",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 3.0
+  },
+  {
+    "start_company": "KPMG",
+    "start_role": "Associate",
+    "exit_company": "JPMorgan Chase",
+    "exit_role": "Investment Banking Analyst",
+    "industry": "Investment Banking",
+    "avg_years_before_exit": 2.6
+  },
+  {
+    "start_company": "KPMG",
+    "start_role": "Senior Associate",
+    "exit_company": "Amazon",
+    "exit_role": "Strategy Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 3.1
+  },
+  {
+    "start_company": "KPMG",
+    "start_role": "Associate",
+    "exit_company": "NYU Stern",
+    "exit_role": "MBA Candidate",
+    "industry": "Graduate Education",
+    "avg_years_before_exit": 2.7
+  },
+  {
+    "start_company": "KPMG",
+    "start_role": "Senior Associate",
+    "exit_company": "EY",
+    "exit_role": "Senior Consultant",
+    "industry": "Consulting",
+    "avg_years_before_exit": 2.4
+  },
+  {
+    "start_company": "KPMG",
+    "start_role": "Associate",
+    "exit_company": "Goldman Sachs",
+    "exit_role": "Investment Banking Analyst",
+    "industry": "Investment Banking",
+    "avg_years_before_exit": 2.5
+  },
+  {
+    "start_company": "KPMG",
+    "start_role": "Senior Associate",
+    "exit_company": "Salesforce",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 2.9
+  },
+  {
+    "start_company": "KPMG",
+    "start_role": "Associate",
+    "exit_company": "USC Marshall",
+    "exit_role": "MBA Candidate",
+    "industry": "Graduate Education",
+    "avg_years_before_exit": 2.6
+  },
+  {
+    "start_company": "KPMG",
+    "start_role": "Senior Associate",
+    "exit_company": "PwC",
+    "exit_role": "Senior Associate",
+    "industry": "Consulting",
+    "avg_years_before_exit": 2.3
+  },
+  {
+    "start_company": "KPMG",
+    "start_role": "Associate",
+    "exit_company": "Morgan Stanley",
+    "exit_role": "Investment Banking Analyst",
+    "industry": "Investment Banking",
+    "avg_years_before_exit": 2.8
+  },
+  {
+    "start_company": "KPMG",
+    "start_role": "Senior Associate",
+    "exit_company": "Google",
+    "exit_role": "Business Development Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 3.0
+  },
+  {
+    "start_company": "KPMG",
+    "start_role": "Associate",
+    "exit_company": "Chicago Booth",
+    "exit_role": "MBA Candidate",
+    "industry": "Graduate Education",
+    "avg_years_before_exit": 2.7
+  },
+  {
+    "start_company": "KPMG",
+    "start_role": "Senior Associate",
+    "exit_company": "Accenture",
+    "exit_role": "Strategy Consultant",
+    "industry": "Consulting",
+    "avg_years_before_exit": 2.5
+  },
+  {
+    "start_company": "KPMG",
+    "start_role": "Associate",
+    "exit_company": "Citigroup",
+    "exit_role": "Investment Banking Analyst",
+    "industry": "Investment Banking",
+    "avg_years_before_exit": 2.6
+  },
+  {
+    "start_company": "KPMG",
+    "start_role": "Senior Associate",
+    "exit_company": "Adobe",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 2.9
+  }
+]
+

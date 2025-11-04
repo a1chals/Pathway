@@ -62,6 +62,85 @@
     "exit_role": "Business Development Manager",
     "industry": "Corporate",
     "avg_years_before_exit": 3.1
+  },
+  {
+    "start_company": "PwC",
+    "start_role": "Associate",
+    "exit_company": "Goldman Sachs",
+    "exit_role": "Investment Banking Analyst",
+    "industry": "Investment Banking",
+    "avg_years_before_exit": 2.6
+  },
+  {
+    "start_company": "PwC",
+    "start_role": "Senior Associate",
+    "exit_company": "Amazon",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 3.0
+  },
+  {
+    "start_company": "PwC",
+    "start_role": "Associate",
+    "exit_company": "Duke Fuqua",
+    "exit_role": "MBA Candidate",
+    "industry": "Graduate Education",
+    "avg_years_before_exit": 2.7
+  },
+  {
+    "start_company": "PwC",
+    "start_role": "Senior Associate",
+    "exit_company": "Mastercard",
+    "exit_role": "Strategy Manager",
+    "industry": "Corporate",
+    "avg_years_before_exit": 3.1
+  },
+  {
+    "start_company": "PwC",
+    "start_role": "Associate",
+    "exit_company": "JPMorgan Chase",
+    "exit_role": "Investment Banking Analyst",
+    "industry": "Investment Banking",
+    "avg_years_before_exit": 2.5
+  },
+  {
+    "start_company": "PwC",
+    "start_role": "Senior Associate",
+    "exit_company": "Microsoft",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 3.0
+  },
+  {
+    "start_company": "PwC",
+    "start_role": "Associate",
+    "exit_company": "Chicago Booth",
+    "exit_role": "MBA Candidate",
+    "industry": "Graduate Education",
+    "avg_years_before_exit": 2.8
+  },
+  {
+    "start_company": "PwC",
+    "start_role": "Senior Associate",
+    "exit_company": "IBM",
+    "exit_role": "Strategy Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 3.1
+  },
+  {
+    "start_company": "PwC",
+    "start_role": "Associate",
+    "exit_company": "Morgan Stanley",
+    "exit_role": "Investment Banking Analyst",
+    "industry": "Investment Banking",
+    "avg_years_before_exit": 2.7
+  },
+  {
+    "start_company": "PwC",
+    "start_role": "Senior Associate",
+    "exit_company": "Apple",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 2.9
   }
 ]
-
