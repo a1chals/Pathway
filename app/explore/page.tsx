@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { TrendingUp, Sparkles, ArrowLeft } from "lucide-react";
@@ -83,7 +83,7 @@ export default function ExplorePage() {
   const firmParam = searchParams.get("firm");
   
   // Find matching firm from param
-  const getInitialFirm = () => {
+  const getInitialFirm = useCallback(() => {
     if (firmParam) {
       // Try direct match first
       if (FIRM_DATA[firmParam]) return firmParam;
@@ -92,7 +92,7 @@ export default function ExplorePage() {
       // If no match, default to first available firm
     }
     return "Bain & Company";
-  };
+  }, [firmParam]);
 
   const [selectedFirm, setSelectedFirm] = useState<string>(getInitialFirm());
   const currentExits = FIRM_DATA[selectedFirm] || FIRM_DATA["Bain & Company"];
@@ -102,7 +102,7 @@ export default function ExplorePage() {
       const matchedFirm = getInitialFirm();
       setSelectedFirm(matchedFirm);
     }
-  }, [firmParam]);
+  }, [firmParam, getInitialFirm]);
 
   return (
     <div className="min-h-screen checkered-bg">
