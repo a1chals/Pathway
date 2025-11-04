@@ -43,13 +43,13 @@ export default function ExitList({ data }: ExitListProps) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.3 }}
     >
-      <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300">
+      <Card className="border-2 border-gray-700 bg-white hover:shadow-lg transition-all duration-300 retro-outset">
         <CardHeader className="pb-4">
           <div className="flex items-center gap-2">
-            <div className="p-2 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-500">
+            <div className="p-2 rounded-sm border-2 border-gray-700 bg-gray-700 retro-inset">
               <Building2 className="h-5 w-5 text-white" />
             </div>
-            <CardTitle className="text-xl font-bold text-slate-800">
+            <CardTitle className="text-xl font-bold text-gray-800 uppercase tracking-wide">
               Top Exit Companies
             </CardTitle>
           </div>
@@ -64,29 +64,29 @@ export default function ExitList({ data }: ExitListProps) {
                 transition={{ delay: 0.4 + index * 0.05 }}
                 className="group"
               >
-                <div className="flex items-center justify-between p-4 rounded-lg border border-slate-200 hover:border-purple-300 hover:bg-purple-50/50 transition-all duration-200">
+                <div className="flex items-center justify-between p-4 rounded-sm border-2 border-gray-700 bg-white hover:bg-gray-50 transition-all duration-200 retro-outset group-hover:retro-pressed">
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-1">
-                      <p className="font-semibold text-slate-800 group-hover:text-purple-700 transition-colors">
+                      <p className="font-semibold text-gray-800 group-hover:text-gray-900 transition-colors">
                         {company.company}
                       </p>
                       {index === 0 && (
-                        <Badge variant="default" className="text-xs">
+                        <Badge variant="default" className="text-xs border-2 border-gray-700 bg-gray-700 text-white">
                           #1
                         </Badge>
                       )}
                     </div>
-                    <Badge variant="outline" className="text-xs mt-1">
+                    <Badge variant="outline" className="text-xs mt-1 border border-gray-600">
                       {company.industry}
                     </Badge>
                   </div>
                   <div className="flex items-center gap-4 ml-4">
                     <div className="text-right">
-                      <div className="flex items-center gap-1 text-sm font-medium text-slate-700">
-                        <Clock className="h-4 w-4 text-slate-400" />
+                      <div className="flex items-center gap-1 text-sm font-medium text-gray-800">
+                        <Clock className="h-4 w-4 text-gray-600" />
                         <span>{company.avgYears.toFixed(1)} yrs</span>
                       </div>
-                      <p className="text-xs text-slate-500 mt-1">
+                      <p className="text-xs text-gray-500 mt-1">
                         {company.count} exit{company.count > 1 ? 's' : ''}
                       </p>
                     </div>

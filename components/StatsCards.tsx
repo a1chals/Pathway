@@ -51,22 +51,16 @@ export default function StatsCards({ data }: StatsCardsProps) {
       label: "Avg. Years Before Exit",
       value: avgYears,
       icon: Calendar,
-      gradient: "from-blue-500 to-cyan-500",
-      bgGradient: "from-blue-50 to-cyan-50",
     },
     {
       label: "Most Common Exit",
       value: mostCommonIndustry,
       icon: TrendingUp,
-      gradient: "from-purple-500 to-pink-500",
-      bgGradient: "from-purple-50 to-pink-50",
     },
     {
       label: "% Pursuing MBAs",
       value: `${mbaPercentage}%`,
       icon: GraduationCap,
-      gradient: "from-orange-500 to-red-500",
-      bgGradient: "from-orange-50 to-red-50",
     },
   ];
 
@@ -84,17 +78,17 @@ export default function StatsCards({ data }: StatsCardsProps) {
             whileHover={{ scale: 1.02, y: -4 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            <Card className={`overflow-hidden border-0 bg-gradient-to-br ${stat.bgGradient} hover:shadow-xl transition-all duration-300`}>
+            <Card className="overflow-hidden border-2 border-gray-700 bg-white hover:shadow-lg transition-all duration-300 retro-outset">
               <CardContent className="p-6">
                 <div className="flex items-start justify-between mb-4">
-                  <div className={`p-3 rounded-xl bg-gradient-to-br ${stat.gradient} shadow-lg`}>
+                  <div className="p-3 rounded-sm border-2 border-gray-700 bg-gray-700 retro-inset">
                     <Icon className="h-6 w-6 text-white" />
                   </div>
                 </div>
-                <h3 className="text-sm font-medium text-slate-600 mb-2">
+                <h3 className="text-xs font-medium text-gray-600 mb-2 uppercase tracking-wide">
                   {stat.label}
                 </h3>
-                <p className={`text-4xl font-bold bg-gradient-to-r ${stat.gradient} bg-clip-text text-transparent`}>
+                <p className="text-4xl font-bold text-gray-800 tracking-tight">
                   {stat.value}
                 </p>
               </CardContent>

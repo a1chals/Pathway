@@ -17,13 +17,13 @@ export default function ExampleExits({ data }: ExampleExitsProps) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.4 }}
     >
-      <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300">
+      <Card className="border-2 border-gray-700 bg-white hover:shadow-lg transition-all duration-300 retro-outset">
         <CardHeader className="pb-4">
           <div className="flex items-center gap-2">
-            <div className="p-2 rounded-lg bg-gradient-to-br from-orange-500 to-red-500">
+            <div className="p-2 rounded-sm border-2 border-gray-700 bg-gray-700 retro-inset">
               <Briefcase className="h-5 w-5 text-white" />
             </div>
-            <CardTitle className="text-xl font-bold text-slate-800">
+            <CardTitle className="text-xl font-bold text-gray-800 uppercase tracking-wide">
               Example Career Transitions
             </CardTitle>
           </div>
@@ -38,27 +38,27 @@ export default function ExampleExits({ data }: ExampleExitsProps) {
                 transition={{ delay: 0.5 + index * 0.03 }}
                 className="group"
               >
-                <div className="flex items-center gap-3 p-4 rounded-lg border border-slate-200 hover:border-purple-300 hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50 transition-all duration-200">
+                <div className="flex items-center gap-3 p-4 rounded-sm border-2 border-gray-700 bg-white hover:bg-gray-50 transition-all duration-200 retro-outset group-hover:retro-pressed">
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 flex-wrap">
-                      <span className="font-semibold text-slate-800 group-hover:text-purple-700 transition-colors">
+                      <span className="font-semibold text-gray-800 group-hover:text-gray-900 transition-colors">
                         {exit.start_role}
                       </span>
-                      <ArrowRight className="h-4 w-4 text-slate-400 flex-shrink-0" />
-                      <span className="font-semibold text-slate-800 group-hover:text-purple-700 transition-colors">
+                      <ArrowRight className="h-4 w-4 text-gray-600 flex-shrink-0" />
+                      <span className="font-semibold text-gray-800 group-hover:text-gray-900 transition-colors">
                         {exit.exit_role}
                       </span>
                     </div>
                     <div className="flex items-center gap-2 mt-2">
-                      <span className="font-medium text-purple-600 group-hover:text-purple-700">
+                      <span className="font-medium text-gray-800 group-hover:text-gray-900">
                         {exit.exit_company}
                       </span>
-                      <Badge variant="outline" className="text-xs">
+                      <Badge variant="outline" className="text-xs border border-gray-600">
                         {exit.industry}
                       </Badge>
                     </div>
                   </div>
-                  <Badge variant="secondary" className="ml-auto flex-shrink-0">
+                  <Badge variant="secondary" className="ml-auto flex-shrink-0 border border-gray-600 bg-gray-100">
                     {exit.avg_years_before_exit} yrs
                   </Badge>
                 </div>
