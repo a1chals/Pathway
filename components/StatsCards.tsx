@@ -14,13 +14,14 @@ const cardVariants = {
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: {
-      delay: i * 0.1,
-      duration: 0.5,
-      ease: [0.25, 0.1, 0.25, 1],
-    },
   }),
 };
+
+const cardTransition = (i: number) => ({
+  delay: i * 0.1,
+  duration: 0.5,
+  ease: [0.25, 0.1, 0.25, 1] as const,
+});
 
 export default function StatsCards({ data }: StatsCardsProps) {
   // Calculate average years before exit
@@ -75,8 +76,8 @@ export default function StatsCards({ data }: StatsCardsProps) {
             initial="hidden"
             animate="visible"
             variants={cardVariants}
+            transition={cardTransition(index)}
             whileHover={{ scale: 1.02, y: -4 }}
-            transition={{ type: "spring", stiffness: 300 }}
           >
             <Card className="overflow-hidden border-2 border-gray-700 bg-white hover:shadow-lg transition-all duration-300 retro-outset">
               <CardContent className="p-6">
