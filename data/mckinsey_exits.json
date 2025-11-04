@@ -1,0 +1,67 @@
+[
+  {
+    "start_company": "McKinsey & Company",
+    "start_role": "Business Analyst",
+    "exit_company": "Goldman Sachs",
+    "exit_role": "Investment Banking Analyst",
+    "industry": "Investment Banking",
+    "avg_years_before_exit": 2.2
+  },
+  {
+    "start_company": "McKinsey & Company",
+    "start_role": "Associate",
+    "exit_company": "Amazon",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 2.8
+  },
+  {
+    "start_company": "McKinsey & Company",
+    "start_role": "Business Analyst",
+    "exit_company": "Harvard Business School",
+    "exit_role": "MBA Candidate",
+    "industry": "Graduate Education",
+    "avg_years_before_exit": 2.5
+  },
+  {
+    "start_company": "McKinsey & Company",
+    "start_role": "Associate",
+    "exit_company": "KKR",
+    "exit_role": "Private Equity Associate",
+    "industry": "Private Equity",
+    "avg_years_before_exit": 3.2
+  },
+  {
+    "start_company": "McKinsey & Company",
+    "start_role": "Business Analyst",
+    "exit_company": "Meta",
+    "exit_role": "Strategy & Operations Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 2.6
+  },
+  {
+    "start_company": "McKinsey & Company",
+    "start_role": "Associate",
+    "exit_company": "Stanford GSB",
+    "exit_role": "MBA Candidate",
+    "industry": "Graduate Education",
+    "avg_years_before_exit": 2.9
+  },
+  {
+    "start_company": "McKinsey & Company",
+    "start_role": "Business Analyst",
+    "exit_company": "Uber",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 2.7
+  },
+  {
+    "start_company": "McKinsey & Company",
+    "start_role": "Associate",
+    "exit_company": "Apollo Global Management",
+    "exit_role": "Private Equity Analyst",
+    "industry": "Private Equity",
+    "avg_years_before_exit": 3.0
+  }
+]
+

@@ -1,0 +1,67 @@
+[
+  {
+    "start_company": "PwC",
+    "start_role": "Associate",
+    "exit_company": "Citigroup",
+    "exit_role": "Investment Banking Analyst",
+    "industry": "Investment Banking",
+    "avg_years_before_exit": 2.8
+  },
+  {
+    "start_company": "PwC",
+    "start_role": "Senior Associate",
+    "exit_company": "LinkedIn",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 3.1
+  },
+  {
+    "start_company": "PwC",
+    "start_role": "Associate",
+    "exit_company": "UC Berkeley Haas",
+    "exit_role": "MBA Candidate",
+    "industry": "Graduate Education",
+    "avg_years_before_exit": 2.7
+  },
+  {
+    "start_company": "PwC",
+    "start_role": "Senior Associate",
+    "exit_company": "Spotify",
+    "exit_role": "Strategy & Operations Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 3.0
+  },
+  {
+    "start_company": "PwC",
+    "start_role": "Associate",
+    "exit_company": "PepsiCo",
+    "exit_role": "Corporate Strategy Analyst",
+    "industry": "Corporate",
+    "avg_years_before_exit": 2.9
+  },
+  {
+    "start_company": "PwC",
+    "start_role": "Senior Associate",
+    "exit_company": "Cisco",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 3.2
+  },
+  {
+    "start_company": "PwC",
+    "start_role": "Associate",
+    "exit_company": "Yale SOM",
+    "exit_role": "MBA Candidate",
+    "industry": "Graduate Education",
+    "avg_years_before_exit": 2.8
+  },
+  {
+    "start_company": "PwC",
+    "start_role": "Senior Associate",
+    "exit_company": "Visa",
+    "exit_role": "Business Development Manager",
+    "industry": "Corporate",
+    "avg_years_before_exit": 3.1
+  }
+]
+

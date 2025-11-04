@@ -1,0 +1,67 @@
+[
+  {
+    "start_company": "Deloitte",
+    "start_role": "Business Analyst",
+    "exit_company": "Morgan Stanley",
+    "exit_role": "Investment Banking Analyst",
+    "industry": "Investment Banking",
+    "avg_years_before_exit": 2.7
+  },
+  {
+    "start_company": "Deloitte",
+    "start_role": "Consultant",
+    "exit_company": "Netflix",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 3.0
+  },
+  {
+    "start_company": "Deloitte",
+    "start_role": "Business Analyst",
+    "exit_company": "Cornell Johnson",
+    "exit_role": "MBA Candidate",
+    "industry": "Graduate Education",
+    "avg_years_before_exit": 2.8
+  },
+  {
+    "start_company": "Deloitte",
+    "start_role": "Consultant",
+    "exit_company": "Tesla",
+    "exit_role": "Strategy & Operations Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 3.1
+  },
+  {
+    "start_company": "Deloitte",
+    "start_role": "Business Analyst",
+    "exit_company": "Adobe",
+    "exit_role": "Product Marketing Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 2.9
+  },
+  {
+    "start_company": "Deloitte",
+    "start_role": "Consultant",
+    "exit_company": "GE",
+    "exit_role": "Corporate Strategy Associate",
+    "industry": "Corporate",
+    "avg_years_before_exit": 3.2
+  },
+  {
+    "start_company": "Deloitte",
+    "start_role": "Business Analyst",
+    "exit_company": "USC Marshall",
+    "exit_role": "MBA Candidate",
+    "industry": "Graduate Education",
+    "avg_years_before_exit": 2.6
+  },
+  {
+    "start_company": "Deloitte",
+    "start_role": "Consultant",
+    "exit_company": "Zoom",
+    "exit_role": "Strategy Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 3.0
+  }
+]
+
