@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { TrendingUp, Sparkles, ArrowLeft } from "lucide-react";
@@ -77,7 +77,7 @@ const COMPANY_MAPPINGS: Record<string, string> = {
   "Adobe": "Adobe",
 };
 
-export default function ExplorePage() {
+function ExplorePageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const firmParam = searchParams.get("firm");
@@ -256,3 +256,14 @@ export default function ExplorePage() {
   );
 }
 
+export default function ExplorePage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen checkered-bg flex items-center justify-center">
+        <div className="text-gray-600">Loading...</div>
+      </div>
+    }>
+      <ExplorePageContent />
+    </Suspense>
+  );
+}
