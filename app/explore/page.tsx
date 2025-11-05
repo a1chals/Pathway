@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { TrendingUp, Sparkles, ArrowLeft } from "lucide-react";
+import { TrendingUp, Sparkles, ArrowLeft, Network } from "lucide-react";
 import { useRouter } from "next/navigation";
 import bainExitsData from "@/data/bain_exits.json";
 import mckinseyExitsData from "@/data/mckinsey_exits.json";
@@ -139,8 +139,17 @@ function ExplorePageContent() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
-              className="hidden md:block"
+              className="hidden md:flex items-center gap-3"
             >
+              <button
+                onClick={() => router.push("/heatmap")}
+                className="flex items-center gap-2 px-4 py-2 rounded-sm border-2 border-gray-700 bg-white hover:bg-gray-50 transition-colors retro-outset hover:retro-pressed"
+              >
+                <Network className="h-4 w-4 text-gray-800" />
+                <span className="text-sm font-medium text-gray-800 uppercase tracking-wide">
+                  Heatmap View
+                </span>
+              </button>
               <Select value={selectedFirm} onValueChange={setSelectedFirm}>
                 <SelectTrigger className="w-64 border-2 border-gray-700 bg-white hover:bg-gray-50 transition-colors rounded-sm retro-outset hover:retro-pressed">
                   <SelectValue />
@@ -159,7 +168,16 @@ function ExplorePageContent() {
       </header>
 
       {/* Mobile Firm Selector */}
-      <div className="md:hidden bg-white border-b-2 border-gray-700 px-4 py-3">
+      <div className="md:hidden bg-white border-b-2 border-gray-700 px-4 py-3 space-y-3">
+        <button
+          onClick={() => router.push("/heatmap")}
+          className="w-full flex items-center justify-center gap-2 px-4 py-2 rounded-sm border-2 border-gray-700 bg-white hover:bg-gray-50 transition-colors retro-outset hover:retro-pressed"
+        >
+          <Network className="h-4 w-4 text-gray-800" />
+          <span className="text-sm font-medium text-gray-800 uppercase tracking-wide">
+            Heatmap View
+          </span>
+        </button>
         <Select value={selectedFirm} onValueChange={setSelectedFirm}>
           <SelectTrigger className="w-full border-2 border-gray-700 rounded-sm retro-outset">
             <SelectValue />
