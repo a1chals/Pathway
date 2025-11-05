@@ -151,10 +151,20 @@ export default function KeyboardLanding() {
               onClick={() => router.push("/explore")}
               whileHover={{ scale: 1.01 }}
               whileTap={{ scale: 0.99 }}
-              className="w-full max-w-2xl h-14 border-2 border-gray-700 bg-white rounded-sm flex items-center justify-center transition-all duration-150 retro-outset hover:retro-pressed active:retro-pressed"
+              className="flex-1 max-w-xl h-14 border-2 border-gray-700 bg-white rounded-sm flex items-center justify-center transition-all duration-150 retro-outset hover:retro-pressed active:retro-pressed"
             >
               <span className="text-sm font-semibold text-gray-800 uppercase tracking-wider">
                 EXPLORE ALL COMPANIES
+              </span>
+            </motion.button>
+            <motion.button
+              onClick={() => router.push("/heatmap")}
+              whileHover={{ scale: 1.01 }}
+              whileTap={{ scale: 0.99 }}
+              className="flex-1 max-w-xl h-14 border-2 border-gray-700 bg-gradient-to-br from-purple-500 to-blue-500 rounded-sm flex items-center justify-center transition-all duration-150 retro-outset hover:retro-pressed active:retro-pressed"
+            >
+              <span className="text-sm font-semibold text-white uppercase tracking-wider">
+                HEATMAP VIEW
               </span>
             </motion.button>
           </div>
