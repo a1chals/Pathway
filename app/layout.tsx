@@ -9,7 +9,7 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "PathSearch — See where your first job can take you",
+  title: "Pathway — See where your first job can take you",
   description: "Explore career exits from Bain & Company. Visualize where consultants go after consulting.",
 };
 

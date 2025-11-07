@@ -127,7 +127,7 @@ function ExplorePageContent() {
                 </div>
                 <div>
                   <h1 className="text-2xl font-bold text-gray-800 uppercase tracking-wide">
-                    PathSearch
+                    Pathway
                   </h1>
                   <p className="text-xs text-gray-600 uppercase tracking-wide">
                     See where your first job can take you
@@ -147,7 +147,7 @@ function ExplorePageContent() {
               >
                 <Network className="h-4 w-4 text-gray-800" />
                 <span className="text-sm font-medium text-gray-800 uppercase tracking-wide">
-                  Heatmap View
+                  Movement Map
                 </span>
               </button>
               <Select value={selectedFirm} onValueChange={setSelectedFirm}>
