@@ -239,8 +239,13 @@ export default function Treemap({
               .text(company.name.substring(0, 12));
           });
         
-        // Company name below logo
+        // Company name below logo (with proper truncation based on width)
         if (area > 4500) {
+          const maxChars = Math.floor(width / 7); // Approximate chars that fit
+          const truncatedName = company.name.length > maxChars 
+            ? company.name.substring(0, maxChars - 3) + "..." 
+            : company.name;
+          
           group
             .append("text")
             .attr("x", centerX)
@@ -249,7 +254,8 @@ export default function Treemap({
             .attr("fill", "white")
             .attr("font-size", "12px")
             .attr("font-weight", 600)
-            .text(company.name.length > 20 ? company.name.substring(0, 18) + "..." : company.name);
+            .style("pointer-events", "none")
+            .text(truncatedName);
           
           // Stats
           group
@@ -263,7 +269,12 @@ export default function Treemap({
             .text(`${company.outgoing} exits • ${company.avgYearsBeforeExit.toFixed(1)} yrs`);
         }
       } else if (area > 1500) {
-        // Text only for smaller boxes
+        // Text only for smaller boxes (with proper truncation)
+        const maxChars = Math.floor(width / 6); // Approximate chars that fit for smaller font
+        const truncatedName = company.name.length > maxChars 
+          ? company.name.substring(0, maxChars) 
+          : company.name;
+        
         group
           .append("text")
           .attr("x", centerX)
@@ -272,7 +283,8 @@ export default function Treemap({
           .attr("fill", "white")
           .attr("font-size", "11px")
           .attr("font-weight", 600)
-          .text(company.name.substring(0, 12));
+          .style("pointer-events", "none")
+          .text(truncatedName);
         
         if (area > 3000) {
           group
