@@ -287,11 +287,27 @@ export function generateHeatmapData(): HeatmapData {
         avgYears: data.totalYears / data.count,
       }));
 
+    // Artificially boost employee count for display purposes based on prestige
+    const prestigeMultipliers: Record<string, number> = {
+      "McKinsey & Company": 10,
+      "Boston Consulting Group": 9,
+      "BCG": 9,
+      "Bain & Company": 8,
+      "Goldman Sachs": 5,
+      "Google": 3,
+      "Apple": 2.8,
+      "Microsoft": 2.6,
+    };
+    
+    const displayEmployeeCount = prestigeMultipliers[name] 
+      ? info.employeeCount * prestigeMultipliers[name]
+      : info.employeeCount;
+
     return {
       id: name.toLowerCase().replace(/[^a-z0-9]/g, '-'),
       name: name,
       industry: info.type,
-      employeeCount: info.employeeCount,
+      employeeCount: displayEmployeeCount,
       avgYearsBeforeExit: stats.count > 0 ? stats.totalYears / stats.count : 0,
       incoming: stats.incoming,
       outgoing: stats.outgoing,
@@ -310,11 +326,124 @@ export function generateHeatmapData(): HeatmapData {
     grouped.get(company.industry)!.push(company);
   });
 
-  // Create hierarchical structure
-  const children = Array.from(grouped.entries()).map(([industry, companies]) => ({
-    name: industry,
-    children: companies,
-  }));
+  // Hardcoded company order by industry (user-specified)
+  const companyOrder: Record<string, string[]> = {
+    "Consulting": [
+      "McKinsey & Company",
+      "Boston Consulting Group",
+      "BCG",
+      "Bain & Company",
+      "Deloitte",
+      "PwC",
+      "PricewaterhouseCoopers",
+      "EY",
+      "Ernst & Young",
+      "KPMG",
+      "Accenture",
+      "Oliver Wyman",
+      "A.T. Kearney",
+      "L.E.K. Consulting",
+    ],
+    "Banking": [
+      "Goldman Sachs",
+      "JPMorgan Chase",
+      "JPMorgan",
+      "Morgan Stanley",
+      "Bank of America",
+      "Citigroup",
+      "Citi",
+      "Barclays",
+      "UBS",
+      "Deutsche Bank",
+      "Credit Suisse",
+    ],
+    "Tech": [
+      "Google",
+      "Apple",
+      "Microsoft",
+      "Amazon",
+      "Amazon Web Services",
+      "Meta",
+      "Facebook",
+      "Tesla",
+      "Netflix",
+      "Adobe",
+      "Salesforce",
+      "Stripe",
+      "Airbnb",
+      "Uber",
+      "LinkedIn",
+      "DoorDash",
+      "Spotify",
+      "Zoom",
+      "Twitter",
+      "Snap",
+      "Pinterest",
+    ],
+    "PE/VC": [
+      "Blackstone",
+      "KKR",
+      "Carlyle Group",
+      "Apollo Global Management",
+      "Bain Capital",
+      "TPG",
+      "TPG Capital",
+      "Sequoia Capital",
+      "Andreessen Horowitz",
+      "General Catalyst",
+      "Accel",
+    ],
+    "Education": [
+      "Harvard Business School",
+      "Stanford GSB",
+      "Wharton School",
+      "MIT Sloan",
+      "Chicago Booth",
+      "Kellogg School of Management",
+      "Columbia Business School",
+      "UC Berkeley Haas",
+      "Yale SOM",
+      "Duke Fuqua",
+    ],
+  };
+
+  // Create hierarchical structure - sort companies by hardcoded order
+  const children = Array.from(grouped.entries()).map(([industry, companies]) => {
+    const order = companyOrder[industry] || [];
+    
+    const sorted = companies.sort((a, b) => {
+      const indexA = order.indexOf(a.name);
+      const indexB = order.indexOf(b.name);
+      
+      // If both are in the order list, sort by their position
+      if (indexA !== -1 && indexB !== -1) {
+        return indexA - indexB;
+      }
+      // If only A is in the list, it comes first
+      if (indexA !== -1) return -1;
+      // If only B is in the list, it comes first
+      if (indexB !== -1) return 1;
+      // If neither is in the list, sort by employee count
+      return b.employeeCount - a.employeeCount;
+    });
+    
+    // Log final order for Consulting
+    if (industry === "Consulting") {
+      console.log("CONSULTING FINAL ORDER:", sorted.slice(0, 5).map(c => c.name));
+    }
+    
+    return {
+      name: industry,
+      children: sorted,
+    };
+  });
+
+  // Sort industries by total employee count
+  children.sort((a, b) => {
+    const totalA = a.children.reduce((sum, c) => sum + c.employeeCount, 0);
+    const totalB = b.children.reduce((sum, c) => sum + c.employeeCount, 0);
+    return totalB - totalA;
+  });
 
   return {
     name: "All Companies",
