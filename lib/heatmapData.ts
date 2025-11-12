@@ -54,6 +54,7 @@ const companyLogos: Record<string, string> = {
   "Oliver Wyman": "https://logo.clearbit.com/oliverwyman.com",
   "A.T. Kearney": "https://logo.clearbit.com/atkearney.com",
   "L.E.K. Consulting": "https://logo.clearbit.com/lek.com",
+  "LEK Consulting": "https://logo.clearbit.com/lek.com",
   
   // Banking
   "Goldman Sachs": "https://logo.clearbit.com/goldmansachs.com",
@@ -63,6 +64,8 @@ const companyLogos: Record<string, string> = {
   "Bank of America": "https://logo.clearbit.com/bankofamerica.com",
   "Citigroup": "https://logo.clearbit.com/citigroup.com",
   "Citi": "https://logo.clearbit.com/citi.com",
+  "Visa": "https://logo.clearbit.com/visa.com",
+  "Mastercard": "https://logo.clearbit.com/mastercard.com",
   
   // PE/VC
   "Blackstone": "https://logo.clearbit.com/blackstone.com",
@@ -71,6 +74,7 @@ const companyLogos: Record<string, string> = {
   "Apollo Global Management": "https://logo.clearbit.com/apollo.com",
   "Bain Capital": "https://logo.clearbit.com/baincapital.com",
   "TPG": "https://logo.clearbit.com/tpg.com",
+  "Warburg Pincus": "https://logo.clearbit.com/warburgpincus.com",
   "Sequoia Capital": "https://logo.clearbit.com/sequoiacap.com",
   "Andreessen Horowitz": "https://logo.clearbit.com/a16z.com",
   "General Catalyst": "https://logo.clearbit.com/generalcatalyst.com",
@@ -96,12 +100,29 @@ const companyLogos: Record<string, string> = {
   "LinkedIn": "https://logo.clearbit.com/linkedin.com",
   "Twitter": "https://logo.clearbit.com/twitter.com",
   "Snap": "https://logo.clearbit.com/snap.com",
+  "IBM": "https://logo.clearbit.com/ibm.com",
+  "SAP": "https://logo.clearbit.com/sap.com",
+  "Oracle": "https://logo.clearbit.com/oracle.com",
+  "Cisco": "https://logo.clearbit.com/cisco.com",
+  "Shopify": "https://logo.clearbit.com/shopify.com",
   
   // Education
   "Harvard Business School": "https://logo.clearbit.com/hbs.edu",
   "Stanford GSB": "https://logo.clearbit.com/gsb.stanford.edu",
   "Wharton School": "https://logo.clearbit.com/wharton.upenn.edu",
   "MIT Sloan": "https://logo.clearbit.com/mitsloan.mit.edu",
+  "Cornell Johnson": "https://logo.clearbit.com/johnson.cornell.edu",
+  "Yale SOM": "https://logo.clearbit.com/som.yale.edu",
+  "USC Marshall": "https://logo.clearbit.com/marshall.usc.edu",
+  "Duke Fuqua": "https://logo.clearbit.com/fuqua.duke.edu",
+  "NYU Stern": "https://logo.clearbit.com/stern.nyu.edu",
+  "Northwestern Kellogg": "https://logo.clearbit.com/kellogg.northwestern.edu",
+  
+  // Corporate
+  "Procter & Gamble": "https://logo.clearbit.com/pg.com",
+  "Johnson & Johnson": "https://logo.clearbit.com/jnj.com",
+  "Unilever": "https://logo.clearbit.com/unilever.com",
+  "PepsiCo": "https://logo.clearbit.com/pepsico.com",
 };
 
 // Company type mappings with estimated employee counts
@@ -121,6 +142,7 @@ const companyData: Record<string, { type: CompanyType; employeeCount: number }> 
   "Oliver Wyman": { type: "Consulting", employeeCount: 6000 },
   "A.T. Kearney": { type: "Consulting", employeeCount: 3600 },
   "L.E.K. Consulting": { type: "Consulting", employeeCount: 1600 },
+  "LEK Consulting": { type: "Consulting", employeeCount: 1600 },
   
   // Banking
   "Goldman Sachs": { type: "Banking", employeeCount: 49000 },
@@ -134,6 +156,8 @@ const companyData: Record<string, { type: CompanyType; employeeCount: number }> 
   "Credit Suisse": { type: "Banking", employeeCount: 50000 },
   "UBS": { type: "Banking", employeeCount: 72000 },
   "Barclays": { type: "Banking", employeeCount: 89000 },
+  "Visa": { type: "Banking", employeeCount: 26500 },
+  "Mastercard": { type: "Banking", employeeCount: 24000 },
   
   // PE/VC
   "Blackstone": { type: "PE/VC", employeeCount: 4700 },
@@ -142,6 +166,7 @@ const companyData: Record<string, { type: CompanyType; employeeCount: number }> 
   "Apollo Global Management": { type: "PE/VC", employeeCount: 2000 },
   "Bain Capital": { type: "PE/VC", employeeCount: 1600 },
   "TPG": { type: "PE/VC", employeeCount: 1400 },
+  "Warburg Pincus": { type: "PE/VC", employeeCount: 900 },
   "Sequoia Capital": { type: "PE/VC", employeeCount: 280 },
   "Andreessen Horowitz": { type: "PE/VC", employeeCount: 450 },
   "General Catalyst": { type: "PE/VC", employeeCount: 180 },
@@ -168,6 +193,11 @@ const companyData: Record<string, { type: CompanyType; employeeCount: number }> 
   "Twitter": { type: "Tech", employeeCount: 7500 },
   "Snap": { type: "Tech", employeeCount: 5600 },
   "Pinterest": { type: "Tech", employeeCount: 4100 },
+  "IBM": { type: "Tech", employeeCount: 282000 },
+  "SAP": { type: "Tech", employeeCount: 107000 },
+  "Oracle": { type: "Tech", employeeCount: 164000 },
+  "Cisco": { type: "Tech", employeeCount: 83000 },
+  "Shopify": { type: "Tech", employeeCount: 10000 },
   
   // Education (MBA Programs)
   "Harvard Business School": { type: "Education", employeeCount: 900 },
@@ -176,7 +206,19 @@ const companyData: Record<string, { type: CompanyType; employeeCount: number }> 
   "MIT Sloan": { type: "Education", employeeCount: 750 },
   "Columbia Business School": { type: "Education", employeeCount: 700 },
   "Kellogg School of Management": { type: "Education", employeeCount: 650 },
+  "Northwestern Kellogg": { type: "Education", employeeCount: 650 },
   "Chicago Booth": { type: "Education", employeeCount: 600 },
+  "Cornell Johnson": { type: "Education", employeeCount: 550 },
+  "Yale SOM": { type: "Education", employeeCount: 500 },
+  "USC Marshall": { type: "Education", employeeCount: 480 },
+  "Duke Fuqua": { type: "Education", employeeCount: 460 },
+  "NYU Stern": { type: "Education", employeeCount: 450 },
+  
+  // Corporate
+  "Procter & Gamble": { type: "Corporate", employeeCount: 107000 },
+  "Johnson & Johnson": { type: "Corporate", employeeCount: 152000 },
+  "Unilever": { type: "Corporate", employeeCount: 127000 },
+  "PepsiCo": { type: "Corporate", employeeCount: 309000 },
 };
 
 function getCompanyInfo(companyName: string): { type: CompanyType; employeeCount: number } {
@@ -290,11 +332,36 @@ export function generateHeatmapData(): HeatmapData {
         avgYears: data.totalYears / data.count,
       }));
 
+    // Use logarithmic scale + prestige boost for better visual balance
+    // This prevents huge companies from dominating the entire view
+    const prestigeMultipliers: Record<string, number> = {
+      "McKinsey & Company": 3.5,
+      "Boston Consulting Group": 3.2,
+      "BCG": 3.2,
+      "Bain & Company": 3.0,
+      "Goldman Sachs": 2.5,
+      "Google": 1.8,
+      "Apple": 1.6,
+      "Microsoft": 1.5,
+    };
+    
+    // Apply logarithmic scaling to compress large values
+    // log(x) grows much slower than x, making sizes more balanced
+    const logScale = Math.log(info.employeeCount + 1) * 5000;
+    
+    // Apply prestige multiplier
+    const withPrestige = prestigeMultipliers[name] 
+      ? logScale * prestigeMultipliers[name]
+      : logScale;
+    
+    // Cap at a maximum to prevent any single company from being too large
+    const displayEmployeeCount = Math.min(withPrestige, 150000);
+
     return {
       id: name.toLowerCase().replace(/[^a-z0-9]/g, '-'),
       name: name,
       industry: info.type,
-      employeeCount: info.employeeCount,
+      employeeCount: displayEmployeeCount,
       avgYearsBeforeExit: stats.count > 0 ? stats.totalYears / stats.count : 0,
       incoming: stats.incoming,
       outgoing: stats.outgoing,
@@ -314,11 +381,124 @@ export function generateHeatmapData(): HeatmapData {
     grouped.get(company.industry)!.push(company);
   });
 
-  // Create hierarchical structure
-  const children = Array.from(grouped.entries()).map(([industry, companies]) => ({
-    name: industry,
-    children: companies,
-  }));
+  // Hardcoded company order by industry (user-specified)
+  const companyOrder: Record<string, string[]> = {
+    "Consulting": [
+      "McKinsey & Company",
+      "Boston Consulting Group",
+      "BCG",
+      "Bain & Company",
+      "Deloitte",
+      "PwC",
+      "PricewaterhouseCoopers",
+      "EY",
+      "Ernst & Young",
+      "KPMG",
+      "Accenture",
+      "Oliver Wyman",
+      "A.T. Kearney",
+      "L.E.K. Consulting",
+    ],
+    "Banking": [
+      "Goldman Sachs",
+      "JPMorgan Chase",
+      "JPMorgan",
+      "Morgan Stanley",
+      "Bank of America",
+      "Citigroup",
+      "Citi",
+      "Barclays",
+      "UBS",
+      "Deutsche Bank",
+      "Credit Suisse",
+    ],
+    "Tech": [
+      "Google",
+      "Apple",
+      "Microsoft",
+      "Amazon",
+      "Amazon Web Services",
+      "Meta",
+      "Facebook",
+      "Tesla",
+      "Netflix",
+      "Adobe",
+      "Salesforce",
+      "Stripe",
+      "Airbnb",
+      "Uber",
+      "LinkedIn",
+      "DoorDash",
+      "Spotify",
+      "Zoom",
+      "Twitter",
+      "Snap",
+      "Pinterest",
+    ],
+    "PE/VC": [
+      "Blackstone",
+      "KKR",
+      "Carlyle Group",
+      "Apollo Global Management",
+      "Bain Capital",
+      "TPG",
+      "TPG Capital",
+      "Sequoia Capital",
+      "Andreessen Horowitz",
+      "General Catalyst",
+      "Accel",
+    ],
+    "Education": [
+      "Harvard Business School",
+      "Stanford GSB",
+      "Wharton School",
+      "MIT Sloan",
+      "Chicago Booth",
+      "Kellogg School of Management",
+      "Columbia Business School",
+      "UC Berkeley Haas",
+      "Yale SOM",
+      "Duke Fuqua",
+    ],
+  };
+
+  // Create hierarchical structure - sort companies by hardcoded order
+  const children = Array.from(grouped.entries()).map(([industry, companies]) => {
+    const order = companyOrder[industry] || [];
+    
+    const sorted = companies.sort((a, b) => {
+      const indexA = order.indexOf(a.name);
+      const indexB = order.indexOf(b.name);
+      
+      // If both are in the order list, sort by their position
+      if (indexA !== -1 && indexB !== -1) {
+        return indexA - indexB;
+      }
+      // If only A is in the list, it comes first
+      if (indexA !== -1) return -1;
+      // If only B is in the list, it comes first
+      if (indexB !== -1) return 1;
+      // If neither is in the list, sort by employee count
+      return b.employeeCount - a.employeeCount;
+    });
+    
+    // Log final order for Consulting
+    if (industry === "Consulting") {
+      console.log("CONSULTING FINAL ORDER:", sorted.slice(0, 5).map(c => c.name));
+    }
+    
+    return {
+      name: industry,
+      children: sorted,
+    };
+  });
+
+  // Sort industries by total employee count
+  children.sort((a, b) => {
+    const totalA = a.children.reduce((sum, c) => sum + c.employeeCount, 0);
+    const totalB = b.children.reduce((sum, c) => sum + c.employeeCount, 0);
+    return totalB - totalA;
+  });
 
   return {
     name: "All Companies",

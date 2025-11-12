@@ -2,7 +2,7 @@
 
 import { useParams, useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { ArrowLeft, TrendingUp, TrendingDown, Clock, GraduationCap, Users, Building2 } from "lucide-react";
+import { ArrowLeft, TrendingUp, TrendingDown, Clock, GraduationCap, Users } from "lucide-react";
 import CompanyFlowVisualization from "@/components/CompanyFlowVisualization";
 import TransitionSidebar from "@/components/TransitionSidebar";
 import { heatmapData, getRawExitDataForCompany } from "@/lib/heatmapData";
@@ -10,15 +10,16 @@ import { HeatmapCompany } from "@/lib/heatmapData";
 import { useMemo, useState } from "react";
 import { CompanyType, ExitData } from "@/types";
 
-const typeColors: Record<CompanyType, string> = {
-  Consulting: "#34d399", // Green
-  Banking: "#60a5fa", // Blue
-  Tech: "#8b7dff", // Purple
-  "PE/VC": "#fbbf24", // Yellow
-  Startup: "#f472b6", // Pink
-  Corporate: "#a3b8cc", // Blue-grey
-  Education: "#fcd34d", // Yellow
-  Other: "#94a3b8", // Grey
+// Retro industry colors (lighter, more vibrant)
+const industryColors: Record<CompanyType, string> = {
+  Consulting: "#4ade80",
+  Banking: "#60a5fa",
+  Tech: "#c084fc",
+  "PE/VC": "#fb923c",
+  Startup: "#f472b6",
+  Corporate: "#a78bfa",
+  Education: "#fbbf24",
+  Other: "#facc15",
 };
 
 export default function CompanyDetailPage() {
@@ -38,18 +39,28 @@ export default function CompanyDetailPage() {
     return allCompanies.find((c) => c.id === companyId);
   }, [allCompanies, companyId]);
 
-  // Get raw exit data for this company
-  const rawExitData = useMemo(() => {
-    if (!company) return [];
-    return getRawExitDataForCompany(company.name);
-  }, [company]);
-
-  // Get destination companies
-  const destinationCompanies = useMemo(() => {
-    if (!company) return [];
-    return company.exits
-      .map((exit) => allCompanies.find((c) => c.name === exit.to))
-      .filter((c): c is HeatmapCompany => c !== undefined);
+  // Get destination companies - show top 8, group rest as "Other"
+  const { topDestinations, otherCount, otherCompanies } = useMemo(() => {
+    if (!company) return { topDestinations: [], otherCount: 0, otherCompanies: [] };
+    
+    const top = company.exits.slice(0, 8);
+    const rest = company.exits.slice(8);
+    
+    const topDest = top
+      .map((exit) => ({
+        exit,
+        company: allCompanies.find((c) => c.name === exit.to),
+      }))
+      .filter((d) => d.company !== undefined);
+    
+    const otherTotal = rest.reduce((sum, exit) => sum + exit.count, 0);
+    const otherComps = rest.map((exit) => exit.to);
+    
+    return {
+      topDestinations: topDest,
+      otherCount: otherTotal,
+      otherCompanies: otherComps,
+    };
   }, [company, allCompanies]);
 
   const handleBubbleClick = (exitCompany: string, transitions: ExitData[]) => {
@@ -65,218 +76,152 @@ export default function CompanyDetailPage() {
   if (!company) {
     return (
       <div className="min-h-screen checkered-bg flex items-center justify-center">
-        <div className="text-gray-800 text-center">
-          <h1 className="text-2xl font-bold mb-4 uppercase tracking-wide">Company Not Found</h1>
+        <div className="bg-white retro-outset p-8 rounded-sm border-2 border-gray-700 text-center">
+          <h1 className="text-2xl font-bold text-gray-800 mb-4 uppercase tracking-wide">Company Not Found</h1>
           <button
             onClick={() => router.push("/heatmap")}
-            className="px-6 py-3 bg-white border-2 border-gray-700 hover:retro-pressed transition-all retro-outset text-gray-800 uppercase tracking-wide"
+            className="px-6 py-3 bg-white border-2 border-gray-700 rounded-sm retro-outset hover:retro-pressed transition-all duration-150 font-semibold text-gray-800 uppercase tracking-wide"
           >
-            Back to Heatmap
+            Back to Movement Map
           </button>
         </div>
       </div>
     );
   }
 
-  const mostCommonExitIndustry = destinationCompanies.length > 0
-    ? destinationCompanies[0].industry
+  const mostCommonExitIndustry = topDestinations.length > 0 && topDestinations[0].company
+    ? topDestinations[0].company.industry
     : "Various";
 
   return (
-    <div className="relative w-full h-screen checkered-bg overflow-hidden">
+    <div className="min-h-screen checkered-bg">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="absolute top-0 left-0 right-0 bg-white border-b-2 border-gray-700 p-6 z-30 retro-outset"
+        className="sticky top-0 z-30 bg-white border-b-2 border-gray-700 retro-outset"
       >
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <button
-              onClick={() => router.push("/heatmap")}
-              className="p-2 rounded-sm border-2 border-gray-700 bg-white hover:retro-pressed transition-all retro-outset"
+        <div className="max-w-7xl mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <button
+                onClick={() => router.push("/heatmap")}
+                className="p-2 rounded-sm border-2 border-gray-700 bg-white hover:retro-pressed transition-all duration-150 retro-outset"
+              >
+                <ArrowLeft className="w-4 h-4 text-gray-800" />
+              </button>
+              <div>
+                <h1 className="text-xl font-bold text-gray-800 tracking-tight uppercase">
+                  {company.name} Exit Flow
+                </h1>
+                <p className="text-xs text-gray-600 uppercase tracking-wide">
+                  Career transition destinations
+                </p>
+              </div>
+            </div>
+
+            <div
+              className="px-3 py-1.5 rounded-sm text-xs font-bold uppercase tracking-wider border-2 border-gray-700 retro-outset"
+              style={{
+                backgroundColor: industryColors[company.industry],
+                color: "#1f2937",
+              }}
             >
-              <ArrowLeft className="w-5 h-5 text-gray-800" />
-            </button>
-            <div>
-              <h1 className="text-2xl font-bold text-gray-800 uppercase tracking-wide">
-                {company.name} Exit Flow
-              </h1>
-              <p className="text-sm text-gray-600 uppercase tracking-wide">
-                Visualizing career transitions from {company.name}
-              </p>
+              {company.industry}
             </div>
           </div>
+        </div>
+      </motion.div>
 
-          <div
-            className="px-4 py-2 rounded-sm border-2 border-gray-700 bg-white text-sm font-medium retro-outset uppercase tracking-wide"
-            style={{
-              color: typeColors[company.industry],
-            }}
-          >
-            {company.industry}
+      {/* Stats Summary */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2 }}
+        className="max-w-7xl mx-auto px-6 py-6"
+      >
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+          {/* Company Size */}
+          <div className="bg-white retro-outset border-2 border-gray-700 rounded-sm p-3">
+            <div className="flex items-center gap-2 mb-1">
+              <Users className="w-3 h-3 text-gray-600" />
+              <span className="text-[10px] text-gray-600 uppercase tracking-wide font-semibold">
+                Company Size
+              </span>
+            </div>
+            <div className="text-xl font-bold text-gray-800">
+              {company.employeeCount.toLocaleString()}
+            </div>
+            <div className="text-[10px] text-gray-600 uppercase">employees</div>
+          </div>
+
+          {/* Outgoing */}
+          <div className="bg-white retro-outset border-2 border-gray-700 rounded-sm p-3">
+            <div className="flex items-center gap-2 mb-1">
+              <TrendingDown className="w-3 h-3 text-red-600" />
+              <span className="text-[10px] text-gray-600 uppercase tracking-wide font-semibold">
+                Outgoing
+              </span>
+            </div>
+            <div className="text-xl font-bold text-gray-800">
+              {company.outgoing}
+            </div>
+            <div className="text-[10px] text-gray-600 uppercase">exits tracked</div>
+          </div>
+
+          {/* Incoming */}
+          <div className="bg-white retro-outset border-2 border-gray-700 rounded-sm p-3">
+            <div className="flex items-center gap-2 mb-1">
+              <TrendingUp className="w-3 h-3 text-green-600" />
+              <span className="text-[10px] text-gray-600 uppercase tracking-wide font-semibold">
+                Incoming
+              </span>
+            </div>
+            <div className="text-xl font-bold text-gray-800">
+              {company.incoming}
+            </div>
+            <div className="text-[10px] text-gray-600 uppercase">joins</div>
+          </div>
+
+          {/* Avg Years */}
+          <div className="bg-white retro-outset border-2 border-gray-700 rounded-sm p-3">
+            <div className="flex items-center gap-2 mb-1">
+              <Clock className="w-3 h-3 text-purple-600" />
+              <span className="text-[10px] text-gray-600 uppercase tracking-wide font-semibold">
+                Avg Tenure
+              </span>
+            </div>
+            <div className="text-xl font-bold text-gray-800">
+              {company.avgYearsBeforeExit.toFixed(1)}y
+            </div>
+            <div className="text-[10px] text-gray-600 uppercase">before exit</div>
+          </div>
+
+          {/* MBA % */}
+          <div className="bg-white retro-outset border-2 border-gray-700 rounded-sm p-3">
+            <div className="flex items-center gap-2 mb-1">
+              <GraduationCap className="w-3 h-3 text-yellow-600" />
+              <span className="text-[10px] text-gray-600 uppercase tracking-wide font-semibold">
+                MBA Pursuit
+              </span>
+            </div>
+            <div className="text-xl font-bold text-gray-800">
+              {company.mbaPercentage.toFixed(0)}%
+            </div>
+            <div className="text-[10px] text-gray-600 uppercase">of exits</div>
           </div>
         </div>
       </motion.div>
 
       {/* Main Flow Visualization */}
-      <div className="absolute inset-0 pt-28 pb-44">
+      <div className="max-w-7xl mx-auto px-6 pb-6">
         <CompanyFlowVisualization
           company={company}
-          destinationCompanies={destinationCompanies}
-          rawExitData={rawExitData}
-          onBubbleClick={handleBubbleClick}
+          topDestinations={topDestinations}
+          otherCount={otherCount}
+          otherCompanies={otherCompanies}
         />
       </div>
-
-      {/* Transition Sidebar */}
-      <TransitionSidebar
-        isOpen={selectedExitCompany !== null}
-        onClose={handleCloseSidebar}
-        exitCompany={selectedExitCompany || ""}
-        transitions={selectedTransitions}
-        sourceCompany={company.name}
-      />
-
-      {/* Stats Cards */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5 }}
-        className="absolute bottom-6 left-6 right-6 z-30 pointer-events-none"
-      >
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 max-w-6xl mx-auto pointer-events-auto">
-          {/* Company Size */}
-          <div className="bg-white border-2 border-gray-700 rounded-sm p-4 retro-outset">
-            <div className="flex items-center gap-2 mb-2">
-              <div className="p-1.5 rounded-sm border-2 border-gray-700 bg-gray-700 retro-inset">
-                <Users className="w-3 h-3 text-white" />
-              </div>
-              <span className="text-xs text-gray-600 uppercase tracking-wide">
-                Company Size
-              </span>
-            </div>
-            <div className="text-2xl font-bold text-gray-800">
-              {company.employeeCount.toLocaleString()}
-            </div>
-            <div className="text-xs text-gray-600 mt-1 uppercase">employees</div>
-          </div>
-
-          {/* Outgoing */}
-          <div className="bg-white border-2 border-gray-700 rounded-sm p-4 retro-outset">
-            <div className="flex items-center gap-2 mb-2">
-              <div className="p-1.5 rounded-sm border-2 border-gray-700 bg-gray-700 retro-inset">
-                <TrendingDown className="w-3 h-3 text-white" />
-              </div>
-              <span className="text-xs text-gray-600 uppercase tracking-wide">
-                Outgoing
-              </span>
-            </div>
-            <div className="text-2xl font-bold text-gray-800">
-              {company.outgoing}
-            </div>
-            <div className="text-xs text-gray-600 mt-1 uppercase">exits tracked</div>
-          </div>
-
-          {/* Incoming */}
-          <div className="bg-white border-2 border-gray-700 rounded-sm p-4 retro-outset">
-            <div className="flex items-center gap-2 mb-2">
-              <div className="p-1.5 rounded-sm border-2 border-gray-700 bg-gray-700 retro-inset">
-                <TrendingUp className="w-3 h-3 text-white" />
-              </div>
-              <span className="text-xs text-gray-600 uppercase tracking-wide">
-                Incoming
-              </span>
-            </div>
-            <div className="text-2xl font-bold text-gray-800">
-              {company.incoming}
-            </div>
-            <div className="text-xs text-gray-600 mt-1 uppercase">joins</div>
-          </div>
-
-          {/* Avg Years */}
-          <div className="bg-white border-2 border-gray-700 rounded-sm p-4 retro-outset">
-            <div className="flex items-center gap-2 mb-2">
-              <div className="p-1.5 rounded-sm border-2 border-gray-700 bg-gray-700 retro-inset">
-                <Clock className="w-3 h-3 text-white" />
-              </div>
-              <span className="text-xs text-gray-600 uppercase tracking-wide">
-                Avg Tenure
-              </span>
-            </div>
-            <div className="text-2xl font-bold text-gray-800">
-              {company.avgYearsBeforeExit.toFixed(1)}y
-            </div>
-            <div className="text-xs text-gray-600 mt-1 uppercase">before exit</div>
-          </div>
-
-          {/* MBA % */}
-          {company.mbaPercentage > 0 && (
-            <div className="bg-white border-2 border-gray-700 rounded-sm p-4 retro-outset">
-              <div className="flex items-center gap-2 mb-2">
-                <div className="p-1.5 rounded-sm border-2 border-gray-700 bg-gray-700 retro-inset">
-                  <GraduationCap className="w-3 h-3 text-white" />
-                </div>
-                <span className="text-xs text-gray-600 uppercase tracking-wide">
-                  MBA Pursuit
-                </span>
-              </div>
-              <div className="text-2xl font-bold text-gray-800">
-                {company.mbaPercentage.toFixed(0)}%
-              </div>
-              <div className="text-xs text-gray-600 mt-1 uppercase">of exits</div>
-            </div>
-          )}
-        </div>
-      </motion.div>
-
-      {/* Legend */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1 }}
-        className="absolute top-24 right-6 bg-white border-2 border-gray-700 rounded-sm p-4 max-w-xs z-30 retro-outset"
-      >
-        <div className="text-xs font-semibold text-gray-800 mb-3 uppercase tracking-wide">
-          Legend
-        </div>
-        <div className="text-xs text-gray-700 space-y-2">
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 bg-gray-800 rounded-full border border-gray-700" />
-            <span>Circle size = number of exits</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 bg-gray-800 rounded-full border border-gray-700" />
-            <span>Color = industry type</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 bg-gray-800 rounded-full border border-gray-700" />
-            <span>Click to view transitions</span>
-          </div>
-        </div>
-      </motion.div>
-
-      {/* Most Common Exit */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2 }}
-        className="absolute top-24 left-6 bg-white border-2 border-gray-700 rounded-sm p-4 max-w-xs z-30 retro-outset"
-      >
-        <div className="flex items-center gap-2 mb-2">
-          <div className="p-1.5 rounded-sm border-2 border-gray-700 bg-gray-700 retro-inset">
-            <Building2 className="w-3 h-3 text-white" />
-          </div>
-          <span className="text-xs font-semibold text-gray-600 uppercase tracking-wide">
-            Most Common Exit
-          </span>
-        </div>
-        <div className="text-lg font-bold text-gray-800 uppercase">{mostCommonExitIndustry}</div>
-        <div className="text-xs text-gray-600 mt-1 uppercase">
-          {company.exits.length} destinations shown
-        </div>
-      </motion.div>
     </div>
   );
 }
-

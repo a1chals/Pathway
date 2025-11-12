@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { TrendingUp, Sparkles, ArrowLeft, Network } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { PathwayNavigationVertical } from "@/components/ui/pathway-navigation-vertical";
 import bainExitsData from "@/data/bain_exits.json";
 import mckinseyExitsData from "@/data/mckinsey_exits.json";
 import bcgExitsData from "@/data/bcg_exits.json";
@@ -106,6 +107,18 @@ function ExplorePageContent() {
 
   return (
     <div className="min-h-screen checkered-bg">
+      {/* Vertical Navigation */}
+      <div className="fixed left-4 top-0 bottom-0 z-50 flex items-center pointer-events-none">
+        <motion.div
+          initial={{ opacity: 0, x: -30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.1 }}
+          className="pointer-events-auto"
+        >
+          <PathwayNavigationVertical />
+        </motion.div>
+      </div>
+
       {/* Modern Header */}
       <header className="sticky top-0 z-50 w-full border-b-2 border-gray-700 bg-white retro-outset">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
@@ -127,7 +140,7 @@ function ExplorePageContent() {
                 </div>
                 <div>
                   <h1 className="text-2xl font-bold text-gray-800 uppercase tracking-wide">
-                    PathSearch
+                    Pathway
                   </h1>
                   <p className="text-xs text-gray-600 uppercase tracking-wide">
                     See where your first job can take you
@@ -147,7 +160,7 @@ function ExplorePageContent() {
               >
                 <Network className="h-4 w-4 text-gray-800" />
                 <span className="text-sm font-medium text-gray-800 uppercase tracking-wide">
-                  Heatmap View
+                  Movement Map
                 </span>
               </button>
               <Select value={selectedFirm} onValueChange={setSelectedFirm}>

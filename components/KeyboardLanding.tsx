@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
+import { PathwayNavigation } from "@/components/ui/pathway-navigation";
 
 interface KeyProps {
   company: string;
@@ -11,10 +12,21 @@ interface KeyProps {
 
 const Key = ({ company, size = "normal", onClick }: KeyProps) => {
   const sizeClasses = {
-    normal: "w-14 h-14",
-    wide: "w-20 h-14",
-    "extra-wide": "w-28 h-14",
+    normal: "w-16 h-16",
+    wide: "w-24 h-16",
+    "extra-wide": "w-32 h-16",
   };
+
+  // Truncate or shorten long company names
+  const displayName = company
+    .replace("Oliver Wyman", "O. Wyman")
+    .replace("A.T. Kearney", "A.T.K")
+    .replace("Goldman Sachs", "Goldman")
+    .replace("Morgan Stanley", "Morgan S.")
+    .replace("Bank of America", "BofA")
+    .replace("Bain Capital", "Bain Cap")
+    .replace("Andreessen", "A16Z")
+    .replace("General Catalyst", "Gen Cat");
 
   return (
     <motion.button
@@ -24,15 +36,16 @@ const Key = ({ company, size = "normal", onClick }: KeyProps) => {
       className={`
         ${sizeClasses[size]}
         border-2 border-gray-700 bg-white
-        rounded-sm text-[10px] font-medium text-gray-800
+        rounded-sm text-[9px] font-semibold text-gray-800
         transition-all duration-150
         flex items-center justify-center
         retro-outset hover:retro-pressed
         active:retro-pressed
+        overflow-hidden
       `}
     >
-      <span className="leading-tight text-center px-1 uppercase tracking-wide">
-        {company}
+      <span className="leading-tight text-center px-1.5 uppercase tracking-wide truncate w-full">
+        {displayName}
       </span>
     </motion.button>
   );
@@ -66,21 +79,33 @@ export default function KeyboardLanding() {
   };
 
   return (
-    <div className="min-h-screen checkered-bg flex flex-col items-center justify-center p-8">
+    <div className="min-h-screen checkered-bg flex flex-col items-center justify-center p-8 relative">
+      {/* 3D Navigation Bar - Fixed at top center */}
+      <div className="fixed top-8 left-0 right-0 z-50 flex justify-center pointer-events-none">
+        <motion.div
+          initial={{ opacity: 0, y: -30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.1 }}
+          className="pointer-events-auto"
+        >
+          <PathwayNavigation />
+        </motion.div>
+      </div>
+
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="text-center mb-12"
+        className="text-center mb-10"
       >
-        <h1 className="text-5xl md:text-6xl font-bold text-gray-800 mb-4 tracking-tight">
-          PATHSEARCH
+        <h1 className="text-6xl md:text-7xl font-bold text-gray-800 mb-3 tracking-tight">
+          PATHWAY
         </h1>
-        <p className="text-lg text-gray-700 mb-2 uppercase tracking-wider">
+        <p className="text-base text-gray-700 mb-1 uppercase tracking-widest font-medium">
           Explore career paths from top companies
         </p>
-        <p className="text-sm text-gray-600 uppercase tracking-wide">
+        <p className="text-xs text-gray-600 uppercase tracking-wide">
           Click any key to discover exit opportunities
         </p>
       </motion.div>
@@ -90,12 +115,12 @@ export default function KeyboardLanding() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
-        className="w-full max-w-5xl"
+        className="w-full max-w-6xl"
       >
         {/* Keyboard Base */}
-        <div className="bg-gray-100 border-4 border-gray-700 rounded-lg p-6 retro-outset relative z-10">
+        <div className="bg-gray-100 border-4 border-gray-700 rounded-lg p-8 retro-outset relative z-10 shadow-lg">
           {/* Row 1 - Top Row */}
-          <div className="flex gap-2 mb-2 justify-center">
+          <div className="flex gap-2.5 mb-2.5 justify-center">
             {companies.row1.map((company, index) => (
               <Key
                 key={`row1-${index}`}
@@ -107,8 +132,8 @@ export default function KeyboardLanding() {
           </div>
 
           {/* Row 2 - Home Row */}
-          <div className="flex gap-2 mb-2 justify-center">
-            <div className="w-8" /> {/* Spacer for Tab */}
+          <div className="flex gap-2.5 mb-2.5 justify-center">
+            <div className="w-10" /> {/* Spacer for Tab */}
             {companies.row2.slice(0, 10).map((company, index) => (
               <Key
                 key={`row2-${index}`}
@@ -120,8 +145,8 @@ export default function KeyboardLanding() {
           </div>
 
           {/* Row 3 - Bottom Row */}
-          <div className="flex gap-2 mb-2 justify-center">
-            <div className="w-12" /> {/* Spacer for Caps Lock */}
+          <div className="flex gap-2.5 mb-2.5 justify-center">
+            <div className="w-14" /> {/* Spacer for Caps Lock */}
             {companies.row3.map((company, index) => (
               <Key
                 key={`row3-${index}`}
@@ -133,8 +158,8 @@ export default function KeyboardLanding() {
           </div>
 
           {/* Row 4 - Space Bar Row */}
-          <div className="flex gap-2 mb-2 justify-center">
-            <div className="w-16" /> {/* Spacer */}
+          <div className="flex gap-2.5 mb-2.5 justify-center">
+            <div className="w-20" /> {/* Spacer */}
             {companies.row4.slice(0, 7).map((company, index) => (
               <Key
                 key={`row4-${index}`}
@@ -145,15 +170,15 @@ export default function KeyboardLanding() {
             ))}
           </div>
 
-          {/* Space Bar */}
-          <div className="flex gap-2 justify-center mt-4">
+          {/* Space Bar / Action Buttons */}
+          <div className="grid grid-cols-2 gap-3 justify-center mt-6">
             <motion.button
               onClick={() => router.push("/explore")}
               whileHover={{ scale: 1.01 }}
               whileTap={{ scale: 0.99 }}
-              className="flex-1 max-w-xl h-14 border-2 border-gray-700 bg-white rounded-sm flex items-center justify-center transition-all duration-150 retro-outset hover:retro-pressed active:retro-pressed"
+              className="h-16 border-2 border-gray-700 bg-white rounded-sm flex items-center justify-center transition-all duration-150 retro-outset hover:retro-pressed active:retro-pressed shadow-md"
             >
-              <span className="text-sm font-semibold text-gray-800 uppercase tracking-wider">
+              <span className="text-[11px] font-bold text-gray-800 uppercase tracking-wider">
                 EXPLORE ALL COMPANIES
               </span>
             </motion.button>
@@ -161,10 +186,30 @@ export default function KeyboardLanding() {
               onClick={() => router.push("/heatmap")}
               whileHover={{ scale: 1.01 }}
               whileTap={{ scale: 0.99 }}
-              className="flex-1 max-w-xl h-14 border-2 border-gray-700 bg-gradient-to-br from-purple-500 to-blue-500 rounded-sm flex items-center justify-center transition-all duration-150 retro-outset hover:retro-pressed active:retro-pressed"
+              className="h-16 border-2 border-gray-700 bg-gradient-to-br from-purple-500 to-blue-500 rounded-sm flex items-center justify-center transition-all duration-150 retro-outset hover:retro-pressed active:retro-pressed shadow-md"
             >
-              <span className="text-sm font-semibold text-white uppercase tracking-wider">
-                HEATMAP VIEW
+              <span className="text-[11px] font-bold text-white uppercase tracking-wider">
+                MOVEMENT MAP
+              </span>
+            </motion.button>
+            <motion.button
+              onClick={() => router.push("/incoming")}
+              whileHover={{ scale: 1.01 }}
+              whileTap={{ scale: 0.99 }}
+              className="h-16 border-2 border-gray-700 bg-gradient-to-br from-emerald-500 to-green-500 rounded-sm flex items-center justify-center transition-all duration-150 retro-outset hover:retro-pressed active:retro-pressed shadow-md"
+            >
+              <span className="text-[11px] font-bold text-white uppercase tracking-wider">
+                TALENT PIPELINE
+              </span>
+            </motion.button>
+            <motion.button
+              onClick={() => router.push("/compare")}
+              whileHover={{ scale: 1.01 }}
+              whileTap={{ scale: 0.99 }}
+              className="h-16 border-2 border-gray-700 bg-gradient-to-br from-orange-500 to-red-500 rounded-sm flex items-center justify-center transition-all duration-150 retro-outset hover:retro-pressed active:retro-pressed shadow-md"
+            >
+              <span className="text-[11px] font-bold text-white uppercase tracking-wider">
+                COMPARE COMPANIES
               </span>
             </motion.button>
           </div>
@@ -176,9 +221,9 @@ export default function KeyboardLanding() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.6 }}
-        className="mt-12 text-center"
+        className="mt-8 text-center"
       >
-        <p className="text-sm text-gray-600 uppercase tracking-wide">
+        <p className="text-xs text-gray-600 uppercase tracking-widest font-medium">
           Select a company to view career transition data
         </p>
       </motion.div>
