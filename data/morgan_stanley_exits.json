@@ -1,0 +1,562 @@
+[
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Director",
+    "exit_company": "Andreessen Horowitz",
+    "exit_role": "Partner",
+    "industry": "Venture Capital",
+    "avg_years_before_exit": 2.5
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Vice President",
+    "exit_company": "Bain Capital",
+    "exit_role": "Associate",
+    "industry": "Private Equity",
+    "avg_years_before_exit": 2.3
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Director",
+    "exit_company": "Google",
+    "exit_role": "Strategy Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 4.6
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Analyst",
+    "exit_company": "Blackstone",
+    "exit_role": "Associate",
+    "industry": "Private Equity",
+    "avg_years_before_exit": 2.9
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Vice President",
+    "exit_company": "Meta",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 3.1
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Managing Director",
+    "exit_company": "Google",
+    "exit_role": "Strategy Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 3.2
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Vice President",
+    "exit_company": "Sequoia Capital",
+    "exit_role": "Investment Associate",
+    "industry": "Venture Capital",
+    "avg_years_before_exit": 2.3
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Vice President",
+    "exit_company": "Harvard Business School",
+    "exit_role": "MBA Candidate",
+    "industry": "MBA",
+    "avg_years_before_exit": 2.5
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Vice President",
+    "exit_company": "KKR",
+    "exit_role": "Vice President",
+    "industry": "Private Equity",
+    "avg_years_before_exit": 2
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Associate",
+    "exit_company": "KKR",
+    "exit_role": "Associate",
+    "industry": "Private Equity",
+    "avg_years_before_exit": 3.7
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Managing Director",
+    "exit_company": "Stanford GSB",
+    "exit_role": "MBA Candidate",
+    "industry": "MBA",
+    "avg_years_before_exit": 4.1
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Vice President",
+    "exit_company": "Wharton School",
+    "exit_role": "MBA Candidate",
+    "industry": "MBA",
+    "avg_years_before_exit": 4
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Director",
+    "exit_company": "KKR",
+    "exit_role": "Associate",
+    "industry": "Private Equity",
+    "avg_years_before_exit": 2.1
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Analyst",
+    "exit_company": "KKR",
+    "exit_role": "Vice President",
+    "industry": "Private Equity",
+    "avg_years_before_exit": 4.5
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Director",
+    "exit_company": "Meta",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 3.2
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Managing Director",
+    "exit_company": "Harvard Business School",
+    "exit_role": "MBA Candidate",
+    "industry": "MBA",
+    "avg_years_before_exit": 2.2
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Director",
+    "exit_company": "Sequoia Capital",
+    "exit_role": "Investment Associate",
+    "industry": "Venture Capital",
+    "avg_years_before_exit": 4.7
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Vice President",
+    "exit_company": "Google",
+    "exit_role": "Strategy Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 4.4
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Associate",
+    "exit_company": "Apollo Global Management",
+    "exit_role": "Associate",
+    "industry": "Private Equity",
+    "avg_years_before_exit": 3.1
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Associate",
+    "exit_company": "Stanford GSB",
+    "exit_role": "MBA Candidate",
+    "industry": "MBA",
+    "avg_years_before_exit": 2.1
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Analyst",
+    "exit_company": "KKR",
+    "exit_role": "Vice President",
+    "industry": "Private Equity",
+    "avg_years_before_exit": 3.7
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Associate",
+    "exit_company": "Google",
+    "exit_role": "Strategy Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 4.1
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Managing Director",
+    "exit_company": "Stripe",
+    "exit_role": "Strategy Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 4.7
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Analyst",
+    "exit_company": "Blackstone",
+    "exit_role": "Associate",
+    "industry": "Private Equity",
+    "avg_years_before_exit": 4.5
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Vice President",
+    "exit_company": "Harvard Business School",
+    "exit_role": "MBA Candidate",
+    "industry": "MBA",
+    "avg_years_before_exit": 4.6
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Managing Director",
+    "exit_company": "Wharton School",
+    "exit_role": "MBA Candidate",
+    "industry": "MBA",
+    "avg_years_before_exit": 4.6
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Vice President",
+    "exit_company": "Google",
+    "exit_role": "Strategy Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 3.3
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Analyst",
+    "exit_company": "Google",
+    "exit_role": "Business Development",
+    "industry": "Tech",
+    "avg_years_before_exit": 3.2
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Analyst",
+    "exit_company": "Harvard Business School",
+    "exit_role": "MBA Candidate",
+    "industry": "MBA",
+    "avg_years_before_exit": 2.4
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Managing Director",
+    "exit_company": "Sequoia Capital",
+    "exit_role": "Partner",
+    "industry": "Venture Capital",
+    "avg_years_before_exit": 4.8
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Managing Director",
+    "exit_company": "Andreessen Horowitz",
+    "exit_role": "Investment Associate",
+    "industry": "Venture Capital",
+    "avg_years_before_exit": 3.8
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Analyst",
+    "exit_company": "Meta",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 2.6
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Director",
+    "exit_company": "Sequoia Capital",
+    "exit_role": "Investment Associate",
+    "industry": "Venture Capital",
+    "avg_years_before_exit": 4.6
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Associate",
+    "exit_company": "Bain Capital",
+    "exit_role": "Vice President",
+    "industry": "Private Equity",
+    "avg_years_before_exit": 3.6
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Analyst",
+    "exit_company": "Meta",
+    "exit_role": "Strategy Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 4.5
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Managing Director",
+    "exit_company": "KKR",
+    "exit_role": "Private Equity Analyst",
+    "industry": "Private Equity",
+    "avg_years_before_exit": 2.6
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Associate",
+    "exit_company": "Sequoia Capital",
+    "exit_role": "Investment Associate",
+    "industry": "Venture Capital",
+    "avg_years_before_exit": 3.6
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Analyst",
+    "exit_company": "Stripe",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 1.6
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Director",
+    "exit_company": "Apollo Global Management",
+    "exit_role": "Vice President",
+    "industry": "Private Equity",
+    "avg_years_before_exit": 3.7
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Director",
+    "exit_company": "Sequoia Capital",
+    "exit_role": "Partner",
+    "industry": "Venture Capital",
+    "avg_years_before_exit": 4.3
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Analyst",
+    "exit_company": "KKR",
+    "exit_role": "Vice President",
+    "industry": "Private Equity",
+    "avg_years_before_exit": 4.9
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Analyst",
+    "exit_company": "Apollo Global Management",
+    "exit_role": "Associate",
+    "industry": "Private Equity",
+    "avg_years_before_exit": 4.6
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Director",
+    "exit_company": "Sequoia Capital",
+    "exit_role": "Partner",
+    "industry": "Venture Capital",
+    "avg_years_before_exit": 4.7
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Managing Director",
+    "exit_company": "Blackstone",
+    "exit_role": "Private Equity Analyst",
+    "industry": "Private Equity",
+    "avg_years_before_exit": 4.5
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Vice President",
+    "exit_company": "Blackstone",
+    "exit_role": "Associate",
+    "industry": "Private Equity",
+    "avg_years_before_exit": 3.7
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Associate",
+    "exit_company": "Meta",
+    "exit_role": "Business Development",
+    "industry": "Tech",
+    "avg_years_before_exit": 4
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Vice President",
+    "exit_company": "Stanford GSB",
+    "exit_role": "MBA Candidate",
+    "industry": "MBA",
+    "avg_years_before_exit": 3.7
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Vice President",
+    "exit_company": "Sequoia Capital",
+    "exit_role": "Principal",
+    "industry": "Venture Capital",
+    "avg_years_before_exit": 3.7
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Managing Director",
+    "exit_company": "Sequoia Capital",
+    "exit_role": "Investment Associate",
+    "industry": "Venture Capital",
+    "avg_years_before_exit": 2.6
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Director",
+    "exit_company": "Stanford GSB",
+    "exit_role": "MBA Candidate",
+    "industry": "MBA",
+    "avg_years_before_exit": 2
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Vice President",
+    "exit_company": "KKR",
+    "exit_role": "Associate",
+    "industry": "Private Equity",
+    "avg_years_before_exit": 4.9
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Director",
+    "exit_company": "Harvard Business School",
+    "exit_role": "MBA Candidate",
+    "industry": "MBA",
+    "avg_years_before_exit": 4.3
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Associate",
+    "exit_company": "Stanford GSB",
+    "exit_role": "MBA Candidate",
+    "industry": "MBA",
+    "avg_years_before_exit": 1.6
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Vice President",
+    "exit_company": "Sequoia Capital",
+    "exit_role": "Investment Associate",
+    "industry": "Venture Capital",
+    "avg_years_before_exit": 1.8
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Associate",
+    "exit_company": "Meta",
+    "exit_role": "Strategy Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 4.9
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Vice President",
+    "exit_company": "Sequoia Capital",
+    "exit_role": "Partner",
+    "industry": "Venture Capital",
+    "avg_years_before_exit": 4
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Associate",
+    "exit_company": "Stripe",
+    "exit_role": "Strategy Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 2.2
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Vice President",
+    "exit_company": "Harvard Business School",
+    "exit_role": "MBA Candidate",
+    "industry": "MBA",
+    "avg_years_before_exit": 2.2
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Analyst",
+    "exit_company": "Wharton School",
+    "exit_role": "MBA Candidate",
+    "industry": "MBA",
+    "avg_years_before_exit": 3.5
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Vice President",
+    "exit_company": "KKR",
+    "exit_role": "Associate",
+    "industry": "Private Equity",
+    "avg_years_before_exit": 1.9
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Managing Director",
+    "exit_company": "Blackstone",
+    "exit_role": "Private Equity Analyst",
+    "industry": "Private Equity",
+    "avg_years_before_exit": 1.9
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Analyst",
+    "exit_company": "Wharton School",
+    "exit_role": "MBA Candidate",
+    "industry": "MBA",
+    "avg_years_before_exit": 2.2
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Vice President",
+    "exit_company": "Google",
+    "exit_role": "Strategy Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 2.9
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Associate",
+    "exit_company": "Meta",
+    "exit_role": "Strategy Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 2.2
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Director",
+    "exit_company": "Meta",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 3
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Analyst",
+    "exit_company": "Stanford GSB",
+    "exit_role": "MBA Candidate",
+    "industry": "MBA",
+    "avg_years_before_exit": 4.7
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Managing Director",
+    "exit_company": "Stripe",
+    "exit_role": "Strategy Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 1.6
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Director",
+    "exit_company": "Blackstone",
+    "exit_role": "Associate",
+    "industry": "Private Equity",
+    "avg_years_before_exit": 4
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Associate",
+    "exit_company": "Stripe",
+    "exit_role": "Strategy Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 3.1
+  },
+  {
+    "start_company": "Morgan Stanley",
+    "start_role": "Director",
+    "exit_company": "Harvard Business School",
+    "exit_role": "MBA Candidate",
+    "industry": "MBA",
+    "avg_years_before_exit": 3.3
+  }
+]

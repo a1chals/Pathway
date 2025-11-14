@@ -1,0 +1,562 @@
+[
+  {
+    "start_company": "Disney",
+    "start_role": "Director",
+    "exit_company": "Harvard Business School",
+    "exit_role": "MBA Candidate",
+    "industry": "MBA",
+    "avg_years_before_exit": 4.4
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Analyst",
+    "exit_company": "Amazon",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 1.8
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Senior Manager",
+    "exit_company": "Harvard Business School",
+    "exit_role": "MBA Candidate",
+    "industry": "MBA",
+    "avg_years_before_exit": 2.2
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Director",
+    "exit_company": "Stanford GSB",
+    "exit_role": "MBA Candidate",
+    "industry": "MBA",
+    "avg_years_before_exit": 4.3
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Director",
+    "exit_company": "Google",
+    "exit_role": "Strategy Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 2
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Analyst",
+    "exit_company": "Amazon",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 4.9
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Director",
+    "exit_company": "Harvard Business School",
+    "exit_role": "MBA Candidate",
+    "industry": "MBA",
+    "avg_years_before_exit": 3.9
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Analyst",
+    "exit_company": "Stanford GSB",
+    "exit_role": "MBA Candidate",
+    "industry": "MBA",
+    "avg_years_before_exit": 3.2
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Manager",
+    "exit_company": "Stanford GSB",
+    "exit_role": "MBA Candidate",
+    "industry": "MBA",
+    "avg_years_before_exit": 4.3
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Analyst",
+    "exit_company": "Harvard Business School",
+    "exit_role": "MBA Candidate",
+    "industry": "MBA",
+    "avg_years_before_exit": 2.2
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Manager",
+    "exit_company": "Startup",
+    "exit_role": "Founder",
+    "industry": "Startup",
+    "avg_years_before_exit": 3.3
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Senior Manager",
+    "exit_company": "Amazon",
+    "exit_role": "Strategy Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 2.5
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Analyst",
+    "exit_company": "Startup",
+    "exit_role": "Head of Operations",
+    "industry": "Startup",
+    "avg_years_before_exit": 3.9
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Senior Manager",
+    "exit_company": "Startup",
+    "exit_role": "Founder",
+    "industry": "Startup",
+    "avg_years_before_exit": 2.2
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Director",
+    "exit_company": "Startup",
+    "exit_role": "Co-Founder",
+    "industry": "Startup",
+    "avg_years_before_exit": 2.4
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Analyst",
+    "exit_company": "Amazon",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 4.8
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "VP",
+    "exit_company": "Harvard Business School",
+    "exit_role": "MBA Candidate",
+    "industry": "MBA",
+    "avg_years_before_exit": 4.4
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Manager",
+    "exit_company": "Startup",
+    "exit_role": "Co-Founder",
+    "industry": "Startup",
+    "avg_years_before_exit": 4.9
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Analyst",
+    "exit_company": "Amazon",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 4.3
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Manager",
+    "exit_company": "Startup",
+    "exit_role": "Head of Operations",
+    "industry": "Startup",
+    "avg_years_before_exit": 4.3
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Director",
+    "exit_company": "Google",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 3.3
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "VP",
+    "exit_company": "Google",
+    "exit_role": "Strategy Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 2.6
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Manager",
+    "exit_company": "Stanford GSB",
+    "exit_role": "MBA Candidate",
+    "industry": "MBA",
+    "avg_years_before_exit": 4.3
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Manager",
+    "exit_company": "Google",
+    "exit_role": "Business Development",
+    "industry": "Tech",
+    "avg_years_before_exit": 2.8
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Director",
+    "exit_company": "Google",
+    "exit_role": "Business Development",
+    "industry": "Tech",
+    "avg_years_before_exit": 1.5
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Analyst",
+    "exit_company": "Startup",
+    "exit_role": "Head of Operations",
+    "industry": "Startup",
+    "avg_years_before_exit": 3.9
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "VP",
+    "exit_company": "Amazon",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 4.7
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Analyst",
+    "exit_company": "Stanford GSB",
+    "exit_role": "MBA Candidate",
+    "industry": "MBA",
+    "avg_years_before_exit": 2
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Manager",
+    "exit_company": "Amazon",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 2.4
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Analyst",
+    "exit_company": "Startup",
+    "exit_role": "Co-Founder",
+    "industry": "Startup",
+    "avg_years_before_exit": 2.9
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Manager",
+    "exit_company": "Startup",
+    "exit_role": "Co-Founder",
+    "industry": "Startup",
+    "avg_years_before_exit": 2.4
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Manager",
+    "exit_company": "Harvard Business School",
+    "exit_role": "MBA Candidate",
+    "industry": "MBA",
+    "avg_years_before_exit": 3.2
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Manager",
+    "exit_company": "Google",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 2.5
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Director",
+    "exit_company": "Amazon",
+    "exit_role": "Strategy Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 4.9
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Manager",
+    "exit_company": "Harvard Business School",
+    "exit_role": "MBA Candidate",
+    "industry": "MBA",
+    "avg_years_before_exit": 1.6
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Analyst",
+    "exit_company": "Google",
+    "exit_role": "Strategy Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 2.8
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "VP",
+    "exit_company": "Amazon",
+    "exit_role": "Business Development",
+    "industry": "Tech",
+    "avg_years_before_exit": 1.9
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Manager",
+    "exit_company": "Amazon",
+    "exit_role": "Strategy Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 2.6
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Analyst",
+    "exit_company": "Startup",
+    "exit_role": "Head of Operations",
+    "industry": "Startup",
+    "avg_years_before_exit": 2.9
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Director",
+    "exit_company": "Stanford GSB",
+    "exit_role": "MBA Candidate",
+    "industry": "MBA",
+    "avg_years_before_exit": 1.6
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Senior Manager",
+    "exit_company": "Harvard Business School",
+    "exit_role": "MBA Candidate",
+    "industry": "MBA",
+    "avg_years_before_exit": 2.6
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Director",
+    "exit_company": "Google",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 3.4
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Analyst",
+    "exit_company": "Harvard Business School",
+    "exit_role": "MBA Candidate",
+    "industry": "MBA",
+    "avg_years_before_exit": 2
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Analyst",
+    "exit_company": "Startup",
+    "exit_role": "Head of Operations",
+    "industry": "Startup",
+    "avg_years_before_exit": 2
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Analyst",
+    "exit_company": "Startup",
+    "exit_role": "Co-Founder",
+    "industry": "Startup",
+    "avg_years_before_exit": 2.5
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "VP",
+    "exit_company": "Google",
+    "exit_role": "Strategy Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 4.4
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Senior Manager",
+    "exit_company": "Harvard Business School",
+    "exit_role": "MBA Candidate",
+    "industry": "MBA",
+    "avg_years_before_exit": 1.7
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Analyst",
+    "exit_company": "Stanford GSB",
+    "exit_role": "MBA Candidate",
+    "industry": "MBA",
+    "avg_years_before_exit": 4
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Senior Manager",
+    "exit_company": "Startup",
+    "exit_role": "Head of Operations",
+    "industry": "Startup",
+    "avg_years_before_exit": 4.7
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Analyst",
+    "exit_company": "Startup",
+    "exit_role": "Head of Operations",
+    "industry": "Startup",
+    "avg_years_before_exit": 3.6
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Analyst",
+    "exit_company": "Stanford GSB",
+    "exit_role": "MBA Candidate",
+    "industry": "MBA",
+    "avg_years_before_exit": 3.7
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Analyst",
+    "exit_company": "Harvard Business School",
+    "exit_role": "MBA Candidate",
+    "industry": "MBA",
+    "avg_years_before_exit": 4.2
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "VP",
+    "exit_company": "Startup",
+    "exit_role": "Head of Operations",
+    "industry": "Startup",
+    "avg_years_before_exit": 2.4
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "VP",
+    "exit_company": "Harvard Business School",
+    "exit_role": "MBA Candidate",
+    "industry": "MBA",
+    "avg_years_before_exit": 4.3
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Analyst",
+    "exit_company": "Stanford GSB",
+    "exit_role": "MBA Candidate",
+    "industry": "MBA",
+    "avg_years_before_exit": 3.1
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Manager",
+    "exit_company": "Stanford GSB",
+    "exit_role": "MBA Candidate",
+    "industry": "MBA",
+    "avg_years_before_exit": 3.2
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Senior Manager",
+    "exit_company": "Startup",
+    "exit_role": "Founder",
+    "industry": "Startup",
+    "avg_years_before_exit": 1.6
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Director",
+    "exit_company": "Stanford GSB",
+    "exit_role": "MBA Candidate",
+    "industry": "MBA",
+    "avg_years_before_exit": 4.5
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Analyst",
+    "exit_company": "Harvard Business School",
+    "exit_role": "MBA Candidate",
+    "industry": "MBA",
+    "avg_years_before_exit": 1.6
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Director",
+    "exit_company": "Stanford GSB",
+    "exit_role": "MBA Candidate",
+    "industry": "MBA",
+    "avg_years_before_exit": 4.8
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Manager",
+    "exit_company": "Harvard Business School",
+    "exit_role": "MBA Candidate",
+    "industry": "MBA",
+    "avg_years_before_exit": 3.9
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Manager",
+    "exit_company": "Google",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 3.3
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Director",
+    "exit_company": "Amazon",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 4.4
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Manager",
+    "exit_company": "Stanford GSB",
+    "exit_role": "MBA Candidate",
+    "industry": "MBA",
+    "avg_years_before_exit": 4.6
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Analyst",
+    "exit_company": "Stanford GSB",
+    "exit_role": "MBA Candidate",
+    "industry": "MBA",
+    "avg_years_before_exit": 4.9
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Manager",
+    "exit_company": "Harvard Business School",
+    "exit_role": "MBA Candidate",
+    "industry": "MBA",
+    "avg_years_before_exit": 3.7
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Analyst",
+    "exit_company": "Startup",
+    "exit_role": "Head of Operations",
+    "industry": "Startup",
+    "avg_years_before_exit": 3.8
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Director",
+    "exit_company": "Amazon",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 1.7
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Senior Manager",
+    "exit_company": "Harvard Business School",
+    "exit_role": "MBA Candidate",
+    "industry": "MBA",
+    "avg_years_before_exit": 3.5
+  },
+  {
+    "start_company": "Disney",
+    "start_role": "Senior Manager",
+    "exit_company": "Startup",
+    "exit_role": "Founder",
+    "industry": "Startup",
+    "avg_years_before_exit": 2.9
+  }
+]
