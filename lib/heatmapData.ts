@@ -160,6 +160,20 @@ const companyLogos: Record<string, string> = {
   "Johnson & Johnson": "https://logo.clearbit.com/jnj.com",
   "Unilever": "https://logo.clearbit.com/unilever.com",
   "PepsiCo": "https://logo.clearbit.com/pepsico.com",
+  "Disney": "https://logo.clearbit.com/disney.com",
+  "Ford": "https://logo.clearbit.com/ford.com",
+  
+  // Additional companies
+  "Greylock Partners": "https://logo.clearbit.com/greylock.com",
+  "Greylock": "https://logo.clearbit.com/greylock.com",
+  "UC Berkeley Haas": "https://logo.clearbit.com/haas.berkeley.edu",
+  "UC Berkeley": "https://logo.clearbit.com/berkeley.edu",
+  "Honeywell": "https://logo.clearbit.com/honeywell.com",
+  "GE": "https://logo.clearbit.com/ge.com",
+  "General Electric": "https://logo.clearbit.com/ge.com",
+  "Accel Partners": "https://logo.clearbit.com/accel.com",
+  "Amazon Web Services": "https://logo.clearbit.com/aws.amazon.com",
+  "AWS": "https://logo.clearbit.com/aws.amazon.com",
 };
 
 // Company type mappings with estimated employee counts
