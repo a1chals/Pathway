@@ -1,42 +1,48 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
 import * as d3 from "d3";
 import { HeatmapCompany } from "@/lib/heatmapData";
-import { CompanyType } from "@/types";
+import { CompanyType, ExitData } from "@/types";
 
 interface CompanyFlowVisualizationProps {
   company: HeatmapCompany;
-  topDestinations: Array<{
-    exit: { to: string; count: number };
-    company: HeatmapCompany | undefined;
-  }>;
-  otherCount: number;
-  otherCompanies: string[];
+  destinationCompanies: HeatmapCompany[];
+  rawExitData?: ExitData[];
+  onBubbleClick?: (exitCompany: string, transitions: ExitData[]) => void;
 }
 
-// Retro industry colors (lighter, more vibrant)
-const industryColors: Record<CompanyType, string> = {
-  Consulting: "#4ade80",
-  Banking: "#60a5fa",
-  Tech: "#c084fc",
-  "PE/VC": "#fb923c",
-  Startup: "#f472b6",
-  Corporate: "#a78bfa",
-  Education: "#fbbf24",
-  Other: "#facc15",
+const typeColors: Record<CompanyType, string> = {
+  Consulting: "#34d399", // Green
+  Banking: "#60a5fa", // Blue
+  Tech: "#8b7dff", // Purple
+  "PE/VC": "#fbbf24", // Yellow
+  Startup: "#f472b6", // Pink
+  Corporate: "#a3b8cc", // Blue-grey
+  Education: "#fcd34d", // Yellow
+  Other: "#94a3b8", // Grey
 };
 
 export default function CompanyFlowVisualization({
   company,
-  topDestinations,
-  otherCount,
-  otherCompanies,
+  destinationCompanies,
+  rawExitData = [],
+  onBubbleClick,
 }: CompanyFlowVisualizationProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
+  const hasAnimatedRef = useRef(false);
+  const onBubbleClickRef = useRef(onBubbleClick);
+  const rawExitDataRef = useRef(rawExitData);
+  const companyRef = useRef(company);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+
+  // Update refs when props change
+  useEffect(() => {
+    onBubbleClickRef.current = onBubbleClick;
+    rawExitDataRef.current = rawExitData;
+    companyRef.current = company;
+  }, [onBubbleClick, rawExitData, company]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -51,336 +57,256 @@ export default function CompanyFlowVisualization({
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // Reset animation flag when company changes
+  useEffect(() => {
+    hasAnimatedRef.current = false;
+  }, [company.id]);
+
   useEffect(() => {
     if (!svgRef.current || dimensions.width === 0) return;
 
     const svg = d3.select(svgRef.current);
+    const shouldAnimate = !hasAnimatedRef.current;
+    
+    // Only clear and recreate if not already animated
+    if (!shouldAnimate) {
+      // If already animated, don't re-run
+      return;
+    }
+    
     svg.selectAll("*").remove();
+    hasAnimatedRef.current = true;
 
     const { width, height } = dimensions;
-    const centerX = width / 2;
-    const centerY = height / 2;
 
-    // Source company size
-    const sourceSize = 140;
-    const sourcePos = { x: centerX, y: centerY };
-
-    // All destinations including "Other" if there are more than 8
-    const allDestinations = [...topDestinations];
-    if (otherCount > 0) {
-      allDestinations.push({
-        exit: { to: "Other Companies", count: otherCount },
-        company: undefined,
-      });
-    }
-
-    // Calculate max count for arrow width scaling
-    const maxCount = Math.max(...allDestinations.map((d) => d.exit.count));
-
-    // Calculate destination positions in a circle
-    const radius = Math.min(width, height) * 0.38;
-    const destinations = allDestinations.map((dest, index) => {
-      const angle = (index / allDestinations.length) * Math.PI * 2 - Math.PI / 2;
+    // Prepare data for circle packing
+    // Show ALL companies as individual bubbles (no "Other" grouping)
+    const exitData = company.exits.map((exit) => {
+      const destCompany = destinationCompanies.find((c) => c.name === exit.to);
       return {
-        ...dest,
-        x: centerX + Math.cos(angle) * radius,
-        y: centerY + Math.sin(angle) * radius,
+        name: exit.to,
+        count: exit.count,
+        company: destCompany,
+        exit,
       };
     });
 
+    // Create children array for hierarchy
+    const children = exitData.map((d) => ({
+      name: d.name,
+      value: d.count, // Number of exits to this company
+      company: d.company,
+      exit: d.exit,
+    }));
+
+    // Shuffle the children array to break symmetry and prevent same-sized bubbles from grouping
+    // This creates a more random appearance while keeping bubbles touching
+    const shuffledChildren = [...children].sort(() => Math.random() - 0.5);
+
+    // Create hierarchy for circle packing
+    // Source company is the parent, destinations are children
+    const hierarchyData = {
+      name: company.name,
+      value: company.outgoing, // Total exits
+      children: shuffledChildren,
+    };
+
+    const root = d3.hierarchy(hierarchyData)
+      .sum((d) => d.value || 0);
+    // Don't sort - use shuffled order to break symmetry
+
+    // Create circle pack layout
+    const pack = d3.pack()
+      .size([width, height])
+      .padding(0); // No padding - bubbles should touch each other
+
+    const packed = pack(root);
+
+    // Find the source node (root) and destination nodes (children)
+    const sourceNode = packed;
+    const destNodes = sourceNode.children || [];
+
+    // Create container group for zoom/pan
     const container = svg.append("g");
+
+    // Center the packed layout
+    const bounds = packed;
+    const dx = width / 2 - bounds.x;
+    const dy = height / 2 - bounds.y;
+
+    // Set up zoom behavior
+    const zoom = d3.zoom<SVGSVGElement, unknown>()
+      .scaleExtent([0.5, 4])
+      .on("zoom", (event) => {
+        const transform = event.transform;
+        container.attr("transform", `translate(${dx + transform.x},${dy + transform.y}) scale(${transform.k})`);
+      })
+      .on("start", function() {
+        svg.style("cursor", "grabbing");
+      })
+      .on("end", function() {
+        svg.style("cursor", "grab");
+      });
+
+    // Initialize with centered transform
+    container.attr("transform", `translate(${dx},${dy})`);
+
+    svg.call(zoom as any);
+    svg.style("cursor", "grab");
+
+    // Create drop shadow filter for retro effect (matching retro-outset style)
+    const defs = svg.append("defs");
+    const filter = defs.append("filter")
+      .attr("id", "retro-shadow")
+      .attr("x", "-20%")
+      .attr("y", "-20%")
+      .attr("width", "140%")
+      .attr("height", "140%");
     
-    // Create separate groups for arrows and nodes (arrows behind, nodes in front)
-    const arrowGroup = container.append("g").attr("class", "arrows");
-    const nodeGroup = container.append("g").attr("class", "nodes");
+    // First shadow layer: 2px 2px rgba(0, 0, 0, 0.2)
+    const offset1 = filter.append("feOffset")
+      .attr("in", "SourceAlpha")
+      .attr("dx", 2)
+      .attr("dy", 2)
+      .attr("result", "offset1");
+    
+    const flood1 = filter.append("feFlood")
+      .attr("flood-color", "rgba(0, 0, 0, 0.2)")
+      .attr("result", "flood1");
+    
+    const composite1 = filter.append("feComposite")
+      .attr("in", "flood1")
+      .attr("in2", "offset1")
+      .attr("operator", "in")
+      .attr("result", "shadow1");
+    
+    // Second shadow layer: 4px 4px rgba(0, 0, 0, 0.1)
+    const offset2 = filter.append("feOffset")
+      .attr("in", "SourceAlpha")
+      .attr("dx", 4)
+      .attr("dy", 4)
+      .attr("result", "offset2");
+    
+    const flood2 = filter.append("feFlood")
+      .attr("flood-color", "rgba(0, 0, 0, 0.1)")
+      .attr("result", "flood2");
+    
+    const composite2 = filter.append("feComposite")
+      .attr("in", "flood2")
+      .attr("in2", "offset2")
+      .attr("operator", "in")
+      .attr("result", "shadow2");
+    
+    // Merge both shadows with the original graphic
+    const merge = filter.append("feMerge");
+    merge.append("feMergeNode").attr("in", "shadow1");
+    merge.append("feMergeNode").attr("in", "shadow2");
+    merge.append("feMergeNode").attr("in", "SourceGraphic");
 
-    // Draw arrows FIRST (so they appear behind nodes)
-    destinations.forEach((dest, index) => {
-      // Calculate arrow width based on count (min 6px, max 50px)
-      const strokeWidth = 6 + (dest.exit.count / maxCount) * 44;
-
-      // Calculate start and end points
-      const angle = Math.atan2(dest.y - sourcePos.y, dest.x - sourcePos.x);
-      const destRadius = 60;
-      const destX = dest.x - Math.cos(angle) * destRadius;
-      const destY = dest.y - Math.sin(angle) * destRadius;
-      const sourceRadius = sourceSize / 2 + 5;
-      const sourceX = sourcePos.x + Math.cos(angle) * sourceRadius;
-      const sourceY = sourcePos.y + Math.sin(angle) * sourceRadius;
-
-      // Create straight arrow path
-      const path = d3.path();
-      path.moveTo(sourceX, sourceY);
-      path.lineTo(destX, destY);
-
-      // Determine arrow color
-      const arrowColor = dest.company
-        ? industryColors[dest.company.industry]
-        : "#9ca3af"; // gray for misc
-
-      // Draw arrow - make it visible immediately
-      const arrow = arrowGroup
-        .append("path")
-        .attr("d", path.toString())
-        .attr("stroke", arrowColor)
-        .attr("stroke-width", strokeWidth)
-        .attr("fill", "none")
-        .attr("opacity", 0.85)
-        .attr("stroke-linecap", "round")
-        .style("filter", "drop-shadow(0 2px 6px rgba(0, 0, 0, 0.3))");
-
-      // Add arrowhead - make it visible immediately
-      const arrowheadSize = Math.min(strokeWidth * 0.7, 18);
-      const arrowhead = arrowGroup
-        .append("polygon")
-        .attr("points", `0,${-arrowheadSize/2} ${arrowheadSize * 1.2},0 0,${arrowheadSize/2}`)
-        .attr("fill", arrowColor)
-        .attr("opacity", 0.85)
-        .attr("transform", () => {
-          const arrowAngle = (Math.atan2(destY - sourceY, destX - sourceX) * 180) / Math.PI;
-          return `translate(${destX},${destY}) rotate(${arrowAngle})`;
-        })
-        .style("filter", "drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3))");
-    });
-
-    // Draw destination companies (using nodeGroup so they appear on top)
-    const destGroups = nodeGroup
+    // Draw destination nodes
+    const destGroups = container
       .selectAll("g.destination")
-      .data(destinations)
+      .data(destNodes)
       .enter()
       .append("g")
       .attr("class", "destination")
       .attr("transform", (d) => `translate(${d.x},${d.y})`);
 
-    // Destination circles (retro style with border) - show immediately
     destGroups
       .append("circle")
-      .attr("r", 60)
-      .attr("fill", (d) =>
-        d.company ? industryColors[d.company.industry] : "#e5e7eb"
-      )
-      .attr("stroke", "#374151")
-      .attr("stroke-width", 3);
+      .attr("r", 0)
+      .attr("fill", (d) => {
+        const data = d.data as any;
+        return data.company?.industry ? typeColors[data.company.industry] : typeColors[company.industry];
+      })
+      .attr("stroke", "#4b5563")
+      .attr("stroke-width", 1)
+      .attr("filter", "url(#retro-shadow)")
+      .style("cursor", "pointer")
+      .on("click", function(event: MouseEvent, d: any) {
+        const data = d.data as any;
+        handleClick(event, data);
+      })
+      .on("mouseenter", function() {
+        d3.select(this).attr("stroke-width", 1.5).attr("opacity", 0.9);
+      })
+      .on("mouseleave", function() {
+        d3.select(this).attr("stroke-width", 1).attr("opacity", 1);
+      })
+      .transition()
+      .delay((d, i) => shouldAnimate ? i * 30 + 50 : 0)
+      .duration(shouldAnimate ? 300 : 0)
+      .attr("r", (d) => d.r);
 
-    // Company logos or initials
+    // Store click handler reference to avoid dependency issues
+    const handleClick = (event: MouseEvent, data: any) => {
+      event.stopPropagation();
+      if (onBubbleClickRef.current && rawExitDataRef.current.length > 0) {
+        const transitions = rawExitDataRef.current.filter(
+          exit => exit.start_company === companyRef.current.name && exit.exit_company === data.name
+        );
+        onBubbleClickRef.current(data.name, transitions);
+      }
+    };
+
+    // Add company logos/initials to destinations
     destGroups.each(function (d, i) {
       const group = d3.select(this);
-      const destCompany = d.company;
+      const data = d.data as any;
+      const destCompany = data.company;
+      const radius = d.r;
 
       if (destCompany && destCompany.logo) {
-        // Show logo with transparent background
         group
           .append("image")
           .attr("href", destCompany.logo)
-          .attr("x", -25)
-          .attr("y", -35)
-          .attr("width", 50)
-          .attr("height", 50)
-          .attr("opacity", 1)
-          .style("mix-blend-mode", "multiply")
+          .attr("x", -radius * 0.4)
+          .attr("y", -radius * 0.5)
+          .attr("width", radius * 0.8)
+          .attr("height", radius * 0.8)
+          .attr("opacity", 0)
+          .style("pointer-events", "none")
           .on("error", function () {
-            // Fallback to initials if logo fails
             d3.select(this).remove();
-            group
-              .append("text")
-              .attr("text-anchor", "middle")
-              .attr("dy", "-5")
-              .attr("fill", "#1f2937")
-              .attr("font-size", "14px")
-              .attr("font-weight", "bold")
-              .attr("opacity", 1)
-              .text(() => {
-                const name = d.exit.to;
-                const words = name.split(/[\s&]+/);
-                if (words.length === 1) return name.slice(0, 2).toUpperCase();
-                return words
-                  .slice(0, 2)
-                  .map((w: string) => w[0])
-                  .join("")
-                  .toUpperCase();
-              });
-          });
-      } else if (d.exit.to === "Other Companies") {
-        // Show "+" for misc
-        group
-          .append("text")
-          .attr("text-anchor", "middle")
-          .attr("dy", "-5")
-          .attr("fill", "#6b7280")
-          .attr("font-size", "32px")
-          .attr("font-weight", "bold")
-          .attr("opacity", 1)
-          .text("+");
+            addInitials(group, data.name, radius, i);
+          })
+          .transition()
+          .delay(shouldAnimate ? i * 30 + 200 : 0)
+          .duration(shouldAnimate ? 200 : 0)
+          .attr("opacity", 0.95);
       } else {
-        // Show initials
-        group
-          .append("text")
-          .attr("text-anchor", "middle")
-          .attr("dy", "-5")
-          .attr("fill", "#1f2937")
-          .attr("font-size", "14px")
-          .attr("font-weight", "bold")
-          .attr("opacity", 1)
-          .text(() => {
-            const name = d.exit.to;
-            const words = name.split(/[\s&]+/);
-            if (words.length === 1) return name.slice(0, 2).toUpperCase();
-            return words
-              .slice(0, 2)
-              .map((w: string) => w[0])
-              .join("")
-              .toUpperCase();
-          });
+        addInitials(group, data.name, radius, i);
       }
     });
 
-    // Employee count badge - show immediately
-    destGroups
-      .append("text")
-      .attr("text-anchor", "middle")
-      .attr("dy", "20")
-      .attr("fill", "#1f2937")
-      .attr("font-size", "18px")
-      .attr("font-weight", "bold")
-      .attr("opacity", 1)
-      .text((d) => d.exit.count);
-
-    // Label below circle - show immediately
-    destGroups
-      .append("text")
-      .attr("text-anchor", "middle")
-      .attr("dy", "85")
-      .attr("fill", "#374151")
-      .attr("font-size", "12px")
-      .attr("font-weight", "600")
-      .attr("opacity", 1)
-      .each(function (d) {
-        const text = d3.select(this);
-        const name = d.exit.to;
-        // Truncate long names
-        const displayName = name.length > 18 ? name.substring(0, 16) + "..." : name;
-        text.text(displayName.toUpperCase());
-      });
-
-    // Draw source company (center) - using nodeGroup so it appears on top
-    const sourceGroup = nodeGroup
-      .append("g")
-      .attr("transform", `translate(${sourcePos.x},${sourcePos.y})`);
-
-    sourceGroup
-      .append("circle")
-      .attr("r", sourceSize / 2)
-      .attr("fill", industryColors[company.industry])
-      .attr("stroke", "#374151")
-      .attr("stroke-width", 4)
-      .style("filter", "drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3))");
-
-    // Source company logo or initials with transparent background
-    if (company.logo) {
-      sourceGroup
-        .append("image")
-        .attr("href", company.logo)
-        .attr("x", -40)
-        .attr("y", -55)
-        .attr("width", 80)
-        .attr("height", 80)
-        .style("mix-blend-mode", "multiply")
-        .on("error", function () {
-          // Fallback to initials
-          d3.select(this).remove();
-          sourceGroup
-            .append("text")
-            .attr("text-anchor", "middle")
-            .attr("dy", "-10")
-            .attr("fill", "#1f2937")
-            .attr("font-size", "20px")
-            .attr("font-weight", "bold")
-            .text(() => {
-              const words = company.name.split(/[\s&]+/);
-              if (words.length === 1) return company.name.slice(0, 3).toUpperCase();
-              return words
-                .slice(0, 2)
-                .map((w) => w[0])
-                .join("")
-                .toUpperCase();
-            });
-        });
-    } else {
-      sourceGroup
+    function addInitials(group: d3.Selection<SVGGElement, any, null, undefined>, name: string, radius: number, index: number) {
+      group
         .append("text")
         .attr("text-anchor", "middle")
-        .attr("dy", "-10")
-        .attr("fill", "#1f2937")
-        .attr("font-size", "20px")
+        .attr("dy", "-" + radius * 0.1)
+        .attr("fill", "#ffffff")
+        .attr("font-size", `${Math.max(14, radius * 0.2)}px`)
         .attr("font-weight", "bold")
+        .attr("opacity", 0)
         .text(() => {
-          const words = company.name.split(/[\s&]+/);
-          if (words.length === 1) {
-            return company.name.slice(0, 3).toUpperCase();
-          }
-          return words
-            .slice(0, 2)
-            .map((w) => w[0])
-            .join("")
-            .toUpperCase();
-        });
+          const words = name.split(/[\s&]+/);
+          if (words.length === 1) return name.slice(0, 2).toUpperCase();
+          return words.slice(0, 2).map((w: string) => w[0]).join("").toUpperCase();
+        })
+        .transition()
+        .delay(shouldAnimate ? index * 30 + 200 : 0)
+        .duration(shouldAnimate ? 200 : 0)
+        .attr("opacity", 0.95);
     }
 
-    sourceGroup
-      .append("text")
-      .attr("text-anchor", "middle")
-      .attr("dy", "15")
-      .attr("fill", "#1f2937")
-      .attr("fill-opacity", 0.8)
-      .attr("font-size", "12px")
-      .attr("font-weight", "600")
-      .text(`${company.outgoing} EXITS`);
+    // Source node position is used for arrow calculations but not rendered
+    // (company name is already in the page title)
 
-    sourceGroup
-      .append("text")
-      .attr("text-anchor", "middle")
-      .attr("dy", "100")
-      .attr("fill", "#1f2937")
-      .attr("font-size", "14px")
-      .attr("font-weight", "bold")
-      .text(company.name.toUpperCase());
-  }, [company, topDestinations, otherCount, dimensions]);
+  }, [company, destinationCompanies, dimensions]);
 
   return (
-    <div className="bg-white retro-outset border-2 border-gray-700 rounded-sm p-6">
-      {/* Arrow Legend */}
-      <div className="mb-4 flex items-center justify-between">
-        <div className="text-sm font-bold text-gray-800 uppercase tracking-wider">
-          Exit Flow Visualization
-        </div>
-        <div className="text-xs text-gray-600 space-x-4 flex items-center">
-          <div className="flex items-center gap-2">
-            <div className="w-12 h-1 bg-gradient-to-r from-gray-400 to-gray-600"></div>
-            <span>Arrow width = # of exits</span>
-          </div>
-        </div>
-      </div>
-
-      <div ref={containerRef} className="relative w-full" style={{ height: "650px" }}>
-        <svg ref={svgRef} className="w-full h-full" />
-      </div>
-
-      {/* Legend for Other companies */}
-      {otherCount > 0 && otherCompanies.length > 0 && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
-          className="mt-4 p-4 bg-gray-100 border-2 border-gray-700 rounded-sm retro-inset"
-        >
-          <div className="text-xs font-bold text-gray-800 mb-2 uppercase tracking-wider">
-            Other Companies ({otherCount} total exits):
-          </div>
-          <div className="text-xs text-gray-600 leading-relaxed">
-            {otherCompanies.join(" • ")}
-          </div>
-        </motion.div>
-      )}
+    <div ref={containerRef} className="relative w-full h-full overflow-hidden">
+      <svg ref={svgRef} className="w-full h-full" />
     </div>
   );
 }

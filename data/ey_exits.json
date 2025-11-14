@@ -142,5 +142,405 @@
     "exit_role": "Product Manager",
     "industry": "Tech",
     "avg_years_before_exit": 2.8
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Staff Consultant",
+    "exit_company": "Amazon",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 2.8
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Senior Consultant",
+    "exit_company": "Stanford GSB",
+    "exit_role": "MBA Candidate",
+    "industry": "Graduate Education",
+    "avg_years_before_exit": 3.0
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Senior Consultant",
+    "exit_company": "Goldman Sachs",
+    "exit_role": "Investment Banking Analyst",
+    "industry": "Investment Banking",
+    "avg_years_before_exit": 2.2
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Senior Consultant",
+    "exit_company": "Google",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 2.8
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Senior Consultant",
+    "exit_company": "JPMorgan Chase",
+    "exit_role": "Investment Banking Analyst",
+    "industry": "Investment Banking",
+    "avg_years_before_exit": 2.6
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Staff Consultant",
+    "exit_company": "Apple",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 2.8
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Senior Consultant",
+    "exit_company": "Google",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 2.7
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Senior Consultant",
+    "exit_company": "Goldman Sachs",
+    "exit_role": "Investment Banking Analyst",
+    "industry": "Investment Banking",
+    "avg_years_before_exit": 2.2
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Senior Consultant",
+    "exit_company": "KKR",
+    "exit_role": "Private Equity Associate",
+    "industry": "Private Equity",
+    "avg_years_before_exit": 3.0
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Senior Consultant",
+    "exit_company": "KKR",
+    "exit_role": "Private Equity Associate",
+    "industry": "Private Equity",
+    "avg_years_before_exit": 3.1
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Staff Consultant",
+    "exit_company": "Blackstone",
+    "exit_role": "Private Equity Associate",
+    "industry": "Private Equity",
+    "avg_years_before_exit": 3.0
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Staff Consultant",
+    "exit_company": "Harvard Business School",
+    "exit_role": "MBA Candidate",
+    "industry": "Graduate Education",
+    "avg_years_before_exit": 2.7
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Senior Consultant",
+    "exit_company": "Harvard Business School",
+    "exit_role": "MBA Candidate",
+    "industry": "Graduate Education",
+    "avg_years_before_exit": 2.6
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Staff Consultant",
+    "exit_company": "Amazon",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 2.7
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Senior Consultant",
+    "exit_company": "JPMorgan Chase",
+    "exit_role": "Investment Banking Analyst",
+    "industry": "Investment Banking",
+    "avg_years_before_exit": 2.3
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Staff Consultant",
+    "exit_company": "Harvard Business School",
+    "exit_role": "MBA Candidate",
+    "industry": "Graduate Education",
+    "avg_years_before_exit": 2.4
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Staff Consultant",
+    "exit_company": "JPMorgan Chase",
+    "exit_role": "Investment Banking Analyst",
+    "industry": "Investment Banking",
+    "avg_years_before_exit": 2.6
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Senior Consultant",
+    "exit_company": "Goldman Sachs",
+    "exit_role": "Investment Banking Analyst",
+    "industry": "Investment Banking",
+    "avg_years_before_exit": 2.5
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Senior Consultant",
+    "exit_company": "Apple",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 2.9
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Senior Consultant",
+    "exit_company": "Google",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 2.9
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Staff Consultant",
+    "exit_company": "KKR",
+    "exit_role": "Private Equity Associate",
+    "industry": "Private Equity",
+    "avg_years_before_exit": 2.9
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Staff Consultant",
+    "exit_company": "Blackstone",
+    "exit_role": "Private Equity Associate",
+    "industry": "Private Equity",
+    "avg_years_before_exit": 3.1
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Senior Consultant",
+    "exit_company": "Microsoft",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 2.9
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Senior Consultant",
+    "exit_company": "Amazon",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 2.9
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Senior Consultant",
+    "exit_company": "Stanford GSB",
+    "exit_role": "MBA Candidate",
+    "industry": "Graduate Education",
+    "avg_years_before_exit": 2.7
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Staff Consultant",
+    "exit_company": "Stanford GSB",
+    "exit_role": "MBA Candidate",
+    "industry": "Graduate Education",
+    "avg_years_before_exit": 2.8
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Staff Consultant",
+    "exit_company": "Microsoft",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 3.0
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Staff Consultant",
+    "exit_company": "Blackstone",
+    "exit_role": "Private Equity Associate",
+    "industry": "Private Equity",
+    "avg_years_before_exit": 3.3
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Staff Consultant",
+    "exit_company": "Apple",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 3.1
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Staff Consultant",
+    "exit_company": "Microsoft",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 3.2
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Senior Consultant",
+    "exit_company": "Comcast",
+    "exit_role": "Product Manager",
+    "industry": "Corporate",
+    "avg_years_before_exit": 3.1
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Staff Consultant",
+    "exit_company": "Bain Capital",
+    "exit_role": "Private Equity Associate",
+    "industry": "Private Equity",
+    "avg_years_before_exit": 2.9
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Senior Consultant",
+    "exit_company": "Honeywell",
+    "exit_role": "Business Development Manager",
+    "industry": "Corporate",
+    "avg_years_before_exit": 3.1
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Staff Consultant",
+    "exit_company": "Barclays",
+    "exit_role": "Investment Banking Analyst",
+    "industry": "Investment Banking",
+    "avg_years_before_exit": 2.5
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Senior Consultant",
+    "exit_company": "Thomas H. Lee Partners",
+    "exit_role": "Private Equity Analyst",
+    "industry": "Private Equity",
+    "avg_years_before_exit": 2.8
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Staff Consultant",
+    "exit_company": "Sequoia Capital",
+    "exit_role": "Investment Associate",
+    "industry": "Venture Capital",
+    "avg_years_before_exit": 3.0
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Staff Consultant",
+    "exit_company": "Square",
+    "exit_role": "Product Manager",
+    "industry": "Fintech",
+    "avg_years_before_exit": 2.8
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Senior Consultant",
+    "exit_company": "Pinterest",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 3.1
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Staff Consultant",
+    "exit_company": "General Catalyst",
+    "exit_role": "Investment Associate",
+    "industry": "Venture Capital",
+    "avg_years_before_exit": 3.1
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Senior Consultant",
+    "exit_company": "LinkedIn",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 2.9
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Senior Consultant",
+    "exit_company": "Stripe",
+    "exit_role": "Strategy & Operations Manager",
+    "industry": "Fintech",
+    "avg_years_before_exit": 3.1
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Staff Consultant",
+    "exit_company": "Silver Lake",
+    "exit_role": "Private Equity Associate",
+    "industry": "Private Equity",
+    "avg_years_before_exit": 3.1
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Staff Consultant",
+    "exit_company": "Mastercard",
+    "exit_role": "Strategy Manager",
+    "industry": "Corporate",
+    "avg_years_before_exit": 3.0
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Senior Consultant",
+    "exit_company": "Caterpillar",
+    "exit_role": "Corporate Strategy Analyst",
+    "industry": "Corporate",
+    "avg_years_before_exit": 2.9
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Senior Consultant",
+    "exit_company": "Walmart",
+    "exit_role": "Corporate Strategy Manager",
+    "industry": "Corporate",
+    "avg_years_before_exit": 3.0
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Staff Consultant",
+    "exit_company": "AT&T",
+    "exit_role": "Product Manager",
+    "industry": "Corporate",
+    "avg_years_before_exit": 2.8
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Senior Consultant",
+    "exit_company": "Boeing",
+    "exit_role": "Strategy Manager",
+    "industry": "Corporate",
+    "avg_years_before_exit": 3.1
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Senior Consultant",
+    "exit_company": "Hellman & Friedman",
+    "exit_role": "Private Equity Associate",
+    "industry": "Private Equity",
+    "avg_years_before_exit": 3.2
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Staff Consultant",
+    "exit_company": "Lightspeed Venture Partners",
+    "exit_role": "Investment Associate",
+    "industry": "Venture Capital",
+    "avg_years_before_exit": 2.8
+  },
+  {
+    "start_company": "EY",
+    "start_role": "Senior Consultant",
+    "exit_company": "Adobe",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 2.9
   }
 ]

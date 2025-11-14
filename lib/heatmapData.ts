@@ -1,4 +1,5 @@
 import { ExitData, CompanyType } from "@/types";
+import { getCompanyMetadata, CompanyMetadata } from "@/lib/companyMetadata";
 
 // Import all exit data
 import mckinsey_exits from "@/data/mckinsey_exits.json";
@@ -24,6 +25,8 @@ export interface HeatmapCompany {
   exits: Array<{ to: string; count: number; avgYears: number }>;
   mbaPercentage: number;
   logo?: string;
+  // Extended metadata
+  metadata?: CompanyMetadata;
 }
 
 export interface HeatmapData {
@@ -318,11 +321,11 @@ export function generateHeatmapData(): HeatmapData {
   // Generate companies
   const companies: HeatmapCompany[] = Array.from(companyStats.entries()).map(([name, stats]) => {
     const info = getCompanyInfo(name);
+    const metadata = getCompanyMetadata(name);
     
-    // Get top 5 exit companies
-    const topExits = Array.from(stats.exitMap.entries())
+    // Get ALL exit companies (not just top 5)
+    const allExits = Array.from(stats.exitMap.entries())
       .sort((a, b) => b[1].count - a[1].count)
-      .slice(0, 5)
       .map(([company, data]) => ({
         to: company,
         count: data.count,
@@ -362,9 +365,10 @@ export function generateHeatmapData(): HeatmapData {
       avgYearsBeforeExit: stats.count > 0 ? stats.totalYears / stats.count : 0,
       incoming: stats.incoming,
       outgoing: stats.outgoing,
-      exits: topExits,
+      exits: allExits,
       mbaPercentage: stats.outgoing > 0 ? (stats.mbaCount / stats.outgoing) * 100 : 0,
-      logo: companyLogos[name],
+      logo: companyLogos[name] || metadata?.logo,
+      metadata: metadata || undefined,
     };
   });
 
@@ -503,4 +507,29 @@ export function generateHeatmapData(): HeatmapData {
 }
 
 export const heatmapData = generateHeatmapData();
+
+// Re-export metadata types for convenience
+export type { CompanyMetadata } from "@/lib/companyMetadata";
+export { getCompanyMetadata, companyMetadata } from "@/lib/companyMetadata";
+
+// Helper function to get raw exit data for a specific company
+export function getRawExitDataForCompany(companyName: string): ExitData[] {
+  // Combine all exit data
+  const allExits: ExitData[] = [
+    ...mckinsey_exits,
+    ...bcg_exits,
+    ...bain_exits,
+    ...deloitte_exits,
+    ...ey_exits,
+    ...pwc_exits,
+    ...kpmg_exits,
+    ...accenture_exits,
+    ...oliver_wyman_exits,
+    ...at_kearney_exits,
+    ...lek_exits,
+  ] as ExitData[];
+  
+  // Filter exits for the specific company
+  return allExits.filter(exit => exit.start_company === companyName);
+}
 
