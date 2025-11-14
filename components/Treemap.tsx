@@ -33,6 +33,14 @@ export default function Treemap({
   const [hoveredCompany, setHoveredCompany] = useState<HeatmapCompany | null>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
+  // Helper function to add crisp text rendering to any text element
+  const addCrispTextRendering = (textElement: any) => {
+    return textElement
+      .style("text-rendering", "geometricPrecision")
+      .style("-webkit-font-smoothing", "antialiased")
+      .style("-moz-osx-font-smoothing", "grayscale");
+  };
+
   useEffect(() => {
     const handleResize = () => {
       if (svgRef.current) {
@@ -134,13 +142,16 @@ export default function Treemap({
 
     groups
       .append("text")
-      .attr("x", (d: any) => d.x0 + 13)
-      .attr("y", (d: any) => d.y0 + 18)
+      .attr("x", (d: any) => Math.round(d.x0 + 13))
+      .attr("y", (d: any) => Math.round(d.y0 + 18))
       .attr("fill", "#8A95AD")
       .attr("font-size", "9px")
       .attr("font-weight", 600)
       .attr("text-transform", "uppercase")
       .attr("letter-spacing", "0.08em")
+      .style("text-rendering", "geometricPrecision")
+      .style("-webkit-font-smoothing", "antialiased")
+      .style("-moz-osx-font-smoothing", "grayscale")
       .text((d: any) => d.data.name);
 
     // Company cells
@@ -224,78 +235,151 @@ export default function Treemap({
           .attr("height", logoSize)
           .attr("preserveAspectRatio", "xMidYMid meet")
           .style("pointer-events", "none")
+          .attr("data-logo-loaded", "true")
           .on("error", function() {
             d3.select(this).remove();
+            // Remove the text that was meant to go with the logo
+            group.selectAll(".logo-name-text").remove();
+            group.selectAll(".logo-stats-text").remove();
             
-            // Fallback text
-            group
-              .append("text")
-              .attr("x", centerX)
-              .attr("y", centerY - 4)
-              .attr("text-anchor", "middle")
-              .attr("fill", "white")
-              .attr("font-size", "12px")
-              .attr("font-weight", 600)
-              .text(company.name.substring(0, 12));
+            // Fallback: show name and stats in center (like boxes without logos)
+            const fallbackMaxChars = Math.floor(width / 9);
+            const fallbackName = company.name.length > fallbackMaxChars 
+              ? company.name.substring(0, fallbackMaxChars - 3) + "..." 
+              : company.name;
+            
+            addCrispTextRendering(
+              group
+                .append("text")
+                .attr("class", "logo-fallback-text")
+                .attr("x", Math.round(centerX))
+                .attr("y", Math.round(centerY - 4))
+                .attr("text-anchor", "middle")
+                .attr("fill", "white")
+                .attr("font-size", "12px")
+                .attr("font-weight", 600)
+                .style("white-space", "nowrap")
+                .style("overflow", "hidden")
+                .style("text-overflow", "ellipsis")
+            ).text(fallbackName);
+            
+            // Add stats below if box is big enough
+            if (area > 4500 && width > 100) {
+              const statsFontSize = width < 120 ? "9px" : "10px";
+              const statsMaxChars = Math.floor(width / 6);
+              const statsText = `${company.outgoing} exits • ${company.avgYearsBeforeExit.toFixed(1)} yrs`;
+              const truncatedStats = statsText.length > statsMaxChars 
+                ? statsText.substring(0, statsMaxChars - 3) + "..." 
+                : statsText;
+              
+              addCrispTextRendering(
+                group
+                  .append("text")
+                  .attr("class", "logo-fallback-stats")
+                  .attr("x", Math.round(centerX))
+                  .attr("y", Math.round(centerY + 10))
+                  .attr("text-anchor", "middle")
+                  .attr("fill", "rgba(255,255,255,0.6)")
+                  .attr("font-size", statsFontSize)
+                  .attr("font-weight", 500)
+                  .style("white-space", "nowrap")
+                  .style("overflow", "hidden")
+                  .style("text-overflow", "ellipsis")
+              ).text(truncatedStats);
+            }
           });
         
         // Company name below logo (with proper truncation based on width)
         if (area > 4500) {
-          const maxChars = Math.floor(width / 7); // Approximate chars that fit
+          const maxChars = Math.floor(width / 9); // More conservative truncation
           const truncatedName = company.name.length > maxChars 
             ? company.name.substring(0, maxChars - 3) + "..." 
             : company.name;
           
-          group
-            .append("text")
-            .attr("x", centerX)
-            .attr("y", centerY + logoSize / 2 + 6)
-            .attr("text-anchor", "middle")
-            .attr("fill", "white")
-            .attr("font-size", "12px")
-            .attr("font-weight", 600)
-            .style("pointer-events", "none")
-            .text(truncatedName);
+          addCrispTextRendering(
+            group
+              .append("text")
+              .attr("class", "logo-name-text")
+              .attr("x", Math.round(centerX))
+              .attr("y", Math.round(centerY + logoSize / 2 + 6))
+              .attr("text-anchor", "middle")
+              .attr("fill", "white")
+              .attr("font-size", "12px")
+              .attr("font-weight", 600)
+              .style("pointer-events", "none")
+              .style("white-space", "nowrap")
+              .style("overflow", "hidden")
+              .style("text-overflow", "ellipsis")
+          ).text(truncatedName);
           
-          // Stats
-          group
-            .append("text")
-            .attr("x", centerX)
-            .attr("y", centerY + logoSize / 2 + 20)
-            .attr("text-anchor", "middle")
-            .attr("fill", "rgba(255,255,255,0.6)")
-            .attr("font-size", "10px")
-            .attr("font-weight", 500)
-            .text(`${company.outgoing} exits • ${company.avgYearsBeforeExit.toFixed(1)} yrs`);
+          // Stats - only show if box is wide enough
+          if (width > 100) {
+            const statsFontSize = width < 120 ? "9px" : "10px";
+            const statsMaxChars = Math.floor(width / 6);
+            const statsText = `${company.outgoing} exits • ${company.avgYearsBeforeExit.toFixed(1)} yrs`;
+            const truncatedStats = statsText.length > statsMaxChars 
+              ? statsText.substring(0, statsMaxChars - 3) + "..." 
+              : statsText;
+            
+            addCrispTextRendering(
+              group
+                .append("text")
+                .attr("class", "logo-stats-text")
+                .attr("x", Math.round(centerX))
+                .attr("y", Math.round(centerY + logoSize / 2 + 20))
+                .attr("text-anchor", "middle")
+                .attr("fill", "rgba(255,255,255,0.6)")
+                .attr("font-size", statsFontSize)
+                .attr("font-weight", 500)
+                .style("white-space", "nowrap")
+                .style("overflow", "hidden")
+                .style("text-overflow", "ellipsis")
+            ).text(truncatedStats);
+          }
         }
       } else if (area > 1500) {
         // Text only for smaller boxes (with proper truncation)
-        const maxChars = Math.floor(width / 6); // Approximate chars that fit for smaller font
+        const maxChars = Math.floor(width / 8); // More conservative truncation
         const truncatedName = company.name.length > maxChars 
-          ? company.name.substring(0, maxChars) 
+          ? company.name.substring(0, maxChars - 3) + "..." 
           : company.name;
         
-        group
-          .append("text")
-          .attr("x", centerX)
-          .attr("y", centerY - 1)
-          .attr("text-anchor", "middle")
-          .attr("fill", "white")
-          .attr("font-size", "11px")
-          .attr("font-weight", 600)
-          .style("pointer-events", "none")
-          .text(truncatedName);
-        
-        if (area > 3000) {
+        addCrispTextRendering(
           group
             .append("text")
-            .attr("x", centerX)
-            .attr("y", centerY + 12)
+            .attr("x", Math.round(centerX))
+            .attr("y", Math.round(centerY - 1))
             .attr("text-anchor", "middle")
-            .attr("fill", "rgba(255,255,255,0.6)")
-            .attr("font-size", "10px")
-            .attr("font-weight", 500)
-            .text(`${company.outgoing} exits`);
+            .attr("fill", "white")
+            .attr("font-size", "11px")
+            .attr("font-weight", 600)
+            .style("pointer-events", "none")
+            .style("white-space", "nowrap")
+            .style("overflow", "hidden")
+            .style("text-overflow", "ellipsis")
+        ).text(truncatedName);
+        
+        // Only show stats if box is wide enough
+        if (area > 3000 && width > 100) {
+          const exitsText = `${company.outgoing} exits`;
+          const exitsMaxChars = Math.floor(width / 7);
+          const truncatedExits = exitsText.length > exitsMaxChars 
+            ? exitsText.substring(0, exitsMaxChars - 3) + "..." 
+            : exitsText;
+          
+          addCrispTextRendering(
+            group
+              .append("text")
+              .attr("x", Math.round(centerX))
+              .attr("y", Math.round(centerY + 12))
+              .attr("text-anchor", "middle")
+              .attr("fill", "rgba(255,255,255,0.6)")
+              .attr("font-size", "10px")
+              .attr("font-weight", 500)
+              .style("white-space", "nowrap")
+              .style("overflow", "hidden")
+              .style("text-overflow", "ellipsis")
+          ).text(truncatedExits);
         }
       }
     });
