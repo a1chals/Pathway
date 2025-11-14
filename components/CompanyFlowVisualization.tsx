@@ -137,6 +137,11 @@ export default function CompanyFlowVisualization({
     // Set up zoom behavior
     const zoom = d3.zoom<SVGSVGElement, unknown>()
       .scaleExtent([0.5, 4])
+      .filter(function(event) {
+        // Allow zoom on wheel, but prevent zoom on clicks on destination bubbles
+        return event.type === "wheel" || 
+               (event.type === "mousedown" && !(event.target as Element).closest(".destination"));
+      })
       .on("zoom", (event) => {
         const transform = event.transform;
         container.attr("transform", `translate(${dx + transform.x},${dy + transform.y}) scale(${transform.k})`);
@@ -203,6 +208,30 @@ export default function CompanyFlowVisualization({
     merge.append("feMergeNode").attr("in", "shadow2");
     merge.append("feMergeNode").attr("in", "SourceGraphic");
 
+    // Store click handler reference to avoid dependency issues
+    const handleClick = (event: MouseEvent, data: any) => {
+      event.stopPropagation();
+      if (onBubbleClickRef.current) {
+        const exitCompanyName = data.name;
+        const startCompanyName = companyRef.current.name;
+        
+        // Filter transitions - try exact match first, then case-insensitive, then partial match
+        const transitions = rawExitDataRef.current.length > 0
+          ? rawExitDataRef.current.filter(exit => {
+              const startMatches = exit.start_company === startCompanyName || 
+                                   exit.start_company.toLowerCase() === startCompanyName.toLowerCase();
+              const exitMatches = exit.exit_company === exitCompanyName ||
+                                 exit.exit_company.toLowerCase() === exitCompanyName.toLowerCase() ||
+                                 exit.exit_company.toLowerCase().includes(exitCompanyName.toLowerCase()) ||
+                                 exitCompanyName.toLowerCase().includes(exit.exit_company.toLowerCase());
+              return startMatches && exitMatches;
+            })
+          : [];
+        
+        onBubbleClickRef.current(exitCompanyName, transitions);
+      }
+    };
+
     // Draw destination nodes
     const destGroups = container
       .selectAll("g.destination")
@@ -237,17 +266,6 @@ export default function CompanyFlowVisualization({
       .delay((d, i) => shouldAnimate ? i * 30 + 50 : 0)
       .duration(shouldAnimate ? 300 : 0)
       .attr("r", (d) => d.r);
-
-    // Store click handler reference to avoid dependency issues
-    const handleClick = (event: MouseEvent, data: any) => {
-      event.stopPropagation();
-      if (onBubbleClickRef.current && rawExitDataRef.current.length > 0) {
-        const transitions = rawExitDataRef.current.filter(
-          exit => exit.start_company === companyRef.current.name && exit.exit_company === data.name
-        );
-        onBubbleClickRef.current(data.name, transitions);
-      }
-    };
 
     // Add company logos/initials to destinations
     destGroups.each(function (d, i) {
@@ -288,6 +306,7 @@ export default function CompanyFlowVisualization({
         .attr("font-size", `${Math.max(14, radius * 0.2)}px`)
         .attr("font-weight", "bold")
         .attr("opacity", 0)
+        .style("pointer-events", "none")
         .text(() => {
           const words = name.split(/[\s&]+/);
           if (words.length === 1) return name.slice(0, 2).toUpperCase();

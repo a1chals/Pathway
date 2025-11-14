@@ -13,6 +13,43 @@ import accenture_exits from "@/data/accenture_exits.json";
 import oliver_wyman_exits from "@/data/oliver_wyman_exits.json";
 import at_kearney_exits from "@/data/at_kearney_exits.json";
 import lek_exits from "@/data/lek_exits.json";
+// Banking
+import goldman_sachs_exits from "@/data/goldman_sachs_exits.json";
+import jpmorgan_chase_exits from "@/data/jpmorgan_chase_exits.json";
+import morgan_stanley_exits from "@/data/morgan_stanley_exits.json";
+import bank_of_america_exits from "@/data/bank_of_america_exits.json";
+import citigroup_exits from "@/data/citigroup_exits.json";
+// Tech
+import google_exits from "@/data/google_exits.json";
+import apple_exits from "@/data/apple_exits.json";
+import microsoft_exits from "@/data/microsoft_exits.json";
+import meta_exits from "@/data/meta_exits.json";
+import amazon_exits from "@/data/amazon_exits.json";
+import netflix_exits from "@/data/netflix_exits.json";
+import uber_exits from "@/data/uber_exits.json";
+import airbnb_exits from "@/data/airbnb_exits.json";
+import stripe_exits from "@/data/stripe_exits.json";
+import salesforce_exits from "@/data/salesforce_exits.json";
+import adobe_exits from "@/data/adobe_exits.json";
+import tesla_exits from "@/data/tesla_exits.json";
+import zoom_exits from "@/data/zoom_exits.json";
+import linkedin_exits from "@/data/linkedin_exits.json";
+// PE/VC
+import blackstone_exits from "@/data/blackstone_exits.json";
+import kkr_exits from "@/data/kkr_exits.json";
+import carlyle_group_exits from "@/data/carlyle_group_exits.json";
+import bain_capital_exits from "@/data/bain_capital_exits.json";
+import tpg_exits from "@/data/tpg_exits.json";
+import sequoia_capital_exits from "@/data/sequoia_capital_exits.json";
+import andreessen_horowitz_exits from "@/data/andreessen_horowitz_exits.json";
+import general_catalyst_exits from "@/data/general_catalyst_exits.json";
+import accel_exits from "@/data/accel_exits.json";
+// Corporate
+import pepsico_exits from "@/data/pepsico_exits.json";
+import procter_gamble_exits from "@/data/procter_gamble_exits.json";
+import johnson_johnson_exits from "@/data/johnson_johnson_exits.json";
+import nike_exits from "@/data/nike_exits.json";
+import disney_exits from "@/data/disney_exits.json";
 
 export interface HeatmapCompany {
   id: string;
@@ -242,6 +279,7 @@ function getCompanyInfo(companyName: string): { type: CompanyType; employeeCount
 export function generateHeatmapData(): HeatmapData {
   // Combine all exit data
   const allExits: ExitData[] = [
+    // Consulting
     ...mckinsey_exits,
     ...bcg_exits,
     ...bain_exits,
@@ -253,6 +291,43 @@ export function generateHeatmapData(): HeatmapData {
     ...oliver_wyman_exits,
     ...at_kearney_exits,
     ...lek_exits,
+    // Banking
+    ...goldman_sachs_exits,
+    ...jpmorgan_chase_exits,
+    ...morgan_stanley_exits,
+    ...bank_of_america_exits,
+    ...citigroup_exits,
+    // Tech
+    ...google_exits,
+    ...apple_exits,
+    ...microsoft_exits,
+    ...meta_exits,
+    ...amazon_exits,
+    ...netflix_exits,
+    ...uber_exits,
+    ...airbnb_exits,
+    ...stripe_exits,
+    ...salesforce_exits,
+    ...adobe_exits,
+    ...tesla_exits,
+    ...zoom_exits,
+    ...linkedin_exits,
+    // PE/VC
+    ...blackstone_exits,
+    ...kkr_exits,
+    ...carlyle_group_exits,
+    ...bain_capital_exits,
+    ...tpg_exits,
+    ...sequoia_capital_exits,
+    ...andreessen_horowitz_exits,
+    ...general_catalyst_exits,
+    ...accel_exits,
+    // Corporate
+    ...pepsico_exits,
+    ...procter_gamble_exits,
+    ...johnson_johnson_exits,
+    ...nike_exits,
+    ...disney_exits,
   ] as ExitData[];
 
   // Track company statistics
@@ -514,8 +589,9 @@ export { getCompanyMetadata, companyMetadata } from "@/lib/companyMetadata";
 
 // Helper function to get raw exit data for a specific company
 export function getRawExitDataForCompany(companyName: string): ExitData[] {
-  // Combine all exit data
+  // Combine all exit data (including all new company exit files)
   const allExits: ExitData[] = [
+    // Consulting
     ...mckinsey_exits,
     ...bcg_exits,
     ...bain_exits,
@@ -527,6 +603,43 @@ export function getRawExitDataForCompany(companyName: string): ExitData[] {
     ...oliver_wyman_exits,
     ...at_kearney_exits,
     ...lek_exits,
+    // Banking
+    ...goldman_sachs_exits,
+    ...jpmorgan_chase_exits,
+    ...morgan_stanley_exits,
+    ...bank_of_america_exits,
+    ...citigroup_exits,
+    // Tech
+    ...google_exits,
+    ...apple_exits,
+    ...microsoft_exits,
+    ...meta_exits,
+    ...amazon_exits,
+    ...netflix_exits,
+    ...uber_exits,
+    ...airbnb_exits,
+    ...stripe_exits,
+    ...salesforce_exits,
+    ...adobe_exits,
+    ...tesla_exits,
+    ...zoom_exits,
+    ...linkedin_exits,
+    // PE/VC
+    ...blackstone_exits,
+    ...kkr_exits,
+    ...carlyle_group_exits,
+    ...bain_capital_exits,
+    ...tpg_exits,
+    ...sequoia_capital_exits,
+    ...andreessen_horowitz_exits,
+    ...general_catalyst_exits,
+    ...accel_exits,
+    // Corporate
+    ...pepsico_exits,
+    ...procter_gamble_exits,
+    ...johnson_johnson_exits,
+    ...nike_exits,
+    ...disney_exits,
   ] as ExitData[];
   
   // Filter exits for the specific company

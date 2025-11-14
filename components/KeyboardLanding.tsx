@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
-import { PathwayNavigation } from "@/components/ui/pathway-navigation";
 
 interface KeyProps {
   company: string;
@@ -70,28 +69,69 @@ const companies = {
   ],
 };
 
+// Map keyboard display names to actual company names used in heatmap data
+const companyNameMap: Record<string, string> = {
+  "Bain": "Bain & Company",
+  "McKinsey": "McKinsey & Company",
+  "BCG": "Boston Consulting Group",
+  "EY": "EY",
+  "Deloitte": "Deloitte",
+  "PwC": "PwC",
+  "KPMG": "KPMG",
+  "Accenture": "Accenture",
+  "Oliver Wyman": "Oliver Wyman",
+  "A.T. Kearney": "A.T. Kearney",
+  "LEK": "LEK Consulting",
+  "Goldman Sachs": "Goldman Sachs",
+  "JPMorgan": "JPMorgan Chase",
+  "Morgan Stanley": "Morgan Stanley",
+  "Bank of America": "Bank of America",
+  "Citi": "Citigroup",
+  "Blackstone": "Blackstone",
+  "KKR": "KKR",
+  "TPG": "TPG",
+  "Carlyle": "Carlyle Group",
+  "Bain Capital": "Bain Capital",
+  "Apollo": "Apollo Global Management",
+  "Google": "Google",
+  "Apple": "Apple",
+  "Amazon": "Amazon",
+  "Microsoft": "Microsoft",
+  "Meta": "Meta",
+  "Netflix": "Netflix",
+  "Uber": "Uber",
+  "Airbnb": "Airbnb",
+  "Stripe": "Stripe",
+  "Salesforce": "Salesforce",
+  "Adobe": "Adobe",
+  "Sequoia": "Sequoia Capital",
+  "Andreessen": "Andreessen Horowitz",
+  "General Catalyst": "General Catalyst",
+  "Accel": "Accel",
+  "DoorDash": "DoorDash",
+  "Spotify": "Spotify",
+  "Tesla": "Tesla",
+  "Zoom": "Zoom",
+  "LinkedIn": "LinkedIn",
+};
+
+// Convert company name to heatmap ID format
+function getCompanyId(companyName: string): string {
+  const actualName = companyNameMap[companyName] || companyName;
+  return actualName.toLowerCase().replace(/[^a-z0-9]/g, '-');
+}
+
 export default function KeyboardLanding() {
   const router = useRouter();
 
   const handleKeyClick = (company: string) => {
-    // Navigate to explore page with company filter
-    router.push(`/explore?firm=${encodeURIComponent(company)}`);
+    // Navigate to heatmap company page
+    const companyId = getCompanyId(company);
+    router.push(`/heatmap/${companyId}`);
   };
 
   return (
     <div className="min-h-screen checkered-bg flex flex-col items-center justify-center p-8 relative">
-      {/* 3D Navigation Bar - Fixed at top center */}
-      <div className="fixed top-8 left-0 right-0 z-50 flex justify-center pointer-events-none">
-        <motion.div
-          initial={{ opacity: 0, y: -30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1 }}
-          className="pointer-events-auto"
-        >
-          <PathwayNavigation />
-        </motion.div>
-      </div>
-
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
@@ -179,14 +219,14 @@ export default function KeyboardLanding() {
               className="h-16 border-2 border-gray-700 bg-white rounded-sm flex items-center justify-center transition-all duration-150 retro-outset hover:retro-pressed active:retro-pressed shadow-md"
             >
               <span className="text-[11px] font-bold text-gray-800 uppercase tracking-wider">
-                EXPLORE ALL COMPANIES
+                EXPLORE CONSULTING EXITS
               </span>
             </motion.button>
             <motion.button
               onClick={() => router.push("/heatmap")}
               whileHover={{ scale: 1.01 }}
               whileTap={{ scale: 0.99 }}
-              className="h-16 border-2 border-gray-700 bg-gradient-to-br from-purple-500 to-blue-500 rounded-sm flex items-center justify-center transition-all duration-150 retro-outset hover:retro-pressed active:retro-pressed shadow-md"
+              className="h-16 border-2 border-gray-700 bg-purple-500 rounded-sm flex items-center justify-center transition-all duration-150 retro-outset hover:retro-pressed active:retro-pressed shadow-md"
             >
               <span className="text-[11px] font-bold text-white uppercase tracking-wider">
                 MOVEMENT MAP
@@ -196,7 +236,7 @@ export default function KeyboardLanding() {
               onClick={() => router.push("/incoming")}
               whileHover={{ scale: 1.01 }}
               whileTap={{ scale: 0.99 }}
-              className="h-16 border-2 border-gray-700 bg-gradient-to-br from-emerald-500 to-green-500 rounded-sm flex items-center justify-center transition-all duration-150 retro-outset hover:retro-pressed active:retro-pressed shadow-md"
+              className="h-16 border-2 border-gray-700 bg-green-500 rounded-sm flex items-center justify-center transition-all duration-150 retro-outset hover:retro-pressed active:retro-pressed shadow-md"
             >
               <span className="text-[11px] font-bold text-white uppercase tracking-wider">
                 TALENT PIPELINE
@@ -206,7 +246,7 @@ export default function KeyboardLanding() {
               onClick={() => router.push("/compare")}
               whileHover={{ scale: 1.01 }}
               whileTap={{ scale: 0.99 }}
-              className="h-16 border-2 border-gray-700 bg-gradient-to-br from-orange-500 to-red-500 rounded-sm flex items-center justify-center transition-all duration-150 retro-outset hover:retro-pressed active:retro-pressed shadow-md"
+              className="h-16 border-2 border-gray-700 bg-orange-500 rounded-sm flex items-center justify-center transition-all duration-150 retro-outset hover:retro-pressed active:retro-pressed shadow-md"
             >
               <span className="text-[11px] font-bold text-white uppercase tracking-wider">
                 COMPARE COMPANIES
