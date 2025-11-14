@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
-import { PathwayNavigation } from "@/components/ui/pathway-navigation";
+// import { PathwayNavigation } from "@/components/ui/pathway-navigation"; // DISABLED - Can be reactivated later
 
 interface KeyProps {
   company: string;
@@ -81,6 +81,7 @@ export default function KeyboardLanding() {
   return (
     <div className="min-h-screen checkered-bg flex flex-col items-center justify-center p-8 relative">
       {/* 3D Navigation Bar - Fixed at top center */}
+      {/* DISABLED - Can be reactivated later
       <div className="fixed top-8 left-0 right-0 z-50 flex justify-center pointer-events-none">
         <motion.div
           initial={{ opacity: 0, y: -30 }}
@@ -91,6 +92,7 @@ export default function KeyboardLanding() {
           <PathwayNavigation />
         </motion.div>
       </div>
+      */}
 
       {/* Header */}
       <motion.div

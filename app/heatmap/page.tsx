@@ -4,7 +4,7 @@ import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, Search, Info, X } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { PathwayNavigationVertical } from "@/components/ui/pathway-navigation-vertical";
+// import { PathwayNavigationVertical } from "@/components/ui/pathway-navigation-vertical"; // DISABLED - Can be reactivated later
 import Treemap from "@/components/Treemap";
 import { heatmapData } from "@/lib/heatmapData";
 import { CompanyType } from "@/types";
@@ -69,6 +69,7 @@ export default function HeatmapPage() {
   return (
     <div className="min-h-screen checkered-bg">
       {/* Vertical Navigation */}
+      {/* DISABLED - Can be reactivated later
       <div className="fixed left-4 top-0 bottom-0 z-50 flex items-center pointer-events-none">
         <motion.div
           initial={{ opacity: 0, x: -30 }}
@@ -79,6 +80,7 @@ export default function HeatmapPage() {
           <PathwayNavigationVertical />
         </motion.div>
       </div>
+      */}
 
       {/* Header */}
       <header className="sticky top-0 z-50 w-full border-b-2 border-gray-700 bg-white retro-outset">
