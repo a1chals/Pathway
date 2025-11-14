@@ -39,28 +39,18 @@ export default function CompanyDetailPage() {
     return allCompanies.find((c) => c.id === companyId);
   }, [allCompanies, companyId]);
 
-  // Get destination companies - show top 8, group rest as "Other"
-  const { topDestinations, otherCount, otherCompanies } = useMemo(() => {
-    if (!company) return { topDestinations: [], otherCount: 0, otherCompanies: [] };
-    
-    const top = company.exits.slice(0, 8);
-    const rest = company.exits.slice(8);
-    
-    const topDest = top
-      .map((exit) => ({
-        exit,
-        company: allCompanies.find((c) => c.name === exit.to),
-      }))
-      .filter((d) => d.company !== undefined);
-    
-    const otherTotal = rest.reduce((sum, exit) => sum + exit.count, 0);
-    const otherComps = rest.map((exit) => exit.to);
-    
-    return {
-      topDestinations: topDest,
-      otherCount: otherTotal,
-      otherCompanies: otherComps,
-    };
+  // Get raw exit data for this company
+  const rawExitData = useMemo(() => {
+    if (!company) return [];
+    return getRawExitDataForCompany(company.name);
+  }, [company]);
+
+  // Get destination companies
+  const destinationCompanies = useMemo(() => {
+    if (!company) return [];
+    return company.exits
+      .map((exit) => allCompanies.find((c) => c.name === exit.to))
+      .filter((c): c is HeatmapCompany => c !== undefined);
   }, [company, allCompanies]);
 
   const handleBubbleClick = (exitCompany: string, transitions: ExitData[]) => {
@@ -89,8 +79,8 @@ export default function CompanyDetailPage() {
     );
   }
 
-  const mostCommonExitIndustry = topDestinations.length > 0 && topDestinations[0].company
-    ? topDestinations[0].company.industry
+  const mostCommonExitIndustry = destinationCompanies.length > 0
+    ? destinationCompanies[0].industry
     : "Various";
 
   return (
@@ -215,13 +205,24 @@ export default function CompanyDetailPage() {
 
       {/* Main Flow Visualization */}
       <div className="max-w-7xl mx-auto px-6 pb-6">
-        <CompanyFlowVisualization
-          company={company}
-          topDestinations={topDestinations}
-          otherCount={otherCount}
-          otherCompanies={otherCompanies}
-        />
+        <div className="h-[600px]">
+          <CompanyFlowVisualization
+            company={company}
+            destinationCompanies={destinationCompanies}
+            rawExitData={rawExitData}
+            onBubbleClick={handleBubbleClick}
+          />
+        </div>
       </div>
+
+      {/* Transition Sidebar */}
+      <TransitionSidebar
+        isOpen={selectedExitCompany !== null}
+        onClose={handleCloseSidebar}
+        exitCompany={selectedExitCompany || ""}
+        transitions={selectedTransitions}
+        sourceCompany={company.name}
+      />
     </div>
   );
 }

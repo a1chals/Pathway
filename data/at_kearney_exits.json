@@ -142,6 +142,405 @@
     "exit_role": "Investment Banking Analyst",
     "industry": "Investment Banking",
     "avg_years_before_exit": 2.8
+  },
+  {
+    "start_company": "A.T. Kearney",
+    "start_role": "Consultant",
+    "exit_company": "JPMorgan Chase",
+    "exit_role": "Investment Banking Analyst",
+    "industry": "Investment Banking",
+    "avg_years_before_exit": 2.5
+  },
+  {
+    "start_company": "A.T. Kearney",
+    "start_role": "Consultant",
+    "exit_company": "Goldman Sachs",
+    "exit_role": "Investment Banking Analyst",
+    "industry": "Investment Banking",
+    "avg_years_before_exit": 2.4
+  },
+  {
+    "start_company": "A.T. Kearney",
+    "start_role": "Consultant",
+    "exit_company": "Stanford GSB",
+    "exit_role": "MBA Candidate",
+    "industry": "Graduate Education",
+    "avg_years_before_exit": 2.8
+  },
+  {
+    "start_company": "A.T. Kearney",
+    "start_role": "Business Analyst",
+    "exit_company": "Apple",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 2.8
+  },
+  {
+    "start_company": "A.T. Kearney",
+    "start_role": "Business Analyst",
+    "exit_company": "Microsoft",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 3.1
+  },
+  {
+    "start_company": "A.T. Kearney",
+    "start_role": "Business Analyst",
+    "exit_company": "Stanford GSB",
+    "exit_role": "MBA Candidate",
+    "industry": "Graduate Education",
+    "avg_years_before_exit": 2.6
+  },
+  {
+    "start_company": "A.T. Kearney",
+    "start_role": "Business Analyst",
+    "exit_company": "Amazon",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 3.0
+  },
+  {
+    "start_company": "A.T. Kearney",
+    "start_role": "Business Analyst",
+    "exit_company": "Google",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 2.7
+  },
+  {
+    "start_company": "A.T. Kearney",
+    "start_role": "Consultant",
+    "exit_company": "Amazon",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 2.9
+  },
+  {
+    "start_company": "A.T. Kearney",
+    "start_role": "Business Analyst",
+    "exit_company": "KKR",
+    "exit_role": "Private Equity Associate",
+    "industry": "Private Equity",
+    "avg_years_before_exit": 2.8
+  },
+  {
+    "start_company": "A.T. Kearney",
+    "start_role": "Business Analyst",
+    "exit_company": "Harvard Business School",
+    "exit_role": "MBA Candidate",
+    "industry": "Graduate Education",
+    "avg_years_before_exit": 2.4
+  },
+  {
+    "start_company": "A.T. Kearney",
+    "start_role": "Consultant",
+    "exit_company": "Google",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 2.8
+  },
+  {
+    "start_company": "A.T. Kearney",
+    "start_role": "Business Analyst",
+    "exit_company": "Amazon",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 2.8
+  },
+  {
+    "start_company": "A.T. Kearney",
+    "start_role": "Business Analyst",
+    "exit_company": "Microsoft",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 2.9
+  },
+  {
+    "start_company": "A.T. Kearney",
+    "start_role": "Consultant",
+    "exit_company": "Stanford GSB",
+    "exit_role": "MBA Candidate",
+    "industry": "Graduate Education",
+    "avg_years_before_exit": 2.9
+  },
+  {
+    "start_company": "A.T. Kearney",
+    "start_role": "Consultant",
+    "exit_company": "Blackstone",
+    "exit_role": "Private Equity Associate",
+    "industry": "Private Equity",
+    "avg_years_before_exit": 3.1
+  },
+  {
+    "start_company": "A.T. Kearney",
+    "start_role": "Consultant",
+    "exit_company": "Harvard Business School",
+    "exit_role": "MBA Candidate",
+    "industry": "Graduate Education",
+    "avg_years_before_exit": 2.6
+  },
+  {
+    "start_company": "A.T. Kearney",
+    "start_role": "Consultant",
+    "exit_company": "KKR",
+    "exit_role": "Private Equity Associate",
+    "industry": "Private Equity",
+    "avg_years_before_exit": 3.1
+  },
+  {
+    "start_company": "A.T. Kearney",
+    "start_role": "Consultant",
+    "exit_company": "Apple",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 2.7
+  },
+  {
+    "start_company": "A.T. Kearney",
+    "start_role": "Consultant",
+    "exit_company": "Microsoft",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 3.2
+  },
+  {
+    "start_company": "A.T. Kearney",
+    "start_role": "Business Analyst",
+    "exit_company": "Blackstone",
+    "exit_role": "Private Equity Associate",
+    "industry": "Private Equity",
+    "avg_years_before_exit": 3.3
+  },
+  {
+    "start_company": "A.T. Kearney",
+    "start_role": "Business Analyst",
+    "exit_company": "Harvard Business School",
+    "exit_role": "MBA Candidate",
+    "industry": "Graduate Education",
+    "avg_years_before_exit": 2.7
+  },
+  {
+    "start_company": "A.T. Kearney",
+    "start_role": "Business Analyst",
+    "exit_company": "Blackstone",
+    "exit_role": "Private Equity Associate",
+    "industry": "Private Equity",
+    "avg_years_before_exit": 3.2
+  },
+  {
+    "start_company": "A.T. Kearney",
+    "start_role": "Business Analyst",
+    "exit_company": "Apple",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 3.0
+  },
+  {
+    "start_company": "A.T. Kearney",
+    "start_role": "Consultant",
+    "exit_company": "JPMorgan Chase",
+    "exit_role": "Investment Banking Analyst",
+    "industry": "Investment Banking",
+    "avg_years_before_exit": 2.6
+  },
+  {
+    "start_company": "A.T. Kearney",
+    "start_role": "Business Analyst",
+    "exit_company": "KKR",
+    "exit_role": "Private Equity Associate",
+    "industry": "Private Equity",
+    "avg_years_before_exit": 3.2
+  },
+  {
+    "start_company": "A.T. Kearney",
+    "start_role": "Consultant",
+    "exit_company": "JPMorgan Chase",
+    "exit_role": "Investment Banking Analyst",
+    "industry": "Investment Banking",
+    "avg_years_before_exit": 2.5
+  },
+  {
+    "start_company": "A.T. Kearney",
+    "start_role": "Business Analyst",
+    "exit_company": "Goldman Sachs",
+    "exit_role": "Investment Banking Analyst",
+    "industry": "Investment Banking",
+    "avg_years_before_exit": 2.2
+  },
+  {
+    "start_company": "A.T. Kearney",
+    "start_role": "Business Analyst",
+    "exit_company": "Google",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 2.6
+  },
+  {
+    "start_company": "A.T. Kearney",
+    "start_role": "Business Analyst",
+    "exit_company": "Goldman Sachs",
+    "exit_role": "Investment Banking Analyst",
+    "industry": "Investment Banking",
+    "avg_years_before_exit": 2.3
+  },
+  {
+    "start_company": "A.T. Kearney",
+    "start_role": "Business Analyst",
+    "exit_company": "Spotify",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 3.0
+  },
+  {
+    "start_company": "A.T. Kearney",
+    "start_role": "Consultant",
+    "exit_company": "Pinterest",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 3.1
+  },
+  {
+    "start_company": "A.T. Kearney",
+    "start_role": "Consultant",
+    "exit_company": "Accel Partners",
+    "exit_role": "Investment Associate",
+    "industry": "Venture Capital",
+    "avg_years_before_exit": 3.1
+  },
+  {
+    "start_company": "A.T. Kearney",
+    "start_role": "Consultant",
+    "exit_company": "Chicago Booth",
+    "exit_role": "MBA Candidate",
+    "industry": "Graduate Education",
+    "avg_years_before_exit": 2.7
+  },
+  {
+    "start_company": "A.T. Kearney",
+    "start_role": "Consultant",
+    "exit_company": "General Motors",
+    "exit_role": "Corporate Strategy Manager",
+    "industry": "Corporate",
+    "avg_years_before_exit": 3.2
+  },
+  {
+    "start_company": "A.T. Kearney",
+    "start_role": "Consultant",
+    "exit_company": "Greylock Partners",
+    "exit_role": "Investment Associate",
+    "industry": "Venture Capital",
+    "avg_years_before_exit": 3.2
+  },
+  {
+    "start_company": "A.T. Kearney",
+    "start_role": "Business Analyst",
+    "exit_company": "Benchmark",
+    "exit_role": "Investment Associate",
+    "industry": "Venture Capital",
+    "avg_years_before_exit": 3.0
+  },
+  {
+    "start_company": "A.T. Kearney",
+    "start_role": "Consultant",
+    "exit_company": "Walmart",
+    "exit_role": "Corporate Strategy Manager",
+    "industry": "Corporate",
+    "avg_years_before_exit": 2.9
+  },
+  {
+    "start_company": "A.T. Kearney",
+    "start_role": "Business Analyst",
+    "exit_company": "Cisco",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 3.0
+  },
+  {
+    "start_company": "A.T. Kearney",
+    "start_role": "Business Analyst",
+    "exit_company": "Adobe",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 2.6
+  },
+  {
+    "start_company": "A.T. Kearney",
+    "start_role": "Business Analyst",
+    "exit_company": "Deutsche Bank",
+    "exit_role": "Investment Banking Analyst",
+    "industry": "Investment Banking",
+    "avg_years_before_exit": 2.6
+  },
+  {
+    "start_company": "A.T. Kearney",
+    "start_role": "Consultant",
+    "exit_company": "General Electric",
+    "exit_role": "Corporate Strategy Associate",
+    "industry": "Corporate",
+    "avg_years_before_exit": 3.0
+  },
+  {
+    "start_company": "A.T. Kearney",
+    "start_role": "Consultant",
+    "exit_company": "Verizon",
+    "exit_role": "Product Manager",
+    "industry": "Corporate",
+    "avg_years_before_exit": 3.1
+  },
+  {
+    "start_company": "A.T. Kearney",
+    "start_role": "Business Analyst",
+    "exit_company": "Mastercard",
+    "exit_role": "Strategy Manager",
+    "industry": "Corporate",
+    "avg_years_before_exit": 2.9
+  },
+  {
+    "start_company": "A.T. Kearney",
+    "start_role": "Business Analyst",
+    "exit_company": "Silver Lake",
+    "exit_role": "Private Equity Associate",
+    "industry": "Private Equity",
+    "avg_years_before_exit": 3.1
+  },
+  {
+    "start_company": "A.T. Kearney",
+    "start_role": "Consultant",
+    "exit_company": "SAP",
+    "exit_role": "Product Manager",
+    "industry": "Tech",
+    "avg_years_before_exit": 2.8
+  },
+  {
+    "start_company": "A.T. Kearney",
+    "start_role": "Business Analyst",
+    "exit_company": "Nike",
+    "exit_role": "Strategy Manager",
+    "industry": "Corporate",
+    "avg_years_before_exit": 2.7
+  },
+  {
+    "start_company": "A.T. Kearney",
+    "start_role": "Consultant",
+    "exit_company": "Ross School of Business",
+    "exit_role": "MBA Candidate",
+    "industry": "Graduate Education",
+    "avg_years_before_exit": 2.8
+  },
+  {
+    "start_company": "A.T. Kearney",
+    "start_role": "Business Analyst",
+    "exit_company": "Bank of America",
+    "exit_role": "Investment Banking Analyst",
+    "industry": "Investment Banking",
+    "avg_years_before_exit": 2.6
+  },
+  {
+    "start_company": "A.T. Kearney",
+    "start_role": "Consultant",
+    "exit_company": "Kellogg School of Management",
+    "exit_role": "MBA Candidate",
+    "industry": "Graduate Education",
+    "avg_years_before_exit": 2.7
   }
 ]
-
