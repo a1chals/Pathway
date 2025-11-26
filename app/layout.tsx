@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
+import PoweredByAviato from "@/components/PoweredByAviato";
 
 const ibmPlexMono = IBM_Plex_Mono({ 
   subsets: ["latin"],
@@ -20,7 +21,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={ibmPlexMono.className}>{children}</body>
+      <body className={ibmPlexMono.className}>
+        {children}
+        <PoweredByAviato />
+      </body>
     </html>
   );
 }
