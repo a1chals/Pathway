@@ -131,7 +131,7 @@ export default function KeyboardLanding() {
   };
 
   return (
-    <div className="min-h-screen checkered-bg flex flex-col items-center justify-center p-8 relative">
+    <div className="min-h-screen checkered-bg flex flex-col items-center justify-center p-8 pt-16 relative">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}

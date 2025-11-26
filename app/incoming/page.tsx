@@ -74,7 +74,7 @@ export default function IncomingTalentPage() {
   const totalIncoming = incomingSources.reduce((sum, source) => sum + source.count, 0);
 
   return (
-    <div className="relative w-full min-h-screen checkered-bg p-6">
+    <div className="relative w-full min-h-screen checkered-bg p-6 pt-16">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}

@@ -84,7 +84,7 @@ export default function CompanyDetailPage() {
     : "Various";
 
   return (
-    <div className="min-h-screen checkered-bg">
+    <div className="min-h-screen checkered-bg pt-12">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}

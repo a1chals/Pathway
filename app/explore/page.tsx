@@ -105,7 +105,7 @@ function ExplorePageContent() {
   }, [firmParam, getInitialFirm]);
 
   return (
-    <div className="min-h-screen checkered-bg">
+    <div className="min-h-screen checkered-bg pt-12">
       {/* Modern Header */}
       <header className="sticky top-0 z-50 w-full border-b-2 border-gray-700 bg-white retro-outset">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
