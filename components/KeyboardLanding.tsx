@@ -211,47 +211,50 @@ export default function KeyboardLanding() {
           </div>
 
           {/* Space Bar / Action Buttons */}
-          <div className="grid grid-cols-2 gap-3 justify-center mt-6">
+          <div className="space-y-3 mt-6">
+            {/* Featured: AI Chat - Full Width */}
             <motion.button
-              onClick={() => router.push("/explore")}
+              onClick={() => router.push("/chat")}
               whileHover={{ scale: 1.01 }}
               whileTap={{ scale: 0.99 }}
-              className="h-16 border-2 border-gray-700 bg-white rounded-sm flex items-center justify-center transition-all duration-150 retro-outset hover:retro-pressed active:retro-pressed shadow-md"
+              className="w-full h-20 border-2 border-gray-700 bg-gradient-to-r from-blue-600 to-purple-600 rounded-sm flex items-center justify-center gap-3 transition-all duration-150 retro-outset hover:retro-pressed active:retro-pressed shadow-lg"
             >
-              <span className="text-[11px] font-bold text-gray-800 uppercase tracking-wider">
-                EXPLORE CONSULTING EXITS
-              </span>
+              <svg className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+              </svg>
+              <div className="text-left">
+                <span className="text-sm font-bold text-white uppercase tracking-wider block">
+                  ASK PATHSEARCH AI
+                </span>
+                <span className="text-[10px] text-white/80 uppercase tracking-wide">
+                  &quot;Where do Bain consultants exit to?&quot;
+                </span>
+              </div>
             </motion.button>
-            <motion.button
-              onClick={() => router.push("/heatmap")}
-              whileHover={{ scale: 1.01 }}
-              whileTap={{ scale: 0.99 }}
-              className="h-16 border-2 border-gray-700 bg-purple-500 rounded-sm flex items-center justify-center transition-all duration-150 retro-outset hover:retro-pressed active:retro-pressed shadow-md"
-            >
-              <span className="text-[11px] font-bold text-white uppercase tracking-wider">
-                MOVEMENT MAP
-              </span>
-            </motion.button>
-            <motion.button
-              onClick={() => router.push("/incoming")}
-              whileHover={{ scale: 1.01 }}
-              whileTap={{ scale: 0.99 }}
-              className="h-16 border-2 border-gray-700 bg-green-500 rounded-sm flex items-center justify-center transition-all duration-150 retro-outset hover:retro-pressed active:retro-pressed shadow-md"
-            >
-              <span className="text-[11px] font-bold text-white uppercase tracking-wider">
-                TALENT PIPELINE
-              </span>
-            </motion.button>
-            <motion.button
-              onClick={() => router.push("/compare")}
-              whileHover={{ scale: 1.01 }}
-              whileTap={{ scale: 0.99 }}
-              className="h-16 border-2 border-gray-700 bg-orange-500 rounded-sm flex items-center justify-center transition-all duration-150 retro-outset hover:retro-pressed active:retro-pressed shadow-md"
-            >
-              <span className="text-[11px] font-bold text-white uppercase tracking-wider">
-                COMPARE COMPANIES
-              </span>
-            </motion.button>
+
+            {/* Other buttons in grid */}
+            <div className="grid grid-cols-2 gap-3">
+              <motion.button
+                onClick={() => router.push("/explore")}
+                whileHover={{ scale: 1.01 }}
+                whileTap={{ scale: 0.99 }}
+                className="h-14 border-2 border-gray-700 bg-white rounded-sm flex items-center justify-center transition-all duration-150 retro-outset hover:retro-pressed active:retro-pressed shadow-md"
+              >
+                <span className="text-[10px] font-bold text-gray-800 uppercase tracking-wider">
+                  EXPLORE EXITS
+                </span>
+              </motion.button>
+              <motion.button
+                onClick={() => router.push("/heatmap")}
+                whileHover={{ scale: 1.01 }}
+                whileTap={{ scale: 0.99 }}
+                className="h-14 border-2 border-gray-700 bg-purple-500 rounded-sm flex items-center justify-center transition-all duration-150 retro-outset hover:retro-pressed active:retro-pressed shadow-md"
+              >
+                <span className="text-[10px] font-bold text-white uppercase tracking-wider">
+                  MOVEMENT MAP
+                </span>
+              </motion.button>
+            </div>
           </div>
         </div>
       </motion.div>

@@ -3,24 +3,14 @@
 import { useState, useEffect, useCallback, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { TrendingUp, Sparkles, ArrowLeft, Network } from "lucide-react";
+import { TrendingUp, Sparkles, ArrowLeft, Network, Search } from "lucide-react";
 import { useRouter } from "next/navigation";
-import bainExitsData from "@/data/bain_exits.json";
-import mckinseyExitsData from "@/data/mckinsey_exits.json";
-import bcgExitsData from "@/data/bcg_exits.json";
-import lekExitsData from "@/data/lek_exits.json";
-import eyExitsData from "@/data/ey_exits.json";
-import deloitteExitsData from "@/data/deloitte_exits.json";
-import pwcExitsData from "@/data/pwc_exits.json";
-import kpmgExitsData from "@/data/kpmg_exits.json";
-import oliverWymanExitsData from "@/data/oliver_wyman_exits.json";
-import atKearneyExitsData from "@/data/at_kearney_exits.json";
-import accentureExitsData from "@/data/accenture_exits.json";
 import StatsCards from "@/components/StatsCards";
 import IndustryChart from "@/components/IndustryChart";
 import ExitList from "@/components/ExitList";
 import ExampleExits from "@/components/ExampleExits";
 import { ExitData } from "@/types";
+import { searchCompanies, getCompanyExits, Company } from "@/lib/api";
 import {
   Select,
   SelectContent,
@@ -29,23 +19,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-const FIRM_DATA: Record<string, ExitData[]> = {
-  "Bain & Company": bainExitsData as ExitData[],
-  "McKinsey & Company": mckinseyExitsData as ExitData[],
-  "Boston Consulting Group": bcgExitsData as ExitData[],
-  "LEK Consulting": lekExitsData as ExitData[],
-  "EY": eyExitsData as ExitData[],
-  "Deloitte": deloitteExitsData as ExitData[],
-  "PwC": pwcExitsData as ExitData[],
-  "KPMG": kpmgExitsData as ExitData[],
-  "Oliver Wyman": oliverWymanExitsData as ExitData[],
-  "A.T. Kearney": atKearneyExitsData as ExitData[],
-  "Accenture": accentureExitsData as ExitData[],
-};
-
-const FIRM_NAMES = Object.keys(FIRM_DATA).sort();
-
-// Company name mappings for keyboard -> data
+// Company name mappings for keyboard -> search query
 const COMPANY_MAPPINGS: Record<string, string> = {
   "Bain": "Bain & Company",
   "McKinsey": "McKinsey & Company",
@@ -77,32 +51,143 @@ const COMPANY_MAPPINGS: Record<string, string> = {
   "Adobe": "Adobe",
 };
 
+// Default companies to show in dropdown
+const DEFAULT_COMPANIES = [
+  "McKinsey & Company",
+  "Boston Consulting Group", 
+  "Bain & Company",
+  "Goldman Sachs",
+  "Google",
+  "Meta",
+  "Amazon",
+];
+
 function ExplorePageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const firmParam = searchParams.get("firm");
   
-  // Find matching firm from param
-  const getInitialFirm = useCallback(() => {
-    if (firmParam) {
-      // Try direct match first
-      if (FIRM_DATA[firmParam]) return firmParam;
-      // Try company mappings
-      if (COMPANY_MAPPINGS[firmParam]) return COMPANY_MAPPINGS[firmParam];
-      // If no match, default to first available firm
-    }
-    return "Bain & Company";
+  const [companies, setCompanies] = useState<Company[]>([]);
+  const [selectedCompany, setSelectedCompany] = useState<Company | null>(null);
+  const [currentExits, setCurrentExits] = useState<ExitData[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isLoadingExits, setIsLoadingExits] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  // Load initial companies
+  useEffect(() => {
+    const loadInitialCompanies = async () => {
+      setIsLoading(true);
+      try {
+        // Search for default companies
+        const searchPromises = DEFAULT_COMPANIES.map(name => 
+          searchCompanies({ nameQuery: name, limit: 1 })
+        );
+        
+        const results = await Promise.all(searchPromises);
+        const foundCompanies = results
+          .flatMap(r => r.items)
+          .filter((c, i, arr) => arr.findIndex(x => x.id === c.id) === i); // Dedupe
+        
+        setCompanies(foundCompanies);
+
+        // If there's a firm param, try to find and select it
+        if (firmParam) {
+          const mappedName = COMPANY_MAPPINGS[firmParam] || firmParam;
+          const matchingCompany = foundCompanies.find(
+            c => c.name.toLowerCase().includes(mappedName.toLowerCase())
+          );
+          
+          if (matchingCompany) {
+            setSelectedCompany(matchingCompany);
+          } else {
+            // Search for the company
+            const searchResult = await searchCompanies({ nameQuery: mappedName, limit: 1 });
+            if (searchResult.items.length > 0) {
+              setSelectedCompany(searchResult.items[0]);
+              setCompanies(prev => [...prev, searchResult.items[0]]);
+            }
+          }
+        } else if (foundCompanies.length > 0) {
+          setSelectedCompany(foundCompanies[0]);
+        }
+      } catch (err) {
+        console.error("Failed to load companies:", err);
+        setError("Failed to load companies. Please check your API connection.");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadInitialCompanies();
   }, [firmParam]);
 
-  const [selectedFirm, setSelectedFirm] = useState<string>(getInitialFirm());
-  const currentExits = FIRM_DATA[selectedFirm] || FIRM_DATA["Bain & Company"];
-
+  // Load exits when company changes
   useEffect(() => {
-    if (firmParam) {
-      const matchedFirm = getInitialFirm();
-      setSelectedFirm(matchedFirm);
+    if (!selectedCompany) return;
+
+    const loadExits = async () => {
+      setIsLoadingExits(true);
+      setError(null);
+      try {
+        const result = await getCompanyExits({
+          companyId: selectedCompany.id,
+          companyName: selectedCompany.name,
+          perPage: 100,
+        });
+        setCurrentExits(result.exits);
+      } catch (err) {
+        console.error("Failed to load exits:", err);
+        setError("Failed to load exit data. Please try again.");
+        setCurrentExits([]);
+      } finally {
+        setIsLoadingExits(false);
+      }
+    };
+
+    loadExits();
+  }, [selectedCompany]);
+
+  // Handle company search
+  const handleSearch = useCallback(async () => {
+    if (!searchQuery.trim()) return;
+    
+    setIsLoading(true);
+    try {
+      const result = await searchCompanies({ nameQuery: searchQuery, limit: 10 });
+      if (result.items.length > 0) {
+        // Add new companies to the list (dedupe)
+        setCompanies(prev => {
+          const newCompanies = result.items.filter(
+            c => !prev.some(p => p.id === c.id)
+          );
+          return [...prev, ...newCompanies];
+        });
+        setSelectedCompany(result.items[0]);
+      }
+    } catch (err) {
+      console.error("Search failed:", err);
+      setError("Search failed. Please try again.");
+    } finally {
+      setIsLoading(false);
     }
-  }, [firmParam, getInitialFirm]);
+  }, [searchQuery]);
+
+  const handleCompanyChange = (companyId: string) => {
+    const company = companies.find(c => c.id === companyId);
+    if (company) {
+      setSelectedCompany(company);
+    }
+  };
+
+  if (isLoading && companies.length === 0) {
+    return (
+      <div className="min-h-screen checkered-bg flex items-center justify-center">
+        <div className="text-gray-600">Loading companies...</div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen checkered-bg pt-12">
@@ -150,18 +235,42 @@ function ExplorePageContent() {
                   Movement Map
                 </span>
               </button>
-              <Select value={selectedFirm} onValueChange={setSelectedFirm}>
-                <SelectTrigger className="w-64 border-2 border-gray-700 bg-white hover:bg-gray-50 transition-colors rounded-sm retro-outset hover:retro-pressed">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  {FIRM_NAMES.map((firm) => (
-                    <SelectItem key={firm} value={firm}>
-                      {firm}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+              
+              {/* Search input */}
+              <div className="flex items-center gap-2">
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
+                  placeholder="Search company..."
+                  className="w-48 px-3 py-2 border-2 border-gray-700 rounded-sm text-sm focus:outline-none focus:ring-2 focus:ring-gray-400"
+                />
+                <button
+                  onClick={handleSearch}
+                  className="p-2 border-2 border-gray-700 bg-gray-700 text-white rounded-sm hover:bg-gray-600 transition-colors"
+                >
+                  <Search className="h-4 w-4" />
+                </button>
+              </div>
+
+              {companies.length > 0 && (
+                <Select 
+                  value={selectedCompany?.id || ""} 
+                  onValueChange={handleCompanyChange}
+                >
+                  <SelectTrigger className="w-64 border-2 border-gray-700 bg-white hover:bg-gray-50 transition-colors rounded-sm retro-outset hover:retro-pressed">
+                    <SelectValue placeholder="Select a company" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {companies.map((company) => (
+                      <SelectItem key={company.id} value={company.id}>
+                        {company.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              )}
             </motion.div>
           </div>
         </div>
@@ -178,18 +287,42 @@ function ExplorePageContent() {
             Heatmap View
           </span>
         </button>
-        <Select value={selectedFirm} onValueChange={setSelectedFirm}>
-          <SelectTrigger className="w-full border-2 border-gray-700 rounded-sm retro-outset">
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent>
-            {FIRM_NAMES.map((firm) => (
-              <SelectItem key={firm} value={firm}>
-                {firm}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+        
+        {/* Mobile Search */}
+        <div className="flex items-center gap-2">
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
+            placeholder="Search company..."
+            className="flex-1 px-3 py-2 border-2 border-gray-700 rounded-sm text-sm focus:outline-none"
+          />
+          <button
+            onClick={handleSearch}
+            className="p-2 border-2 border-gray-700 bg-gray-700 text-white rounded-sm"
+          >
+            <Search className="h-4 w-4" />
+          </button>
+        </div>
+
+        {companies.length > 0 && (
+          <Select 
+            value={selectedCompany?.id || ""} 
+            onValueChange={handleCompanyChange}
+          >
+            <SelectTrigger className="w-full border-2 border-gray-700 rounded-sm retro-outset">
+              <SelectValue placeholder="Select a company" />
+            </SelectTrigger>
+            <SelectContent>
+              {companies.map((company) => (
+                <SelectItem key={company.id} value={company.id}>
+                  {company.name}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        )}
       </div>
 
       {/* Hero Section */}
@@ -202,40 +335,66 @@ function ExplorePageContent() {
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-sm border-2 border-gray-700 bg-white text-gray-800 text-sm font-medium mb-4 retro-outset uppercase tracking-wide">
             <Sparkles className="h-4 w-4" />
-            <span>Explore career paths from {selectedFirm}</span>
+            <span>Explore career paths{selectedCompany ? ` from ${selectedCompany.name}` : ''}</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4 uppercase tracking-tight">
-            Where do consultants go next?
+            Where do professionals go next?
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Discover real exit opportunities and career transitions from top consulting firms
+            Discover real exit opportunities and career transitions powered by Aviato data
           </p>
         </motion.div>
       </div>
 
+      {/* Error Display */}
+      {error && (
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-4">
+          <div className="bg-red-50 border-2 border-red-200 rounded-sm p-4 text-red-700">
+            {error}
+          </div>
+        </div>
+      )}
+
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={selectedFirm}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-          >
-            {/* Stats Cards */}
-            <StatsCards data={currentExits} />
-
-            {/* Charts and Top Companies Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-              <IndustryChart data={currentExits} />
-              <ExitList data={currentExits} />
+        {isLoadingExits ? (
+          <div className="text-center py-12">
+            <div className="inline-flex items-center gap-2 text-gray-600">
+              <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-gray-600"></div>
+              Loading exit data...
             </div>
+          </div>
+        ) : currentExits.length > 0 ? (
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={selectedCompany?.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+            >
+              {/* Stats Cards */}
+              <StatsCards data={currentExits} />
 
-            {/* Example Exits */}
-            <ExampleExits data={currentExits} />
-          </motion.div>
-        </AnimatePresence>
+              {/* Charts and Top Companies Grid */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                <IndustryChart data={currentExits} />
+                <ExitList data={currentExits} />
+              </div>
+
+              {/* Example Exits */}
+              <ExampleExits data={currentExits} />
+            </motion.div>
+          </AnimatePresence>
+        ) : (
+          <div className="text-center py-12">
+            <p className="text-gray-600">
+              {selectedCompany 
+                ? "No exit data found for this company. Try searching for another company."
+                : "Select a company to view exit data."}
+            </p>
+          </div>
+        )}
       </main>
 
       {/* Modern Footer */}
@@ -250,9 +409,9 @@ function ExplorePageContent() {
               </p>
             </div>
             <div>
-              <h3 className="font-semibold text-gray-800 mb-3">Feedback</h3>
+              <h3 className="font-semibold text-gray-800 mb-3">Data Source</h3>
               <p className="text-sm text-gray-600">
-                Have suggestions? We&apos;d love to hear from you.
+                Powered by Aviato - comprehensive professional data on 233M+ people.
               </p>
             </div>
             <div>
