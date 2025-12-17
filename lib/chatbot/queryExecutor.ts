@@ -2,10 +2,12 @@
  * Query Executor for PathSearch Chatbot
  * 
  * Executes parsed queries against the Aviato API and formats results
+ * Uses Supabase cache to minimize API calls
  */
 
 import { ParsedQuery } from './queryParser';
 import { aviato } from '../aviato';
+import { cache, CachedExit } from '../supabase';
 
 export interface ExitDestination {
   company: string;
@@ -114,6 +116,14 @@ async function executeExitsFrom(query: ParsedQuery): Promise<QueryResult> {
 
   let apiCallsUsed = 0;
 
+  // Step 0: Check Supabase cache first
+  const cachedExits = await cache.getCompanyExits(companyName);
+  if (cachedExits && cachedExits.length > 0) {
+    console.log(`[Cache HIT] Found ${cachedExits.length} cached exits for ${companyName}`);
+    return buildExitResultFromCache(cachedExits, companyName, query);
+  }
+  console.log(`[Cache MISS] No cached data for ${companyName}, fetching from Aviato API`);
+
   // Step 1: Search for company to get ID
   const searchResult = await aviato.searchCompanies({ nameQuery: companyName, limit: 1 });
   apiCallsUsed++;
@@ -169,6 +179,9 @@ async function executeExitsFrom(query: ParsedQuery): Promise<QueryResult> {
 
   // Process enriched people into exit data
   const exitsResult = processEnrichedPeopleToExits(enrichedPeople, company.name);
+  
+  // Save to Supabase cache for future queries
+  await saveExitsToCache(exitsResult.exits, enrichedPeople, company);
   
   // Process and aggregate exits
   const exitMap = new Map<string, {
@@ -779,4 +792,130 @@ function processEmployeesToExits(
     exits,
     totalCount: exits.length,
   };
+}
+
+/**
+ * Build exit result from cached data
+ */
+function buildExitResultFromCache(
+  cachedExits: CachedExit[],
+  companyName: string,
+  query: ParsedQuery
+): QueryResult {
+  // Filter by role if specified
+  let filteredExits = cachedExits;
+  if (query.roles.length > 0) {
+    filteredExits = cachedExits.filter(exit =>
+      query.roles.some(role =>
+        exit.source_role.toLowerCase().includes(role.toLowerCase())
+      )
+    );
+  }
+
+  // Filter by industry if specified
+  if (query.industries.length > 0) {
+    filteredExits = filteredExits.filter(exit =>
+      query.industries.some(ind =>
+        exit.exit_industry.toLowerCase().includes(ind.toLowerCase())
+      )
+    );
+  }
+
+  // Aggregate exits by destination company
+  const exitMap = new Map<string, {
+    count: number;
+    roles: Set<string>;
+    totalYears: number;
+    industry: string;
+  }>();
+
+  for (const exit of filteredExits) {
+    const key = exit.exit_company_name;
+    if (!exitMap.has(key)) {
+      exitMap.set(key, {
+        count: 0,
+        roles: new Set(),
+        totalYears: 0,
+        industry: exit.exit_industry,
+      });
+    }
+
+    const entry = exitMap.get(key)!;
+    entry.count++;
+    entry.roles.add(exit.exit_role);
+    entry.totalYears += exit.years_at_source;
+  }
+
+  const totalExits = filteredExits.length;
+  const exits: ExitDestination[] = Array.from(exitMap.entries())
+    .map(([company, data]) => ({
+      company,
+      count: data.count,
+      percentage: totalExits > 0 ? Math.round((data.count / totalExits) * 100) : 0,
+      roles: Array.from(data.roles).slice(0, 3),
+      avgYearsBeforeExit: data.count > 0 ? Math.round((data.totalYears / data.count) * 10) / 10 : 0,
+      industry: data.industry,
+    }))
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 10);
+
+  // Industry breakdown
+  const industryMap = new Map<string, number>();
+  for (const exit of filteredExits) {
+    industryMap.set(exit.exit_industry, (industryMap.get(exit.exit_industry) || 0) + 1);
+  }
+
+  const topIndustries = Array.from(industryMap.entries())
+    .map(([industry, count]) => ({
+      industry,
+      count,
+      percentage: totalExits > 0 ? Math.round((count / totalExits) * 100) : 0,
+    }))
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 5);
+
+  const roleFilter = query.roles.length > 0 ? ' (' + query.roles.join(', ') + ')' : '';
+  const summary = exits.length > 0
+    ? 'Here is where ' + companyName + roleFilter + ' alumni typically go: (from cache)'
+    : 'No exit patterns found for ' + companyName + '.';
+
+  return {
+    success: true,
+    type: 'EXITS_FROM',
+    summary,
+    data: {
+      exits,
+      totalPeopleAnalyzed: totalExits,
+      topIndustries,
+    },
+    apiCallsUsed: 0, // Cache hit = no API calls!
+  };
+}
+
+/**
+ * Save processed exits to Supabase cache
+ */
+async function saveExitsToCache(
+  exits: ProcessedExit[],
+  enrichedPeople: Array<{ personId: string; bainEndDate: string; bainRole: string }>,
+  company: { id: string; name: string }
+): Promise<void> {
+  try {
+    const exitsToCache = exits.map((exit, index) => ({
+      person_id: enrichedPeople[index]?.personId || 'unknown-' + index,
+      source_company_id: company.id,
+      source_company_name: company.name,
+      source_role: exit.start_role,
+      source_end_date: enrichedPeople[index]?.bainEndDate || null,
+      exit_company_name: exit.exit_company,
+      exit_role: exit.exit_role,
+      exit_industry: exit.industry,
+      years_at_source: exit.avg_years_before_exit,
+    }));
+
+    await cache.saveCompanyExits(exitsToCache);
+    console.log('[Cache] Saved ' + exitsToCache.length + ' exits for ' + company.name);
+  } catch (e) {
+    console.error('[Cache] Failed to save exits:', e);
+  }
 }
