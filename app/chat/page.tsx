@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, Suspense } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   Send, 
@@ -14,7 +14,7 @@ import {
   MessageSquare,
   Database
 } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { 
   QueryResult, 
   ExitDestination, 
@@ -39,11 +39,13 @@ const SUGGESTED_QUERIES = [
   "Is Bain or McKinsey better for PE?",
 ];
 
-export default function ChatPage() {
+function ChatContent() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [hasAutoSubmitted, setHasAutoSubmitted] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -109,6 +111,18 @@ export default function ChatPage() {
       setIsLoading(false);
     }
   };
+
+  // Handle pre-filled query from URL
+  useEffect(() => {
+    const prefilledQuery = searchParams.get('q');
+    if (prefilledQuery && !hasAutoSubmitted) {
+      setHasAutoSubmitted(true);
+      // Small delay to ensure component is fully mounted
+      setTimeout(() => {
+        handleSubmit(prefilledQuery);
+      }, 100);
+    }
+  }, [searchParams, hasAutoSubmitted]);
 
   return (
     <div className="min-h-screen checkered-bg flex flex-col">
@@ -487,5 +501,18 @@ function ComparisonDisplay({ comparison }: { comparison: CompanyComparison[] }) 
         </div>
       </div>
     </div>
+  );
+}
+
+// Export default with Suspense wrapper for useSearchParams
+export default function ChatPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <div className="text-gray-500">Loading...</div>
+      </div>
+    }>
+      <ChatContent />
+    </Suspense>
   );
 }
