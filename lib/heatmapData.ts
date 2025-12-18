@@ -146,7 +146,7 @@ export function generateHeatmapDataFromExits(allExits: ExitData[]): HeatmapData 
   });
 
   const children = Array.from(grouped.entries()).map(([industry, companies]) => ({
-    name: industry,
+      name: industry,
     children: companies.sort((a, b) => b.employeeCount - a.employeeCount),
   }));
 

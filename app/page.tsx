@@ -21,9 +21,9 @@ const FEATURED_QUERIES = [
   },
   {
     icon: <Building2 className="h-4 w-4 text-gray-600" />,
-    title: "Where does Blackstone hire from?",
-    description: "Discover which backgrounds lead to Private Equity",
-    query: "Where does Blackstone hire from?",
+    title: "Talent Pipeline",
+    description: "Discover where companies source their talent from",
+    link: "/incoming",
   },
   {
     icon: <GitCompare className="h-4 w-4 text-gray-600" />,
@@ -42,9 +42,15 @@ const FEATURED_QUERIES = [
 export default function HomePage() {
   const router = useRouter();
 
-  const handleCardClick = (query?: string) => {
-    if (query) {
-      router.push(`/chat?q=${encodeURIComponent(query)}`);
+  const handleCardClick = (item?: typeof FEATURED_QUERIES[0]) => {
+    if (!item) {
+      router.push("/chat");
+      return;
+    }
+    if (item.link) {
+      router.push(item.link);
+    } else if (item.query) {
+      router.push(`/chat?q=${encodeURIComponent(item.query)}`);
     } else {
       router.push("/chat");
     }
@@ -74,7 +80,7 @@ export default function HomePage() {
         {FEATURED_QUERIES.map((item, index) => (
           <div
             key={index}
-            onClick={() => handleCardClick(item.query)}
+            onClick={() => handleCardClick(item)}
             className="border-2 border-gray-700 bg-white rounded-sm p-3 cursor-pointer hover:bg-gray-50 transition-colors flex flex-col justify-between retro-outset hover:retro-pressed"
           >
             <div className="w-fit rounded-sm border-2 border-gray-300 bg-gray-50 p-1.5">

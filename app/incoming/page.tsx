@@ -1,290 +1,234 @@
 "use client";
 
-import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
-import { ArrowLeft, Search } from "lucide-react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { heatmapData } from "@/lib/heatmapData";
-import { HeatmapCompany } from "@/lib/heatmapData";
-import { CompanyType } from "@/types";
+import { ArrowLeft, Search, Building2 } from "lucide-react";
 
-const industryColors: Record<CompanyType, string> = {
-  Tech: "#8b7dff",
-  Consulting: "#34d399",
-  Banking: "#60a5fa",
-  "PE/VC": "#fbbf24",
-  Startup: "#f472b6",
-  Education: "#fcd34d",
-  Corporate: "#a3b8cc",
-  Other: "#94a3b8",
-};
-
-interface IncomingSource {
-  company: HeatmapCompany;
+interface SourceCompany {
+  company: string;
   count: number;
+  percentage: number;
+  roles: string[];
+  industry: string;
 }
 
-export default function IncomingTalentPage() {
+interface IndustryBreakdown {
+  industry: string;
+  count: number;
+  percentage: number;
+}
+
+interface IncomingData {
+  company: string;
+  companyIndustry: string;
+  totalIncoming: number;
+  sources: SourceCompany[];
+  industryBreakdown: IndustryBreakdown[];
+}
+
+export default function IncomingPage() {
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCompany, setSelectedCompany] = useState<string>("");
+  const [companyName, setCompanyName] = useState("");
+  const [data, setData] = useState<IncomingData | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  // Get all companies
-  const allCompanies = useMemo(() => {
-    return heatmapData.children.flatMap(group => group.children);
+  // Check for company in URL params
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const company = params.get('company');
+    if (company) {
+      setCompanyName(company);
+      handleSearch(company);
+    }
   }, []);
 
-  // Filter companies based on search
-  const filteredCompanies = useMemo(() => {
-    if (!searchQuery) return [];
-    const query = searchQuery.toLowerCase();
-    return allCompanies.filter(company =>
-      company.name.toLowerCase().includes(query)
-    ).slice(0, 10); // Limit to 10 results
-  }, [searchQuery, allCompanies]);
+  const handleSearch = async (query?: string) => {
+    const searchTerm = query || searchQuery.trim();
+    if (!searchTerm) return;
 
-  // Calculate incoming sources for selected company
-  const incomingSources = useMemo(() => {
-    if (!selectedCompany) return [];
+    setIsLoading(true);
+    setError(null);
+    setCompanyName(searchTerm);
 
-    const sources: { [key: string]: IncomingSource } = {};
+    try {
+      const response = await fetch(`/api/incoming?company=${encodeURIComponent(searchTerm)}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch data');
+      }
+      const result = await response.json();
+      setData(result);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to load data');
+      setData(null);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
-    // Look through all companies to find who has exits to the selected company
-    allCompanies.forEach(company => {
-      company.exits.forEach(exit => {
-        if (exit.to.toLowerCase() === selectedCompany.toLowerCase()) {
-          if (!sources[company.id]) {
-            sources[company.id] = {
-              company: company,
-              count: 0
-            };
-          }
-          sources[company.id].count += exit.count;
-        }
-      });
-    });
-
-    return Object.values(sources).sort((a, b) => b.count - a.count);
-  }, [selectedCompany, allCompanies]);
-
-  const selectedCompanyData = allCompanies.find(
-    c => c.name.toLowerCase() === selectedCompany.toLowerCase()
-  );
-
-  const totalIncoming = incomingSources.reduce((sum, source) => sum + source.count, 0);
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
+  };
 
   return (
-    <div className="relative w-full min-h-screen checkered-bg p-6 pt-16">
+    <div className="min-h-screen bg-white checkered-bg flex flex-col pt-12">
       {/* Header */}
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="max-w-4xl mx-auto mb-8"
-      >
-        <div className="rounded-sm border-2 border-gray-700 bg-gray-100 px-5 py-4 retro-outset">
-          <div className="flex items-center gap-4 mb-4">
-            <button
-              onClick={() => router.push("/")}
-              className="p-2 rounded-sm border-2 border-gray-700 bg-white hover:retro-pressed transition-all duration-150 retro-outset"
-            >
-              <ArrowLeft className="w-4 h-4 text-gray-800" />
-            </button>
-            <div>
-              <h1 className="text-xl font-bold text-gray-800 tracking-tight uppercase">
-                Talent Pipeline
-              </h1>
-              <p className="text-xs text-gray-600 uppercase tracking-wide">
-                Discover where companies source their talent from
-              </p>
-            </div>
+      <header className="flex-shrink-0 bg-white px-4 py-3 border-b-2 border-gray-700">
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => router.push("/")}
+            className="p-2 rounded-sm border-2 border-gray-700 bg-white hover:bg-gray-50 transition-colors retro-outset hover:retro-pressed"
+          >
+            <ArrowLeft className="h-5 w-5 text-gray-800" />
+          </button>
+          <div className="p-2 rounded-sm border-2 border-gray-700 bg-gray-700">
+            <Building2 className="h-5 w-5 text-white" />
           </div>
-
-          {/* Search Bar */}
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-600" />
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search for a company (e.g., Blackstone, Google, McKinsey)..."
-              className="w-full pl-10 pr-4 py-3 rounded-sm border-2 border-gray-700 bg-white outline-none text-sm text-gray-800 placeholder-gray-500 transition-all duration-150 retro-inset focus:retro-pressed"
-            />
+          <div>
+            <h1 className="text-lg font-bold text-gray-800 uppercase tracking-wide">
+              Talent Pipeline
+            </h1>
+            <p className="text-xs text-gray-500">
+              Discover where companies source their talent from
+            </p>
           </div>
-
-          {/* Search Results Dropdown */}
-          {searchQuery && filteredCompanies.length > 0 && (
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="absolute z-50 mt-2 w-full max-w-[calc(100%-2.5rem)] rounded-sm border-2 border-gray-700 bg-white retro-outset shadow-lg"
-            >
-              {filteredCompanies.map((company) => (
-                <button
-                  key={company.id}
-                  onClick={() => {
-                    setSelectedCompany(company.name);
-                    setSearchQuery("");
-                  }}
-                  className="w-full px-4 py-3 text-left hover:bg-gray-100 transition-all border-b border-gray-300 last:border-b-0 flex items-center gap-3"
-                >
-                  {company.logo && (
-                    <img
-                      src={company.logo}
-                      alt={company.name}
-                      className="w-6 h-6 rounded"
-                      onError={(e) => e.currentTarget.style.display = 'none'}
-                    />
-                  )}
-                  <div className="flex-1">
-                    <div className="text-sm font-bold text-gray-800 uppercase tracking-wide">
-                      {company.name}
-                    </div>
-                    <div className="text-xs text-gray-600">
-                      {company.industry}
-                    </div>
-                  </div>
-                </button>
-              ))}
-            </motion.div>
-          )}
         </div>
-      </motion.div>
+      </header>
+
+      {/* Search Card */}
+      <div className="px-4 py-4">
+        <div className="border-2 border-gray-700 bg-white rounded-sm p-4 retro-outset">
+          <div className="flex items-center gap-3">
+            <div className="flex-1 relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onKeyDown={handleKeyDown}
+                placeholder="Search for a company (e.g., Blackstone, Google, McKinsey)..."
+                className="w-full pl-10 pr-4 py-2 border-2 border-gray-300 rounded-sm text-sm focus:outline-none focus:border-gray-500 retro-inset"
+              />
+            </div>
+            <button
+              onClick={() => handleSearch()}
+              disabled={!searchQuery.trim() || isLoading}
+              className="px-4 py-2 border-2 border-gray-700 bg-gray-700 text-white rounded-sm retro-outset hover:bg-gray-600 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors uppercase text-xs font-bold"
+            >
+              Search
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Loading State */}
+      {isLoading && (
+        <div className="flex-1 flex items-center justify-center">
+          <div className="text-gray-500">Loading...</div>
+        </div>
+      )}
+
+      {/* Error State */}
+      {error && !isLoading && (
+        <div className="flex-1 flex items-center justify-center">
+          <div className="text-red-600">{error}</div>
+        </div>
+      )}
+
+      {/* Empty State */}
+      {!data && !isLoading && !error && (
+        <div className="flex-1 flex flex-col items-center justify-center px-4">
+          <div className="border-2 border-gray-700 bg-white rounded-sm p-8 text-center retro-outset max-w-md">
+            <div className="w-16 h-16 mx-auto mb-4 flex items-center justify-center border-2 border-gray-300 bg-gray-50 rounded-sm">
+              <Search className="h-8 w-8 text-gray-400" />
+            </div>
+            <h2 className="text-xl font-bold text-gray-800 uppercase tracking-wide mb-2">
+              Search for a Company
+            </h2>
+            <p className="text-sm text-gray-600">
+              Type a company name above to discover where they source their talent
+            </p>
+          </div>
+        </div>
+      )}
 
       {/* Results */}
-      {selectedCompany && selectedCompanyData && (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="max-w-4xl mx-auto"
-        >
-          {/* Selected Company Card */}
-          <div className="mb-6 rounded-sm border-2 border-gray-700 bg-gray-100 p-6 retro-outset">
-            <div className="flex items-center gap-4 mb-4">
-              {selectedCompanyData.logo && (
-                <img
-                  src={selectedCompanyData.logo}
-                  alt={selectedCompanyData.name}
-                  className="w-16 h-16 rounded-sm border-2 border-gray-700"
-                  onError={(e) => e.currentTarget.style.display = 'none'}
-                />
-              )}
-              <div className="flex-1">
-                <h2 className="text-2xl font-bold text-gray-800 uppercase tracking-tight mb-1">
-                  {selectedCompanyData.name}
+      {data && !isLoading && (
+        <div className="flex-1 overflow-y-auto px-4 pb-20">
+          {/* Company Info Card */}
+          <div className="border-2 border-gray-700 bg-white rounded-sm p-4 mb-4 retro-outset">
+            <div className="flex items-start justify-between">
+              <div>
+                <h2 className="text-2xl font-bold text-gray-800 uppercase tracking-wide mb-2">
+                  {data.company}
                 </h2>
-                <div
-                  className="inline-block px-3 py-1 rounded-sm border-2 border-gray-700 text-xs font-bold uppercase tracking-wider"
-                  style={{
-                    backgroundColor: industryColors[selectedCompanyData.industry] + "40",
-                    color: "#374151",
-                  }}
-                >
-                  {selectedCompanyData.industry}
+                <div className="inline-block px-3 py-1 bg-purple-100 border-2 border-purple-300 rounded-sm">
+                  <span className="text-xs font-bold text-purple-800 uppercase">
+                    {data.companyIndustry}
+                  </span>
                 </div>
               </div>
               <div className="text-right">
-                <div className="text-3xl font-bold text-gray-800">{totalIncoming}</div>
-                <div className="text-xs text-gray-600 uppercase tracking-wide">
-                  Total Incoming
-                </div>
+                <div className="text-3xl font-bold text-gray-800">{data.totalIncoming}</div>
+                <div className="text-xs text-gray-600 uppercase tracking-wide">Total Incoming</div>
               </div>
             </div>
           </div>
 
-          {/* Incoming Sources */}
-          {incomingSources.length > 0 ? (
-            <div className="rounded-sm border-2 border-gray-700 bg-gray-100 p-6 retro-outset">
+          {/* Top Source Companies */}
+          {data.sources.length > 0 && (
+            <div className="border-2 border-gray-700 bg-white rounded-sm p-4 mb-4 retro-outset">
               <h3 className="text-lg font-bold text-gray-800 uppercase tracking-wide mb-4">
                 Top Source Companies
               </h3>
               <div className="space-y-3">
-                {incomingSources.map((source, index) => {
-                  const percentage = (source.count / totalIncoming) * 100;
-                  return (
-                    <motion.div
-                      key={source.company.id}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.05 }}
-                      className="rounded-sm border-2 border-gray-700 bg-white p-4 retro-outset hover:retro-pressed transition-all cursor-pointer"
-                      onClick={() => router.push(`/heatmap/${source.company.id}`)}
-                    >
-                      <div className="flex items-center gap-4">
-                        <div className="text-2xl font-bold text-gray-600 w-8">
-                          #{index + 1}
+                {data.sources.map((source, index) => (
+                  <div
+                    key={source.company}
+                    className="border-2 border-gray-300 bg-gray-50 rounded-sm p-3"
+                  >
+                    <div className="flex items-start justify-between mb-2">
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className="text-xs font-bold text-gray-500">#{index + 1}</span>
+                          <h4 className="text-sm font-bold text-gray-800 uppercase">
+                            {source.company}
+                          </h4>
                         </div>
-                        {source.company.logo && (
-                          <img
-                            src={source.company.logo}
-                            alt={source.company.name}
-                            className="w-10 h-10 rounded"
-                            onError={(e) => e.currentTarget.style.display = 'none'}
-                          />
-                        )}
-                        <div className="flex-1">
-                          <div className="text-sm font-bold text-gray-800 uppercase tracking-wide">
-                            {source.company.name}
-                          </div>
-                          <div className="text-xs text-gray-600">
-                            {source.company.industry}
-                          </div>
-                        </div>
-                        <div className="text-right">
-                          <div className="text-xl font-bold text-gray-800">
-                            {source.count}
-                          </div>
-                          <div className="text-xs text-gray-600">
-                            {percentage.toFixed(1)}%
-                          </div>
-                        </div>
+                        <p className="text-xs text-gray-600">{source.industry}</p>
                       </div>
-                      {/* Progress Bar */}
-                      <div className="mt-3 h-2 bg-gray-200 rounded-sm border border-gray-400 overflow-hidden">
-                        <motion.div
-                          initial={{ width: 0 }}
-                          animate={{ width: `${percentage}%` }}
-                          transition={{ delay: index * 0.05 + 0.2, duration: 0.5 }}
-                          className="h-full rounded-sm"
-                          style={{
-                            backgroundColor: industryColors[source.company.industry],
-                          }}
+                      <div className="text-right">
+                        <div className="text-lg font-bold text-gray-800">{source.count}</div>
+                        <div className="text-xs text-gray-600">{source.percentage}%</div>
+                      </div>
+                    </div>
+                    <div className="mt-2">
+                      <div className="w-full bg-gray-200 rounded-full h-2">
+                        <div
+                          className="bg-green-500 h-2 rounded-full"
+                          style={{ width: `${Math.min(source.percentage * 2, 100)}%` }}
                         />
                       </div>
-                    </motion.div>
-                  );
-                })}
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
-          ) : (
-            <div className="rounded-sm border-2 border-gray-700 bg-gray-100 p-8 retro-outset text-center">
-              <p className="text-gray-600 uppercase tracking-wide">
-                No incoming data available for {selectedCompanyData.name}
+          )}
+
+          {/* No Results */}
+          {data.totalIncoming === 0 && (
+            <div className="border-2 border-gray-700 bg-white rounded-sm p-8 text-center retro-outset">
+              <p className="text-gray-600">
+                No incoming talent data found for {data.company}. This company may not be in our database yet.
               </p>
             </div>
           )}
-        </motion.div>
-      )}
-
-      {/* Empty State */}
-      {!selectedCompany && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          className="max-w-4xl mx-auto text-center py-20"
-        >
-          <div className="rounded-sm border-2 border-gray-700 bg-gray-100 p-12 retro-outset">
-            <Search className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-            <h3 className="text-xl font-bold text-gray-800 uppercase tracking-wide mb-2">
-              Search for a Company
-            </h3>
-            <p className="text-gray-600 uppercase tracking-wide text-sm">
-              Type a company name above to discover where they source their talent
-            </p>
-          </div>
-        </motion.div>
+        </div>
       )}
     </div>
   );
 }
-
