@@ -11,10 +11,17 @@ import {
   Users,
   ChevronRight,
   BarChart3,
-  MessageSquare
+  MessageSquare,
+  Database
 } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { QueryResult, ExitDestination, ExitSource } from "@/lib/chatbot";
+import { 
+  QueryResult, 
+  ExitDestination, 
+  ExitSource,
+  IndustryBreakdown as IndustryBreakdownType,
+  CompanyComparison
+} from "@/lib/chatbot/supabaseQueries";
 
 interface Message {
   id: string;
@@ -129,8 +136,8 @@ export default function ChatPage() {
               </div>
             </div>
             <div className="flex items-center gap-2 text-xs text-gray-500">
-              <Sparkles className="h-4 w-4" />
-              <span>Powered by Aviato</span>
+              <Database className="h-4 w-4" />
+              <span>Powered by Supabase</span>
             </div>
           </div>
         </div>
@@ -208,20 +215,20 @@ export default function ChatPage() {
                       {message.data && <ResultsDisplay data={message.data} />}
                       
                       {/* Follow-up suggestion */}
-                      {message.data?.followUpSuggestion && (
+                      {message.data?.followUp && (
                         <div className="mt-4 p-3 bg-gray-50 border border-gray-200 rounded-sm">
-                          <p className="text-xs text-gray-600 whitespace-pre-line">
-                            {message.data.followUpSuggestion}
+                          <p className="text-xs text-gray-600">
+                            💡 {message.data.followUp}
                           </p>
                         </div>
                       )}
                     </div>
                     
-                    {/* API calls badge */}
-                    {message.data?.apiCallsUsed !== undefined && message.data.apiCallsUsed > 0 && (
+                    {/* Data source badge */}
+                    {message.data?.success && (
                       <div className="mt-2 text-xs text-gray-400 flex items-center gap-1">
-                        <Sparkles className="h-3 w-3" />
-                        <span>{message.data.apiCallsUsed} API calls used</span>
+                        <Database className="h-3 w-3" />
+                        <span>Data from Supabase • {message.data.data.totalCount} records</span>
                       </div>
                     )}
                   </div>
@@ -242,7 +249,7 @@ export default function ChatPage() {
                 <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
                 <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
               </div>
-              <span className="text-sm">Analyzing career paths...</span>
+              <span className="text-sm">Querying database...</span>
             </motion.div>
           )}
 
@@ -287,30 +294,30 @@ function ResultsDisplay({ data }: { data: QueryResult }) {
 
   return (
     <div className="space-y-4">
-      {/* Exits FROM display */}
-      {data.data.exits && data.data.exits.length > 0 && (
-        <ExitsTable exits={data.data.exits} title="Top Exit Destinations" />
+      {/* Exits FROM display (destinations) */}
+      {data.data.destinations && data.data.destinations.length > 0 && (
+        <ExitsTable exits={data.data.destinations} title="Top Exit Destinations" />
       )}
 
-      {/* Exits TO display */}
+      {/* Exits TO display (sources) */}
       {data.data.sources && data.data.sources.length > 0 && (
         <SourcesTable sources={data.data.sources} title="Top Source Companies" />
       )}
 
       {/* Industry breakdown */}
-      {data.data.topIndustries && data.data.topIndustries.length > 0 && (
-        <IndustryBreakdown industries={data.data.topIndustries} />
+      {data.data.industryBreakdown && data.data.industryBreakdown.length > 0 && (
+        <IndustryBreakdown industries={data.data.industryBreakdown} />
       )}
 
       {/* Comparison display */}
-      {data.data.comparison && (
+      {data.data.comparison && data.data.comparison.length >= 2 && (
         <ComparisonDisplay comparison={data.data.comparison} />
       )}
 
       {/* Total analyzed */}
-      {data.data.totalPeopleAnalyzed !== undefined && (
+      {data.data.totalCount > 0 && (
         <div className="text-xs text-gray-500 pt-2 border-t border-gray-200">
-          Based on analysis of {data.data.totalPeopleAnalyzed} professionals
+          Based on {data.data.totalCount} career transitions
         </div>
       )}
     </div>
@@ -326,32 +333,30 @@ function ExitsTable({ exits, title }: { exits: ExitDestination[]; title: string 
           <thead className="bg-gray-100 border-b-2 border-gray-300">
             <tr>
               <th className="text-left p-2 font-bold uppercase tracking-wide">Company</th>
+              <th className="text-left p-2 font-bold uppercase tracking-wide hidden sm:table-cell">Industry</th>
               <th className="text-center p-2 font-bold uppercase tracking-wide">Count</th>
-              <th className="text-center p-2 font-bold uppercase tracking-wide hidden sm:table-cell">%</th>
-              <th className="text-left p-2 font-bold uppercase tracking-wide hidden md:table-cell">Roles</th>
-              <th className="text-center p-2 font-bold uppercase tracking-wide hidden sm:table-cell">Avg Years</th>
+              <th className="text-center p-2 font-bold uppercase tracking-wide">%</th>
+              <th className="text-center p-2 font-bold uppercase tracking-wide hidden md:table-cell">Avg Years</th>
             </tr>
           </thead>
           <tbody>
-            {exits.map((exit, index) => (
+            {exits.slice(0, 10).map((exit, index) => (
               <tr key={exit.company} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
                 <td className="p-2 font-medium">{exit.company}</td>
-                <td className="p-2 text-center">{exit.count}</td>
-                <td className="p-2 text-center hidden sm:table-cell">
-                  <div className="flex items-center gap-1">
-                    <div className="flex-1 bg-gray-200 rounded-full h-2 max-w-[60px]">
+                <td className="p-2 text-gray-600 hidden sm:table-cell">{exit.industry}</td>
+                <td className="p-2 text-center font-bold">{exit.count}</td>
+                <td className="p-2 text-center">
+                  <div className="flex items-center gap-1 justify-center">
+                    <div className="flex-1 bg-gray-200 rounded-full h-2 max-w-[40px]">
                       <div 
                         className="bg-gray-600 h-2 rounded-full" 
-                        style={{ width: `${Math.min(exit.percentage, 100)}%` }}
+                        style={{ width: `${Math.min(exit.percentage * 2, 100)}%` }}
                       />
                     </div>
-                    <span>{exit.percentage}%</span>
+                    <span className="text-gray-600">{exit.percentage}%</span>
                   </div>
                 </td>
-                <td className="p-2 hidden md:table-cell text-gray-600">
-                  {exit.roles.slice(0, 2).join(', ')}
-                </td>
-                <td className="p-2 text-center hidden sm:table-cell">{exit.avgYearsBeforeExit}y</td>
+                <td className="p-2 text-center text-gray-600 hidden md:table-cell">{exit.avgYears}y</td>
               </tr>
             ))}
           </tbody>
@@ -370,29 +375,27 @@ function SourcesTable({ sources, title }: { sources: ExitSource[]; title: string
           <thead className="bg-gray-100 border-b-2 border-gray-300">
             <tr>
               <th className="text-left p-2 font-bold uppercase tracking-wide">Company</th>
+              <th className="text-left p-2 font-bold uppercase tracking-wide hidden sm:table-cell">Role</th>
               <th className="text-center p-2 font-bold uppercase tracking-wide">Count</th>
-              <th className="text-center p-2 font-bold uppercase tracking-wide hidden sm:table-cell">%</th>
-              <th className="text-left p-2 font-bold uppercase tracking-wide hidden md:table-cell">Industry</th>
+              <th className="text-center p-2 font-bold uppercase tracking-wide">%</th>
             </tr>
           </thead>
           <tbody>
-            {sources.map((source, index) => (
+            {sources.slice(0, 10).map((source, index) => (
               <tr key={source.company} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
                 <td className="p-2 font-medium">{source.company}</td>
-                <td className="p-2 text-center">{source.count}</td>
-                <td className="p-2 text-center hidden sm:table-cell">
-                  <div className="flex items-center gap-1">
-                    <div className="flex-1 bg-gray-200 rounded-full h-2 max-w-[60px]">
+                <td className="p-2 text-gray-600 hidden sm:table-cell">{source.role}</td>
+                <td className="p-2 text-center font-bold">{source.count}</td>
+                <td className="p-2 text-center">
+                  <div className="flex items-center gap-1 justify-center">
+                    <div className="flex-1 bg-gray-200 rounded-full h-2 max-w-[40px]">
                       <div 
                         className="bg-green-500 h-2 rounded-full" 
-                        style={{ width: `${Math.min(source.percentage, 100)}%` }}
+                        style={{ width: `${Math.min(source.percentage * 2, 100)}%` }}
                       />
                     </div>
-                    <span>{source.percentage}%</span>
+                    <span className="text-gray-600">{source.percentage}%</span>
                   </div>
-                </td>
-                <td className="p-2 hidden md:table-cell text-gray-600">
-                  {source.industry}
                 </td>
               </tr>
             ))}
@@ -403,7 +406,7 @@ function SourcesTable({ sources, title }: { sources: ExitSource[]; title: string
   );
 }
 
-function IndustryBreakdown({ industries }: { industries: { industry: string; count: number; percentage: number }[] }) {
+function IndustryBreakdown({ industries }: { industries: IndustryBreakdownType[] }) {
   return (
     <div>
       <h4 className="text-xs font-bold text-gray-600 uppercase tracking-wide mb-2">Industry Breakdown</h4>
@@ -422,51 +425,62 @@ function IndustryBreakdown({ industries }: { industries: { industry: string; cou
   );
 }
 
-function ComparisonDisplay({ comparison }: { 
-  comparison: { 
-    company1: { name: string; exits: ExitDestination[] };
-    company2: { name: string; exits: ExitDestination[] };
-    winner?: string;
-    insight: string;
-  } 
-}) {
+function ComparisonDisplay({ comparison }: { comparison: CompanyComparison[] }) {
+  const [c1, c2] = comparison;
+  
   return (
     <div>
-      <h4 className="text-xs font-bold text-gray-600 uppercase tracking-wide mb-2">Comparison Results</h4>
-      
-      {/* Winner badge */}
-      {comparison.winner && (
-        <div className="mb-3 p-3 bg-green-50 border-2 border-green-300 rounded-sm">
-          <div className="flex items-center gap-2">
-            <TrendingUp className="h-4 w-4 text-green-600" />
-            <span className="text-sm font-bold text-green-800">{comparison.winner} has the edge</span>
-          </div>
-        </div>
-      )}
-      
-      {/* Insight */}
-      <p className="text-sm text-gray-700 mb-4">{comparison.insight}</p>
+      <h4 className="text-xs font-bold text-gray-600 uppercase tracking-wide mb-3">Comparison Results</h4>
       
       {/* Side by side comparison */}
       <div className="grid grid-cols-2 gap-4">
-        <div>
-          <h5 className="text-xs font-bold text-gray-600 mb-2">{comparison.company1.name}</h5>
-          <div className="space-y-1">
-            {comparison.company1.exits.slice(0, 5).map((exit) => (
-              <div key={exit.company} className="text-xs flex justify-between">
-                <span className="truncate">{exit.company}</span>
-                <span className="text-gray-500">{exit.percentage}%</span>
+        {/* Company 1 */}
+        <div className="p-3 border-2 border-gray-300 rounded-sm bg-gray-50">
+          <h5 className="text-sm font-bold text-gray-800 mb-2">{c1.company}</h5>
+          <p className="text-xs text-gray-600 mb-3">{c1.totalExits} exits tracked</p>
+          
+          {/* Industry breakdown */}
+          <div className="space-y-1 mb-3">
+            {c1.industryBreakdown.slice(0, 4).map((ind) => (
+              <div key={ind.industry} className="flex justify-between text-xs">
+                <span className="text-gray-600">{ind.industry}</span>
+                <span className="font-medium">{ind.percentage}%</span>
+              </div>
+            ))}
+          </div>
+          
+          {/* Top destinations */}
+          <div className="pt-2 border-t border-gray-200">
+            <p className="text-xs font-medium text-gray-500 mb-1">Top destinations:</p>
+            {c1.topDestinations.slice(0, 3).map((dest) => (
+              <div key={dest.company} className="text-xs text-gray-700">
+                {dest.company} ({dest.count})
               </div>
             ))}
           </div>
         </div>
-        <div>
-          <h5 className="text-xs font-bold text-gray-600 mb-2">{comparison.company2.name}</h5>
-          <div className="space-y-1">
-            {comparison.company2.exits.slice(0, 5).map((exit) => (
-              <div key={exit.company} className="text-xs flex justify-between">
-                <span className="truncate">{exit.company}</span>
-                <span className="text-gray-500">{exit.percentage}%</span>
+
+        {/* Company 2 */}
+        <div className="p-3 border-2 border-gray-300 rounded-sm bg-gray-50">
+          <h5 className="text-sm font-bold text-gray-800 mb-2">{c2.company}</h5>
+          <p className="text-xs text-gray-600 mb-3">{c2.totalExits} exits tracked</p>
+          
+          {/* Industry breakdown */}
+          <div className="space-y-1 mb-3">
+            {c2.industryBreakdown.slice(0, 4).map((ind) => (
+              <div key={ind.industry} className="flex justify-between text-xs">
+                <span className="text-gray-600">{ind.industry}</span>
+                <span className="font-medium">{ind.percentage}%</span>
+              </div>
+            ))}
+          </div>
+          
+          {/* Top destinations */}
+          <div className="pt-2 border-t border-gray-200">
+            <p className="text-xs font-medium text-gray-500 mb-1">Top destinations:</p>
+            {c2.topDestinations.slice(0, 3).map((dest) => (
+              <div key={dest.company} className="text-xs text-gray-700">
+                {dest.company} ({dest.count})
               </div>
             ))}
           </div>
@@ -475,4 +489,3 @@ function ComparisonDisplay({ comparison }: {
     </div>
   );
 }
-

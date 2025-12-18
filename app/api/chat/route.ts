@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { parseQuery } from '@/lib/chatbot/queryParser';
-import { executeQuery } from '@/lib/chatbot/queryExecutor';
+import { executeQuery } from '@/lib/chatbot/supabaseQueries';
 
 export async function POST(request: NextRequest) {
   try {
@@ -13,11 +13,13 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Parse the query
+    // Step 1: Parse the natural language query
     const parsedQuery = parseQuery(message);
+    console.log('[Chat] Parsed query:', parsedQuery.type, parsedQuery.companies);
     
-    // Execute the query
+    // Step 2: Execute against Supabase (NO API CALLS!)
     const result = await executeQuery(parsedQuery);
+    console.log('[Chat] Result:', result.success, result.type, result.data.totalCount);
 
     return NextResponse.json({
       parsedQuery,
