@@ -45,7 +45,7 @@ function ChatContent() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [hasAutoSubmitted, setHasAutoSubmitted] = useState(false);
+  const hasAutoSubmittedRef = useRef(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -112,17 +112,14 @@ function ChatContent() {
     }
   };
 
-  // Handle pre-filled query from URL
+  // Handle pre-filled query from URL (only once)
   useEffect(() => {
     const prefilledQuery = searchParams.get('q');
-    if (prefilledQuery && !hasAutoSubmitted) {
-      setHasAutoSubmitted(true);
-      // Small delay to ensure component is fully mounted
-      setTimeout(() => {
-        handleSubmit(prefilledQuery);
-      }, 100);
+    if (prefilledQuery && !hasAutoSubmittedRef.current) {
+      hasAutoSubmittedRef.current = true;
+      handleSubmit(prefilledQuery);
     }
-  }, [searchParams, hasAutoSubmitted]);
+  }, []);
 
   return (
     <div className="min-h-screen checkered-bg flex flex-col">

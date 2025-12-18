@@ -1,0 +1,2417 @@
+[dotenv@17.2.3] injecting env (4) from .env.local -- tip: ⚙️  enable debug logging with { debug: true }
+════════════════════════════════════════════════════════════
+🚀 COMPREHENSIVE DATABASE SEED - STARTING
+════════════════════════════════════════════════════════════
+
+Companies to process: 115
+This will take a while. Sit back and relax...
+
+════════════════════════════════════════════════════════════
+
+[====================] COMPANY 1/115 [====================]
+
+🔍 Searching for company: Bain & Company
+  ✅ Found: Bain & Company (ID: UsQ31Uk_ozV-595EVZog5XcCE6Tf4qQ)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (6 exits found)
+    Progress: 20/100 (11 exits found)
+    Progress: 30/100 (17 exits found)
+    Progress: 40/100 (25 exits found)
+    Progress: 50/100 (32 exits found)
+    Progress: 60/100 (41 exits found)
+    Progress: 70/100 (47 exits found)
+    Progress: 80/100 (54 exits found)
+    Progress: 90/100 (60 exits found)
+  📊 Processed 68 exits from 100 persons for Bain & Company
+
+  ⏱️  Time elapsed: 2m 53s
+  📈 Total exits so far: 68
+  📊 Total persons enriched: 100
+  🔢 Total API calls: 102
+  ⏳ Est. remaining: 328m 42s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 2/115 [====================]
+
+🔍 Searching for company: McKinsey & Company
+  ✅ Found: McKinsey & Company (ID: nAcefOXGjzldXaYW-FIzZT__cIvy7Ak)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (4 exits found)
+    Progress: 20/100 (6 exits found)
+    Progress: 30/100 (7 exits found)
+    Progress: 40/100 (10 exits found)
+    Progress: 50/100 (14 exits found)
+    Progress: 60/100 (17 exits found)
+    Progress: 70/100 (25 exits found)
+    Progress: 80/100 (35 exits found)
+    Progress: 90/100 (41 exits found)
+  📊 Processed 50 exits from 100 persons for McKinsey & Company
+
+  ⏱️  Time elapsed: 6m 12s
+  📈 Total exits so far: 118
+  📊 Total persons enriched: 200
+  🔢 Total API calls: 204
+  ⏳ Est. remaining: 350m 18s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 3/115 [====================]
+
+🔍 Searching for company: BCG
+  ✅ Found: Bamboo Capital (ID: fb27DSGqZUYmnLJ2nqbtpHPxZwOU76b)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 3 employees (Total: 3)
+  ✅ Total former employees: 3
+  👤 Enriching employees and finding exits...
+  📊 Processed 0 exits from 3 persons for Bamboo Capital
+
+  ⏱️  Time elapsed: 6m 26s
+  📈 Total exits so far: 118
+  📊 Total persons enriched: 203
+  🔢 Total API calls: 209
+  ⏳ Est. remaining: 240m 11s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 4/115 [====================]
+
+🔍 Searching for company: Deloitte Consulting
+  ✅ Found: Deloitte Consulting (ID: AZ62Rocb-xgfFcVOiQuDn-XY68Vm-Fx)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (4 exits found)
+    Progress: 20/100 (9 exits found)
+    Progress: 30/100 (16 exits found)
+    Progress: 40/100 (22 exits found)
+    Progress: 50/100 (28 exits found)
+    Progress: 60/100 (32 exits found)
+    Progress: 70/100 (37 exits found)
+    Progress: 80/100 (42 exits found)
+    Progress: 90/100 (47 exits found)
+  📊 Processed 51 exits from 100 persons for Deloitte Consulting
+
+  ⏱️  Time elapsed: 8m 44s
+  📈 Total exits so far: 169
+  📊 Total persons enriched: 303
+  🔢 Total API calls: 311
+  ⏳ Est. remaining: 242m 21s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 5/115 [====================]
+
+🔍 Searching for company: Accenture
+  ✅ Found: Accenture (ID: Inm0E61OyL-Rad9UTXfT5yxga_SLseg)
+  💾 Saved company to database
+  📋 Getting former employees...
+  ❌ Failed to get employees: upstream request timeout
+  ✅ Total former employees: 0
+  👤 Enriching employees and finding exits...
+  📊 Processed 0 exits from 0 persons for Accenture
+
+  ⏱️  Time elapsed: 13m 49s
+  📈 Total exits so far: 169
+  📊 Total persons enriched: 303
+  🔢 Total API calls: 313
+  ⏳ Est. remaining: 303m 58s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 6/115 [====================]
+
+🔍 Searching for company: PwC
+  ✅ Found: Brand TM (ID: NXzvyoZhCjQOawr0_TeJzn0TP12P9za)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 1 employees (Total: 1)
+  ✅ Total former employees: 1
+  👤 Enriching employees and finding exits...
+  📊 Processed 0 exits from 1 persons for Brand TM
+
+  ⏱️  Time elapsed: 13m 57s
+  📈 Total exits so far: 169
+  📊 Total persons enriched: 304
+  🔢 Total API calls: 316
+  ⏳ Est. remaining: 253m 26s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 7/115 [====================]
+
+🔍 Searching for company: EY
+  ✅ Found: Aier Eye Hospital Group Co.,Ltd. (ID: pOcpnJl0PZDKfAblmt2gdxodI5mTyp3)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (5 exits found)
+    Progress: 20/100 (12 exits found)
+    Progress: 30/100 (15 exits found)
+    Progress: 40/100 (21 exits found)
+    Progress: 50/100 (24 exits found)
+    Progress: 60/100 (28 exits found)
+    Progress: 70/100 (31 exits found)
+    Progress: 80/100 (34 exits found)
+    Progress: 90/100 (34 exits found)
+  📊 Processed 34 exits from 100 persons for Aier Eye Hospital Group Co.,Ltd.
+
+  ⏱️  Time elapsed: 16m 58s
+  📈 Total exits so far: 203
+  📊 Total persons enriched: 404
+  🔢 Total API calls: 418
+  ⏳ Est. remaining: 261m 46s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 8/115 [====================]
+
+🔍 Searching for company: KPMG
+  ✅ Found: KPMG Italy (ID: -Hcjr3WkPB106CBXzRz1I8FLdUrSUW5)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (8 exits found)
+    Progress: 20/100 (17 exits found)
+    Progress: 30/100 (22 exits found)
+    Progress: 40/100 (28 exits found)
+    Progress: 50/100 (34 exits found)
+    Progress: 60/100 (40 exits found)
+    Progress: 70/100 (46 exits found)
+    Progress: 80/100 (52 exits found)
+    Progress: 90/100 (59 exits found)
+  📊 Processed 66 exits from 100 persons for KPMG Italy
+
+  ⏱️  Time elapsed: 20m 13s
+  📈 Total exits so far: 269
+  📊 Total persons enriched: 504
+  🔢 Total API calls: 520
+  ⏳ Est. remaining: 270m 24s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 9/115 [====================]
+
+🔍 Searching for company: Oliver Wyman
+  ✅ Found: Oliver Wyman (ID: opqlw7-i2nrTbwiIELcek1KUWocjFtN)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (8 exits found)
+    Progress: 20/100 (17 exits found)
+    Progress: 30/100 (22 exits found)
+    Progress: 40/100 (31 exits found)
+    Progress: 50/100 (38 exits found)
+    Progress: 60/100 (47 exits found)
+    Progress: 70/100 (56 exits found)
+    Progress: 80/100 (65 exits found)
+    Progress: 90/100 (73 exits found)
+  📊 Processed 81 exits from 100 persons for Oliver Wyman
+
+  ⏱️  Time elapsed: 24m 15s
+  📈 Total exits so far: 350
+  📊 Total persons enriched: 604
+  🔢 Total API calls: 622
+  ⏳ Est. remaining: 285m 37s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 10/115 [====================]
+
+🔍 Searching for company: LEK Consulting
+  ✅ Found: LEK Consulting (ID: P26XVkX5gVptNzrv0sZKa5l8TkRg7jU)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 3 employees (Total: 3)
+  ✅ Total former employees: 3
+  👤 Enriching employees and finding exits...
+  📊 Processed 1 exits from 3 persons for LEK Consulting
+
+  ⏱️  Time elapsed: 24m 27s
+  📈 Total exits so far: 351
+  📊 Total persons enriched: 607
+  🔢 Total API calls: 627
+  ⏳ Est. remaining: 256m 43s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 11/115 [====================]
+
+🔍 Searching for company: Roland Berger
+  ✅ Found: Roland Berger (ID: WJahVgp4eAaaYKyRqdijl7PjpFkN6Aa)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (5 exits found)
+    Progress: 20/100 (14 exits found)
+    Progress: 30/100 (21 exits found)
+    Progress: 40/100 (27 exits found)
+    Progress: 50/100 (36 exits found)
+    Progress: 60/100 (44 exits found)
+    Progress: 70/100 (54 exits found)
+    Progress: 80/100 (63 exits found)
+    Progress: 90/100 (71 exits found)
+  📊 Processed 78 exits from 100 persons for Roland Berger
+
+  ⏱️  Time elapsed: 28m 18s
+  📈 Total exits so far: 429
+  📊 Total persons enriched: 707
+  🔢 Total API calls: 729
+  ⏳ Est. remaining: 267m 34s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 12/115 [====================]
+
+🔍 Searching for company: Kearney
+  ✅ Found: Kearney (ID: SDfYwKYgj5wnP3Kx7z4xeB1THA3-5Ek)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (10 exits found)
+    Progress: 20/100 (18 exits found)
+    Progress: 30/100 (25 exits found)
+    Progress: 40/100 (33 exits found)
+    Progress: 50/100 (41 exits found)
+    Progress: 60/100 (51 exits found)
+    Progress: 70/100 (60 exits found)
+    Progress: 80/100 (70 exits found)
+    Progress: 90/100 (79 exits found)
+  📊 Processed 86 exits from 100 persons for Kearney
+
+  ⏱️  Time elapsed: 32m 11s
+  📈 Total exits so far: 515
+  📊 Total persons enriched: 807
+  🔢 Total API calls: 831
+  ⏳ Est. remaining: 276m 14s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 13/115 [====================]
+
+🔍 Searching for company: Strategy&
+  ✅ Found: MicroStrategy  (ID: 1sXQ8jMNKk0QGQce4vnECnklVg4fPh2)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (2 exits found)
+    Progress: 20/100 (8 exits found)
+    Progress: 30/100 (15 exits found)
+    Progress: 40/100 (20 exits found)
+    Progress: 50/100 (23 exits found)
+    Progress: 60/100 (28 exits found)
+    Progress: 70/100 (38 exits found)
+    Progress: 80/100 (43 exits found)
+    Progress: 90/100 (49 exits found)
+  📊 Processed 58 exits from 100 persons for MicroStrategy 
+
+  ⏱️  Time elapsed: 34m 57s
+  📈 Total exits so far: 573
+  📊 Total persons enriched: 907
+  🔢 Total API calls: 933
+  ⏳ Est. remaining: 274m 13s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 14/115 [====================]
+
+🔍 Searching for company: Booz Allen Hamilton
+  ✅ Found: Booz Allen Hamilton (ID: Rz9oz4sjp57hEtJs89gHFYxgm3Z9vzq)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (3 exits found)
+    Progress: 20/100 (4 exits found)
+    Progress: 30/100 (13 exits found)
+    Progress: 40/100 (20 exits found)
+    Progress: 50/100 (25 exits found)
+    Progress: 60/100 (30 exits found)
+    Progress: 70/100 (39 exits found)
+    Progress: 80/100 (47 exits found)
+    Progress: 90/100 (55 exits found)
+  📊 Processed 63 exits from 100 persons for Booz Allen Hamilton
+
+  ⏱️  Time elapsed: 40m 26s
+  📈 Total exits so far: 636
+  📊 Total persons enriched: 1007
+  🔢 Total API calls: 1035
+  ⏳ Est. remaining: 291m 42s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 15/115 [====================]
+
+🔍 Searching for company: AlixPartners
+  ✅ Found: AlixPartners (ID: HyCfq7nCGa11vui_Ch42JGylENahYxK)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (6 exits found)
+    Progress: 20/100 (13 exits found)
+    Progress: 30/100 (19 exits found)
+    Progress: 40/100 (23 exits found)
+    Progress: 50/100 (29 exits found)
+    Progress: 60/100 (38 exits found)
+    Progress: 70/100 (44 exits found)
+    Progress: 80/100 (49 exits found)
+    Progress: 90/100 (54 exits found)
+  📊 Processed 59 exits from 100 persons for AlixPartners
+
+  ⏱️  Time elapsed: 43m 41s
+  📈 Total exits so far: 695
+  📊 Total persons enriched: 1107
+  🔢 Total API calls: 1137
+  ⏳ Est. remaining: 291m 13s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 16/115 [====================]
+
+🔍 Searching for company: Goldman Sachs
+  ✅ Found: Goldman Sachs (ID: 9m4wdPHQgHnBB-vmzgMOMs3N-qEZUBn)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (1 exits found)
+    Progress: 20/100 (3 exits found)
+    Progress: 30/100 (7 exits found)
+    Progress: 40/100 (11 exits found)
+    Progress: 50/100 (21 exits found)
+    Progress: 60/100 (30 exits found)
+    Progress: 70/100 (38 exits found)
+    Progress: 80/100 (44 exits found)
+    Progress: 90/100 (51 exits found)
+  📊 Processed 61 exits from 100 persons for Goldman Sachs
+
+  ⏱️  Time elapsed: 47m 1s
+  📈 Total exits so far: 756
+  📊 Total persons enriched: 1207
+  🔢 Total API calls: 1239
+  ⏳ Est. remaining: 290m 55s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 17/115 [====================]
+
+🔍 Searching for company: Morgan Stanley
+  ✅ Found: Morgan Stanley (ID: z8AL3IlqAXsivibcOiOri8PbrUOmTPL)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (4 exits found)
+    Progress: 20/100 (7 exits found)
+    Progress: 30/100 (13 exits found)
+    Progress: 40/100 (19 exits found)
+    Progress: 50/100 (27 exits found)
+    Progress: 60/100 (34 exits found)
+    Progress: 70/100 (40 exits found)
+    Progress: 80/100 (47 exits found)
+    Progress: 90/100 (53 exits found)
+  📊 Processed 60 exits from 100 persons for Morgan Stanley
+
+  ⏱️  Time elapsed: 50m 41s
+  📈 Total exits so far: 816
+  📊 Total persons enriched: 1307
+  🔢 Total API calls: 1341
+  ⏳ Est. remaining: 292m 10s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 18/115 [====================]
+
+🔍 Searching for company: JPMorgan
+  ✅ Found: JPMorganChase (ID: Tb2yDTUN2nBcgxSgL96lFdoLGZi7HoV)
+  💾 Saved company to database
+  📋 Getting former employees...
+  ❌ Failed to get employees: upstream request timeout
+  ✅ Total former employees: 0
+  👤 Enriching employees and finding exits...
+  📊 Processed 0 exits from 0 persons for JPMorganChase
+
+  ⏱️  Time elapsed: 55m 46s
+  📈 Total exits so far: 816
+  📊 Total persons enriched: 1307
+  🔢 Total API calls: 1343
+  ⏳ Est. remaining: 300m 31s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 19/115 [====================]
+
+🔍 Searching for company: Bank of America Merrill Lynch
+  ✅ Found: Bank of America Merrill Lynch (ID: QuU283sSK7NxZGoZQz2s119HOkC88hT)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (3 exits found)
+    Progress: 20/100 (10 exits found)
+    Progress: 30/100 (15 exits found)
+    Progress: 40/100 (21 exits found)
+    Progress: 50/100 (28 exits found)
+    Progress: 60/100 (34 exits found)
+    Progress: 70/100 (39 exits found)
+    Progress: 80/100 (45 exits found)
+    Progress: 90/100 (52 exits found)
+  📊 Processed 56 exits from 100 persons for Bank of America Merrill Lynch
+
+  ⏱️  Time elapsed: 59m 55s
+  📈 Total exits so far: 872
+  📊 Total persons enriched: 1407
+  🔢 Total API calls: 1445
+  ⏳ Est. remaining: 302m 44s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 20/115 [====================]
+
+🔍 Searching for company: Citigroup
+  ✅ Found: Citi (ID: pNSeLAZ2Wb4-s9RhPYSRzXVxJXvAPuv)
+  💾 Saved company to database
+  📋 Getting former employees...
+  ❌ Failed to get employees: Service Unavailable
+  ✅ Total former employees: 0
+  👤 Enriching employees and finding exits...
+  📊 Processed 0 exits from 0 persons for Citi
+
+  ⏱️  Time elapsed: 64m 43s
+  📈 Total exits so far: 872
+  📊 Total persons enriched: 1407
+  🔢 Total API calls: 1447
+  ⏳ Est. remaining: 307m 24s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 21/115 [====================]
+
+🔍 Searching for company: Credit Suisse
+  ✅ Found: Credit Suisse (ID: l4NsdRlHbSg4_v0K0lHYHR0KXLO1NTU)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (8 exits found)
+    Progress: 20/100 (15 exits found)
+    Progress: 30/100 (20 exits found)
+    Progress: 40/100 (26 exits found)
+    Progress: 50/100 (34 exits found)
+    Progress: 60/100 (40 exits found)
+    Progress: 70/100 (43 exits found)
+    Progress: 80/100 (50 exits found)
+    Progress: 90/100 (55 exits found)
+  📊 Processed 62 exits from 100 persons for Credit Suisse
+
+  ⏱️  Time elapsed: 67m 26s
+  📈 Total exits so far: 934
+  📊 Total persons enriched: 1507
+  🔢 Total API calls: 1549
+  ⏳ Est. remaining: 301m 51s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 22/115 [====================]
+
+🔍 Searching for company: Deutsche Bank
+  ✅ Found: Deutsche Bank (ID: wWYRTbHwtA6qvFf_VpG1dey8YzdCvf8)
+  💾 Saved company to database
+  📋 Getting former employees...
+  ❌ Failed to get employees: upstream request timeout
+  ✅ Total former employees: 0
+  👤 Enriching employees and finding exits...
+  📊 Processed 0 exits from 0 persons for Deutsche Bank
+
+  ⏱️  Time elapsed: 72m 30s
+  📈 Total exits so far: 934
+  📊 Total persons enriched: 1507
+  🔢 Total API calls: 1551
+  ⏳ Est. remaining: 306m 29s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 23/115 [====================]
+
+🔍 Searching for company: Barclays
+  ✅ Found: Barclays (ID: OZx8ae0uRAg5q4pDDpVIDT4peyCCl7q)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (7 exits found)
+    Progress: 20/100 (16 exits found)
+    Progress: 30/100 (23 exits found)
+    Progress: 40/100 (30 exits found)
+    Progress: 50/100 (36 exits found)
+    Progress: 60/100 (41 exits found)
+    Progress: 70/100 (50 exits found)
+    Progress: 80/100 (57 exits found)
+    Progress: 90/100 (63 exits found)
+  📊 Processed 68 exits from 100 persons for Barclays
+
+  ⏱️  Time elapsed: 78m 18s
+  📈 Total exits so far: 1002
+  📊 Total persons enriched: 1607
+  🔢 Total API calls: 1653
+  ⏳ Est. remaining: 313m 12s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 24/115 [====================]
+
+🔍 Searching for company: UBS
+  ✅ Found: UBS (ID: U7IFHLj5JtzLxrNIr87M1xx2SGg9Fm4)
+  💾 Saved company to database
+  📋 Getting former employees...
+TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at async fetchWithRetry (/Users/achalshah/Pathway/pathsearch/scripts/seedDatabase.ts:188:22)
+    at async getFormerEmployees (/Users/achalshah/Pathway/pathsearch/scripts/seedDatabase.ts:247:20)
+    at async processCompany (/Users/achalshah/Pathway/pathsearch/scripts/seedDatabase.ts:428:20)
+    at async main (/Users/achalshah/Pathway/pathsearch/scripts/seedDatabase.ts:560:20) {
+  [cause]: Error: read ECONNRESET
+      at TLSWrap.onStreamRead (node:internal/stream_base_commons:216:20) {
+    errno: -54,
+    code: 'ECONNRESET',
+    syscall: 'read'
+  }
+}
+[dotenv@17.2.3] injecting env (4) from .env.local -- tip: ⚙️  override existing env vars with { override: true }
+════════════════════════════════════════════════════════════
+🚀 COMPREHENSIVE DATABASE SEED - STARTING
+════════════════════════════════════════════════════════════
+
+Companies to process: 115
+This will take a while. Sit back and relax...
+
+════════════════════════════════════════════════════════════
+
+[====================] COMPANY 1/115 [====================]
+
+🔍 Searching for company: Bain & Company
+  ✅ Found: Bain & Company (ID: UsQ31Uk_ozV-595EVZog5XcCE6Tf4qQ)
+  💾 Saved company to database
+  📋 Getting former employees...
+[dotenv@17.2.3] injecting env (4) from .env.local -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+════════════════════════════════════════════════════════════
+🚀 COMPREHENSIVE DATABASE SEED - STARTING
+════════════════════════════════════════════════════════════
+
+Companies to process: 115
+This will take a while. Sit back and relax...
+
+════════════════════════════════════════════════════════════
+
+[====================] COMPANY 1/115 [====================]
+
+⏭️  Skipping Bain & Company - already have 119 exits in database
+
+  ⏱️  Time elapsed: 0m 1s
+  📈 Total exits so far: 0
+  📊 Total persons enriched: 0
+  🔢 Total API calls: 0
+  ⏳ Est. remaining: 1m 54s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 2/115 [====================]
+
+⏭️  Skipping McKinsey & Company - already have 50 exits in database
+
+  ⏱️  Time elapsed: 0m 3s
+  📈 Total exits so far: 0
+  📊 Total persons enriched: 0
+  🔢 Total API calls: 0
+  ⏳ Est. remaining: 2m 50s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 3/115 [====================]
+
+🔍 Searching for company: BCG
+  ✅ Found: Bamboo Capital (ID: fb27DSGqZUYmnLJ2nqbtpHPxZwOU76b)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 3 employees (Total: 3)
+  ✅ Total former employees: 3
+  👤 Enriching employees and finding exits...
+  📊 Processed 0 exits from 3 persons for Bamboo Capital
+
+  ⏱️  Time elapsed: 0m 13s
+  📈 Total exits so far: 0
+  📊 Total persons enriched: 3
+  🔢 Total API calls: 5
+  ⏳ Est. remaining: 8m 5s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 4/115 [====================]
+
+⏭️  Skipping Deloitte Consulting - already have 51 exits in database
+
+  ⏱️  Time elapsed: 0m 15s
+  📈 Total exits so far: 0
+  📊 Total persons enriched: 3
+  🔢 Total API calls: 5
+  ⏳ Est. remaining: 6m 56s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 5/115 [====================]
+
+🔍 Searching for company: Accenture
+  ✅ Found: Accenture (ID: Inm0E61OyL-Rad9UTXfT5yxga_SLseg)
+  💾 Saved company to database
+  📋 Getting former employees...
+  ❌ Failed to get employees: upstream request timeout
+  ✅ Total former employees: 0
+  👤 Enriching employees and finding exits...
+  📊 Processed 0 exits from 0 persons for Accenture
+
+  ⏱️  Time elapsed: 5m 20s
+  📈 Total exits so far: 0
+  📊 Total persons enriched: 3
+  🔢 Total API calls: 7
+  ⏳ Est. remaining: 117m 20s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 6/115 [====================]
+
+🔍 Searching for company: PwC
+  ✅ Found: Brand TM (ID: NXzvyoZhCjQOawr0_TeJzn0TP12P9za)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 1 employees (Total: 1)
+  ✅ Total former employees: 1
+  👤 Enriching employees and finding exits...
+  📊 Processed 0 exits from 1 persons for Brand TM
+
+  ⏱️  Time elapsed: 5m 33s
+  📈 Total exits so far: 0
+  📊 Total persons enriched: 4
+  🔢 Total API calls: 10
+  ⏳ Est. remaining: 100m 50s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 7/115 [====================]
+
+⏭️  Skipping EY - already have 230 exits in database
+
+  ⏱️  Time elapsed: 5m 35s
+  📈 Total exits so far: 0
+  📊 Total persons enriched: 4
+  🔢 Total API calls: 10
+  ⏳ Est. remaining: 86m 9s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 8/115 [====================]
+
+⏭️  Skipping KPMG - already have 66 exits in database
+
+  ⏱️  Time elapsed: 5m 37s
+  📈 Total exits so far: 0
+  📊 Total persons enriched: 4
+  🔢 Total API calls: 10
+  ⏳ Est. remaining: 75m 7s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 9/115 [====================]
+
+⏭️  Skipping Oliver Wyman - already have 81 exits in database
+
+  ⏱️  Time elapsed: 5m 40s
+  📈 Total exits so far: 0
+  📊 Total persons enriched: 4
+  🔢 Total API calls: 10
+  ⏳ Est. remaining: 66m 44s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 10/115 [====================]
+
+🔍 Searching for company: LEK Consulting
+  ✅ Found: LEK Consulting (ID: P26XVkX5gVptNzrv0sZKa5l8TkRg7jU)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 3 employees (Total: 3)
+  ✅ Total former employees: 3
+  👤 Enriching employees and finding exits...
+  📊 Processed 1 exits from 3 persons for LEK Consulting
+
+  ⏱️  Time elapsed: 5m 49s
+  📈 Total exits so far: 1
+  📊 Total persons enriched: 7
+  🔢 Total API calls: 15
+  ⏳ Est. remaining: 61m 5s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 11/115 [====================]
+
+⏭️  Skipping Roland Berger - already have 78 exits in database
+
+  ⏱️  Time elapsed: 5m 51s
+  📈 Total exits so far: 1
+  📊 Total persons enriched: 7
+  🔢 Total API calls: 15
+  ⏳ Est. remaining: 55m 19s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 12/115 [====================]
+
+⏭️  Skipping Kearney - already have 86 exits in database
+
+  ⏱️  Time elapsed: 5m 54s
+  📈 Total exits so far: 1
+  📊 Total persons enriched: 7
+  🔢 Total API calls: 15
+  ⏳ Est. remaining: 50m 39s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 13/115 [====================]
+
+🔍 Searching for company: Strategy&
+  ✅ Found: MicroStrategy  (ID: 1sXQ8jMNKk0QGQce4vnECnklVg4fPh2)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (2 exits found)
+    Progress: 20/100 (8 exits found)
+    Progress: 30/100 (15 exits found)
+    Progress: 40/100 (20 exits found)
+    Progress: 50/100 (23 exits found)
+    Progress: 60/100 (28 exits found)
+    Progress: 70/100 (38 exits found)
+    Progress: 80/100 (43 exits found)
+    Progress: 90/100 (49 exits found)
+  📊 Processed 58 exits from 100 persons for MicroStrategy 
+
+  ⏱️  Time elapsed: 8m 39s
+  📈 Total exits so far: 59
+  📊 Total persons enriched: 107
+  🔢 Total API calls: 117
+  ⏳ Est. remaining: 67m 52s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 14/115 [====================]
+
+⏭️  Skipping Booz Allen Hamilton - already have 63 exits in database
+
+  ⏱️  Time elapsed: 8m 41s
+  📈 Total exits so far: 59
+  📊 Total persons enriched: 107
+  🔢 Total API calls: 117
+  ⏳ Est. remaining: 62m 39s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 15/115 [====================]
+
+⏭️  Skipping AlixPartners - already have 59 exits in database
+
+  ⏱️  Time elapsed: 8m 43s
+  📈 Total exits so far: 59
+  📊 Total persons enriched: 107
+  🔢 Total API calls: 117
+  ⏳ Est. remaining: 58m 7s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 16/115 [====================]
+
+⏭️  Skipping Goldman Sachs - already have 61 exits in database
+
+  ⏱️  Time elapsed: 8m 46s
+  📈 Total exits so far: 59
+  📊 Total persons enriched: 107
+  🔢 Total API calls: 117
+  ⏳ Est. remaining: 54m 15s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 17/115 [====================]
+
+⏭️  Skipping Morgan Stanley - already have 60 exits in database
+
+  ⏱️  Time elapsed: 8m 48s
+  📈 Total exits so far: 59
+  📊 Total persons enriched: 107
+  🔢 Total API calls: 117
+  ⏳ Est. remaining: 50m 44s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 18/115 [====================]
+
+🔍 Searching for company: JPMorgan
+  ✅ Found: JPMorganChase (ID: Tb2yDTUN2nBcgxSgL96lFdoLGZi7HoV)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (0 exits found)
+    Progress: 20/100 (0 exits found)
+    Progress: 30/100 (0 exits found)
+    Progress: 40/100 (0 exits found)
+    Progress: 50/100 (0 exits found)
+    Progress: 60/100 (0 exits found)
+    Progress: 70/100 (0 exits found)
+    Progress: 80/100 (1 exits found)
+    Progress: 90/100 (1 exits found)
+  📊 Processed 1 exits from 100 persons for JPMorganChase
+
+  ⏱️  Time elapsed: 14m 24s
+  📈 Total exits so far: 60
+  📊 Total persons enriched: 207
+  🔢 Total API calls: 219
+  ⏳ Est. remaining: 77m 36s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 19/115 [====================]
+
+⏭️  Skipping Bank of America Merrill Lynch - already have 56 exits in database
+
+  ⏱️  Time elapsed: 14m 26s
+  📈 Total exits so far: 60
+  📊 Total persons enriched: 207
+  🔢 Total API calls: 219
+  ⏳ Est. remaining: 72m 56s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 20/115 [====================]
+
+🔍 Searching for company: Citigroup
+  ✅ Found: Citi (ID: pNSeLAZ2Wb4-s9RhPYSRzXVxJXvAPuv)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (3 exits found)
+    Progress: 20/100 (7 exits found)
+    Progress: 30/100 (11 exits found)
+    Progress: 40/100 (19 exits found)
+    Progress: 50/100 (29 exits found)
+    Progress: 60/100 (38 exits found)
+    Progress: 70/100 (46 exits found)
+    Progress: 80/100 (53 exits found)
+    Progress: 90/100 (60 exits found)
+  📊 Processed 67 exits from 100 persons for Citi
+
+  ⏱️  Time elapsed: 24m 3s
+  📈 Total exits so far: 127
+  📊 Total persons enriched: 307
+  🔢 Total API calls: 321
+  ⏳ Est. remaining: 114m 14s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 21/115 [====================]
+
+⏭️  Skipping Credit Suisse - already have 62 exits in database
+
+  ⏱️  Time elapsed: 24m 5s
+  📈 Total exits so far: 127
+  📊 Total persons enriched: 307
+  🔢 Total API calls: 321
+  ⏳ Est. remaining: 107m 48s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 22/115 [====================]
+
+🔍 Searching for company: Deutsche Bank
+  ✅ Found: Deutsche Bank (ID: wWYRTbHwtA6qvFf_VpG1dey8YzdCvf8)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (2 exits found)
+    Progress: 20/100 (8 exits found)
+    Progress: 30/100 (16 exits found)
+    Progress: 40/100 (24 exits found)
+    Progress: 50/100 (31 exits found)
+    Progress: 60/100 (34 exits found)
+    Progress: 70/100 (42 exits found)
+    Progress: 80/100 (50 exits found)
+    Progress: 90/100 (58 exits found)
+  📊 Processed 66 exits from 100 persons for Deutsche Bank
+
+  ⏱️  Time elapsed: 29m 7s
+  📈 Total exits so far: 193
+  📊 Total persons enriched: 407
+  🔢 Total API calls: 423
+  ⏳ Est. remaining: 123m 5s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 23/115 [====================]
+
+⏭️  Skipping Barclays - already have 68 exits in database
+
+  ⏱️  Time elapsed: 29m 9s
+  📈 Total exits so far: 193
+  📊 Total persons enriched: 407
+  🔢 Total API calls: 423
+  ⏳ Est. remaining: 116m 36s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 24/115 [====================]
+
+🔍 Searching for company: UBS
+  ✅ Found: UBS (ID: U7IFHLj5JtzLxrNIr87M1xx2SGg9Fm4)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (5 exits found)
+    Progress: 20/100 (9 exits found)
+    Progress: 30/100 (15 exits found)
+    Progress: 40/100 (23 exits found)
+    Progress: 50/100 (31 exits found)
+    Progress: 60/100 (38 exits found)
+    Progress: 70/100 (46 exits found)
+    Progress: 80/100 (52 exits found)
+    Progress: 90/100 (60 exits found)
+  📊 Processed 68 exits from 100 persons for UBS
+
+  ⏱️  Time elapsed: 33m 5s
+  📈 Total exits so far: 261
+  📊 Total persons enriched: 507
+  🔢 Total API calls: 525
+  ⏳ Est. remaining: 125m 26s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 25/115 [====================]
+
+🔍 Searching for company: Evercore
+  ✅ Found: Evercore (ID: Gb6i20aQ8JQu3gHceRCoe0eHPXI5IMd)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (5 exits found)
+    Progress: 20/100 (12 exits found)
+    Progress: 30/100 (20 exits found)
+    Progress: 40/100 (29 exits found)
+    Progress: 50/100 (37 exits found)
+    Progress: 60/100 (45 exits found)
+    Progress: 70/100 (52 exits found)
+    Progress: 80/100 (58 exits found)
+    Progress: 90/100 (65 exits found)
+  📊 Processed 73 exits from 100 persons for Evercore
+
+  ⏱️  Time elapsed: 36m 28s
+  📈 Total exits so far: 334
+  📊 Total persons enriched: 607
+  🔢 Total API calls: 627
+  ⏳ Est. remaining: 131m 17s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 26/115 [====================]
+
+🔍 Searching for company: Lazard
+  ✅ Found: Lazard (ID: -rkGNvxBGETq7Vlleok_bMHpQYgWUVZ)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (6 exits found)
+    Progress: 20/100 (15 exits found)
+    Progress: 30/100 (22 exits found)
+    Progress: 40/100 (31 exits found)
+    Progress: 50/100 (39 exits found)
+    Progress: 60/100 (47 exits found)
+    Progress: 70/100 (57 exits found)
+    Progress: 80/100 (66 exits found)
+    Progress: 90/100 (74 exits found)
+  📊 Processed 82 exits from 100 persons for Lazard
+
+  ⏱️  Time elapsed: 40m 19s
+  📈 Total exits so far: 416
+  📊 Total persons enriched: 707
+  🔢 Total API calls: 729
+  ⏳ Est. remaining: 138m 0s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 27/115 [====================]
+
+🔍 Searching for company: Centerview Partners
+  ✅ Found: Centerview Partners (ID: omxZr5V5Hwz6TjtiLdhYs48zVUUWFg7)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (6 exits found)
+    Progress: 20/100 (12 exits found)
+    Progress: 30/100 (18 exits found)
+    Progress: 40/100 (23 exits found)
+    Progress: 50/100 (27 exits found)
+    Progress: 60/100 (33 exits found)
+    Progress: 70/100 (34 exits found)
+    Progress: 80/100 (38 exits found)
+    Progress: 90/100 (45 exits found)
+  📊 Processed 52 exits from 100 persons for Centerview Partners
+
+  ⏱️  Time elapsed: 43m 21s
+  📈 Total exits so far: 468
+  📊 Total persons enriched: 807
+  🔢 Total API calls: 831
+  ⏳ Est. remaining: 141m 17s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 28/115 [====================]
+
+🔍 Searching for company: Moelis & Company
+  ✅ Found: Moelis & Company (ID: Q0f36-uhw5y2szHAr7c1oX00O1SFKfR)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (6 exits found)
+    Progress: 20/100 (12 exits found)
+    Progress: 30/100 (16 exits found)
+    Progress: 40/100 (21 exits found)
+    Progress: 50/100 (27 exits found)
+    Progress: 60/100 (34 exits found)
+    Progress: 70/100 (38 exits found)
+    Progress: 80/100 (43 exits found)
+    Progress: 90/100 (51 exits found)
+  📊 Processed 56 exits from 100 persons for Moelis & Company
+
+  ⏱️  Time elapsed: 46m 43s
+  📈 Total exits so far: 524
+  📊 Total persons enriched: 907
+  🔢 Total API calls: 933
+  ⏳ Est. remaining: 145m 9s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 29/115 [====================]
+
+🔍 Searching for company: PJT Partners
+  ✅ Found: PJT Partners (ID: bkHj0_FyRdMU95FVeqlUUKZtPEbdzR4)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (6 exits found)
+    Progress: 20/100 (13 exits found)
+    Progress: 30/100 (19 exits found)
+    Progress: 40/100 (24 exits found)
+    Progress: 50/100 (29 exits found)
+    Progress: 60/100 (33 exits found)
+    Progress: 70/100 (40 exits found)
+    Progress: 80/100 (45 exits found)
+    Progress: 90/100 (50 exits found)
+  📊 Processed 55 exits from 100 persons for PJT Partners
+
+  ⏱️  Time elapsed: 50m 6s
+  📈 Total exits so far: 579
+  📊 Total persons enriched: 1007
+  🔢 Total API calls: 1035
+  ⏳ Est. remaining: 148m 34s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 30/115 [====================]
+
+🔍 Searching for company: Perella Weinberg Partners
+  ✅ Found: Perella Weinberg Partners (ID: 8Jq1VgdwnTlJTJbIgeRZlCYusgmj1-N)
+  💾 Saved company to database
+  📋 Getting former employees...
+  ✅ Total former employees: 0
+  👤 Enriching employees and finding exits...
+  📊 Processed 0 exits from 0 persons for Perella Weinberg Partners
+
+  ⏱️  Time elapsed: 50m 14s
+  📈 Total exits so far: 579
+  📊 Total persons enriched: 1007
+  🔢 Total API calls: 1037
+  ⏳ Est. remaining: 142m 20s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 31/115 [====================]
+
+🔍 Searching for company: Qatalyst Partners
+  ✅ Found: Qatalyst Partners (ID: QgHr4V9oUqwi2qhIKaHsbQ5Moo4SaxQ)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (8 exits found)
+    Progress: 20/100 (14 exits found)
+    Progress: 30/100 (19 exits found)
+    Progress: 40/100 (27 exits found)
+    Progress: 50/100 (34 exits found)
+    Progress: 60/100 (40 exits found)
+    Progress: 70/100 (46 exits found)
+    Progress: 80/100 (54 exits found)
+    Progress: 90/100 (63 exits found)
+  📊 Processed 70 exits from 100 persons for Qatalyst Partners
+
+  ⏱️  Time elapsed: 53m 30s
+  📈 Total exits so far: 649
+  📊 Total persons enriched: 1107
+  🔢 Total API calls: 1139
+  ⏳ Est. remaining: 144m 58s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 32/115 [====================]
+
+🔍 Searching for company: Greenhill
+  ✅ Found: Greenhill & Co. (ID: gKd8oMceRemCh8JGnwIPAS63ZddqYZL)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (5 exits found)
+    Progress: 20/100 (13 exits found)
+    Progress: 30/100 (21 exits found)
+    Progress: 40/100 (30 exits found)
+    Progress: 50/100 (39 exits found)
+    Progress: 60/100 (48 exits found)
+    Progress: 70/100 (55 exits found)
+    Progress: 80/100 (62 exits found)
+    Progress: 90/100 (71 exits found)
+  📊 Processed 80 exits from 100 persons for Greenhill & Co.
+
+  ⏱️  Time elapsed: 56m 40s
+  📈 Total exits so far: 729
+  📊 Total persons enriched: 1207
+  🔢 Total API calls: 1241
+  ⏳ Est. remaining: 146m 59s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 33/115 [====================]
+
+🔍 Searching for company: Rothschild
+  ✅ Found: Andera Partners (ID: Bb1TRT5blsl8sl4-6dso0qE3UEk_dDh)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (1 exits found)
+    Progress: 20/100 (6 exits found)
+    Progress: 30/100 (10 exits found)
+    Progress: 40/100 (13 exits found)
+    Progress: 50/100 (17 exits found)
+    Progress: 60/100 (20 exits found)
+    Progress: 70/100 (23 exits found)
+    Progress: 80/100 (28 exits found)
+    Progress: 90/100 (35 exits found)
+  📊 Processed 41 exits from 100 persons for Andera Partners
+
+  ⏱️  Time elapsed: 59m 45s
+  📈 Total exits so far: 770
+  📊 Total persons enriched: 1307
+  🔢 Total API calls: 1343
+  ⏳ Est. remaining: 148m 28s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 34/115 [====================]
+
+🔍 Searching for company: Blackstone
+  ✅ Found: Blackstone (ID: DnW9MsrWjP6Ax5tI_yRUCLkrBDf1xOi)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (1 exits found)
+    Progress: 20/100 (9 exits found)
+    Progress: 30/100 (17 exits found)
+    Progress: 40/100 (22 exits found)
+    Progress: 50/100 (29 exits found)
+    Progress: 60/100 (36 exits found)
+    Progress: 70/100 (44 exits found)
+    Progress: 80/100 (51 exits found)
+    Progress: 90/100 (57 exits found)
+  📊 Processed 66 exits from 100 persons for Blackstone
+
+  ⏱️  Time elapsed: 63m 22s
+  📈 Total exits so far: 836
+  📊 Total persons enriched: 1407
+  🔢 Total API calls: 1445
+  ⏳ Est. remaining: 150m 58s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 35/115 [====================]
+
+🔍 Searching for company: KKR
+  ✅ Found: Kohlberg Kravis Roberts (ID: H8DyWhz9XFrsR06su4qf1V-gI7ZTRJt)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 57 employees (Total: 57)
+  ✅ Total former employees: 57
+  👤 Enriching employees and finding exits...
+    Progress: 10/57 (4 exits found)
+    Progress: 20/57 (8 exits found)
+    Progress: 30/57 (10 exits found)
+    Progress: 40/57 (12 exits found)
+    Progress: 50/57 (12 exits found)
+  📊 Processed 12 exits from 57 persons for Kohlberg Kravis Roberts
+
+  ⏱️  Time elapsed: 64m 26s
+  📈 Total exits so far: 848
+  📊 Total persons enriched: 1464
+  🔢 Total API calls: 1504
+  ⏳ Est. remaining: 147m 17s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 36/115 [====================]
+
+🔍 Searching for company: Carlyle Group
+  ✅ Found: The Carlyle Group (ID: pk0w_i8-b-cvRSA4gXN99c4D4oNe395)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (3 exits found)
+    Progress: 20/100 (12 exits found)
+    Progress: 30/100 (19 exits found)
+    Progress: 40/100 (23 exits found)
+    Progress: 50/100 (31 exits found)
+    Progress: 60/100 (41 exits found)
+    Progress: 70/100 (49 exits found)
+    Progress: 80/100 (54 exits found)
+    Progress: 90/100 (62 exits found)
+  📊 Processed 70 exits from 100 persons for The Carlyle Group
+
+  ⏱️  Time elapsed: 67m 50s
+  📈 Total exits so far: 918
+  📊 Total persons enriched: 1564
+  🔢 Total API calls: 1606
+  ⏳ Est. remaining: 148m 51s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 37/115 [====================]
+
+🔍 Searching for company: Apollo Global Management
+  ✅ Found: Apollo Education Group (ID: 5zKX4bEPeyODlJW63wCDPdhusYOhWp4)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (7 exits found)
+    Progress: 20/100 (14 exits found)
+    Progress: 30/100 (24 exits found)
+    Progress: 40/100 (32 exits found)
+    Progress: 50/100 (40 exits found)
+    Progress: 60/100 (48 exits found)
+    Progress: 70/100 (58 exits found)
+    Progress: 80/100 (67 exits found)
+    Progress: 90/100 (75 exits found)
+  📊 Processed 84 exits from 100 persons for Apollo Education Group
+
+  ⏱️  Time elapsed: 71m 30s
+  📈 Total exits so far: 1002
+  📊 Total persons enriched: 1664
+  🔢 Total API calls: 1708
+  ⏳ Est. remaining: 150m 44s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 38/115 [====================]
+
+🔍 Searching for company: TPG
+  ✅ Found: TPG (ID: iNO7rAL15QztbNygxBQMh1wOBTiFtr4)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (6 exits found)
+    Progress: 20/100 (11 exits found)
+    Progress: 30/100 (16 exits found)
+    Progress: 40/100 (20 exits found)
+    Progress: 50/100 (26 exits found)
+    Progress: 60/100 (31 exits found)
+    Progress: 70/100 (36 exits found)
+    Progress: 80/100 (39 exits found)
+    Progress: 90/100 (43 exits found)
+  📊 Processed 46 exits from 100 persons for TPG
+
+  ⏱️  Time elapsed: 74m 23s
+  📈 Total exits so far: 1048
+  📊 Total persons enriched: 1764
+  🔢 Total API calls: 1810
+  ⏳ Est. remaining: 150m 43s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 39/115 [====================]
+
+⏭️  Skipping Bain Capital - already have 119 exits in database
+
+  ⏱️  Time elapsed: 74m 25s
+  📈 Total exits so far: 1048
+  📊 Total persons enriched: 1764
+  🔢 Total API calls: 1810
+  ⏳ Est. remaining: 145m 1s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 40/115 [====================]
+
+🔍 Searching for company: Warburg Pincus
+  ✅ Found: Warburg Pincus LLC (ID: _kqf3XuId69AkcK84rASNImjuJpOpye)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (1 exits found)
+    Progress: 20/100 (3 exits found)
+    Progress: 30/100 (6 exits found)
+    Progress: 40/100 (12 exits found)
+    Progress: 50/100 (18 exits found)
+    Progress: 60/100 (24 exits found)
+    Progress: 70/100 (29 exits found)
+    Progress: 80/100 (34 exits found)
+    Progress: 90/100 (36 exits found)
+  📊 Processed 43 exits from 100 persons for Warburg Pincus LLC
+
+  ⏱️  Time elapsed: 77m 21s
+  📈 Total exits so far: 1091
+  📊 Total persons enriched: 1864
+  🔢 Total API calls: 1912
+  ⏳ Est. remaining: 145m 2s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 41/115 [====================]
+
+🔍 Searching for company: General Atlantic
+  ✅ Found: General Atlantic (ID: JG9sld5ULjLET09ol0s8C3lVLuZttSq)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (1 exits found)
+    Progress: 20/100 (8 exits found)
+    Progress: 30/100 (16 exits found)
+    Progress: 40/100 (22 exits found)
+    Progress: 50/100 (29 exits found)
+    Progress: 60/100 (36 exits found)
+    Progress: 70/100 (39 exits found)
+    Progress: 80/100 (44 exits found)
+    Progress: 90/100 (52 exits found)
+  📊 Processed 58 exits from 100 persons for General Atlantic
+
+  ⏱️  Time elapsed: 80m 30s
+  📈 Total exits so far: 1149
+  📊 Total persons enriched: 1964
+  🔢 Total API calls: 2014
+  ⏳ Est. remaining: 145m 18s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 42/115 [====================]
+
+🔍 Searching for company: Advent International
+  ✅ Found: Advent (ID: ql8jU6FOYS8KpRi4uWkCqH4_BnMQ0qm)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (1 exits found)
+    Progress: 20/100 (8 exits found)
+    Progress: 30/100 (17 exits found)
+    Progress: 40/100 (21 exits found)
+    Progress: 50/100 (29 exits found)
+    Progress: 60/100 (38 exits found)
+    Progress: 70/100 (44 exits found)
+    Progress: 80/100 (49 exits found)
+    Progress: 90/100 (55 exits found)
+  📊 Processed 62 exits from 100 persons for Advent
+
+  ⏱️  Time elapsed: 83m 50s
+  📈 Total exits so far: 1211
+  📊 Total persons enriched: 2064
+  🔢 Total API calls: 2116
+  ⏳ Est. remaining: 145m 43s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 43/115 [====================]
+
+🔍 Searching for company: CVC Capital Partners
+  ✅ Found: CVC (ID: ZYLByqTyf7WiLiL8ACkxWMA9Sv34GyV)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (7 exits found)
+    Progress: 20/100 (13 exits found)
+    Progress: 30/100 (17 exits found)
+    Progress: 40/100 (21 exits found)
+    Progress: 50/100 (26 exits found)
+    Progress: 60/100 (33 exits found)
+    Progress: 70/100 (39 exits found)
+    Progress: 80/100 (44 exits found)
+    Progress: 90/100 (49 exits found)
+  📊 Processed 58 exits from 100 persons for CVC
+
+  ⏱️  Time elapsed: 86m 54s
+  📈 Total exits so far: 1269
+  📊 Total persons enriched: 2164
+  🔢 Total API calls: 2218
+  ⏳ Est. remaining: 145m 30s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 44/115 [====================]
+
+🔍 Searching for company: EQT Partners
+  ✅ Found: EQT (ID: KyhwYV87k83mZHO1Xwq4TwD8bcVenf6)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 7 employees (Total: 7)
+  ✅ Total former employees: 7
+  👤 Enriching employees and finding exits...
+  📊 Processed 1 exits from 7 persons for EQT
+
+  ⏱️  Time elapsed: 87m 9s
+  📈 Total exits so far: 1270
+  📊 Total persons enriched: 2171
+  🔢 Total API calls: 2227
+  ⏳ Est. remaining: 140m 38s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 45/115 [====================]
+
+🔍 Searching for company: Hellman & Friedman
+  ✅ Found: Hellman & Friedman (ID: sKNVdXYeiQj3PirhVL8C8ayZnngeoMA)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (3 exits found)
+    Progress: 20/100 (9 exits found)
+    Progress: 30/100 (16 exits found)
+    Progress: 40/100 (23 exits found)
+    Progress: 50/100 (29 exits found)
+    Progress: 60/100 (36 exits found)
+    Progress: 70/100 (43 exits found)
+    Progress: 80/100 (50 exits found)
+    Progress: 90/100 (54 exits found)
+  📊 Processed 60 exits from 100 persons for Hellman & Friedman
+
+  ⏱️  Time elapsed: 90m 41s
+  📈 Total exits so far: 1330
+  📊 Total persons enriched: 2271
+  🔢 Total API calls: 2329
+  ⏳ Est. remaining: 141m 4s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 46/115 [====================]
+
+🔍 Searching for company: Silver Lake
+  ✅ Found: Silver Lake (ID: mpwT135n1RSkuj4hjogDYcry9NYA8bi)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (4 exits found)
+    Progress: 20/100 (12 exits found)
+    Progress: 30/100 (22 exits found)
+    Progress: 40/100 (27 exits found)
+    Progress: 50/100 (33 exits found)
+    Progress: 60/100 (39 exits found)
+    Progress: 70/100 (45 exits found)
+    Progress: 80/100 (53 exits found)
+    Progress: 90/100 (58 exits found)
+  📊 Processed 62 exits from 100 persons for Silver Lake
+
+  ⏱️  Time elapsed: 94m 17s
+  📈 Total exits so far: 1392
+  📊 Total persons enriched: 2371
+  🔢 Total API calls: 2431
+  ⏳ Est. remaining: 141m 26s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 47/115 [====================]
+
+🔍 Searching for company: Vista Equity Partners
+  ✅ Found: Vista Equity Partners (ID: bSKraZc36bsKvZMS4-eTWGOBh1zeB1R)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (3 exits found)
+    Progress: 20/100 (9 exits found)
+    Progress: 30/100 (14 exits found)
+    Progress: 40/100 (19 exits found)
+    Progress: 50/100 (27 exits found)
+    Progress: 60/100 (32 exits found)
+    Progress: 70/100 (39 exits found)
+    Progress: 80/100 (46 exits found)
+    Progress: 90/100 (48 exits found)
+  📊 Processed 58 exits from 100 persons for Vista Equity Partners
+
+  ⏱️  Time elapsed: 97m 58s
+  📈 Total exits so far: 1450
+  📊 Total persons enriched: 2471
+  🔢 Total API calls: 2533
+  ⏳ Est. remaining: 141m 44s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 48/115 [====================]
+
+🔍 Searching for company: Thoma Bravo
+  ✅ Found: Thoma Bravo Advantage (ID: hyifR3w8KqJRJyIGi9o_S5OnJfV3PmQ)
+  💾 Saved company to database
+  📋 Getting former employees...
+  ✅ Total former employees: 0
+  👤 Enriching employees and finding exits...
+  📊 Processed 0 exits from 0 persons for Thoma Bravo Advantage
+
+  ⏱️  Time elapsed: 98m 3s
+  📈 Total exits so far: 1450
+  📊 Total persons enriched: 2471
+  🔢 Total API calls: 2535
+  ⏳ Est. remaining: 136m 52s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 49/115 [====================]
+
+🔍 Searching for company: Providence Equity Partners
+  ✅ Found: Providence Equity Partners (ID: GKXDoZle3gb68T0wbswxN4tVUBJkmg0)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (8 exits found)
+    Progress: 20/100 (15 exits found)
+    Progress: 30/100 (23 exits found)
+    Progress: 40/100 (29 exits found)
+    Progress: 50/100 (37 exits found)
+    Progress: 60/100 (45 exits found)
+    Progress: 70/100 (49 exits found)
+    Progress: 80/100 (58 exits found)
+    Progress: 90/100 (68 exits found)
+  📊 Processed 77 exits from 100 persons for Providence Equity Partners
+
+  ⏱️  Time elapsed: 101m 27s
+  📈 Total exits so far: 1527
+  📊 Total persons enriched: 2571
+  🔢 Total API calls: 2637
+  ⏳ Est. remaining: 136m 39s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 50/115 [====================]
+
+⏭️  Skipping TA Associates - already have 288 exits in database
+
+  ⏱️  Time elapsed: 101m 29s
+  📈 Total exits so far: 1527
+  📊 Total persons enriched: 2571
+  🔢 Total API calls: 2637
+  ⏳ Est. remaining: 131m 56s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 51/115 [====================]
+
+🔍 Searching for company: Summit Partners
+  ✅ Found: Summit Partners (ID: VU-mwom32de1BxSOGex7i5yGMkL4Roq)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (4 exits found)
+    Progress: 20/100 (12 exits found)
+    Progress: 30/100 (19 exits found)
+    Progress: 40/100 (26 exits found)
+    Progress: 50/100 (32 exits found)
+    Progress: 60/100 (40 exits found)
+    Progress: 70/100 (49 exits found)
+    Progress: 80/100 (55 exits found)
+    Progress: 90/100 (65 exits found)
+  📊 Processed 71 exits from 100 persons for Summit Partners
+
+  ⏱️  Time elapsed: 104m 52s
+  📈 Total exits so far: 1598
+  📊 Total persons enriched: 2671
+  🔢 Total API calls: 2739
+  ⏳ Est. remaining: 131m 36s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 52/115 [====================]
+
+🔍 Searching for company: Francisco Partners
+  ✅ Found: Francisco Partners (ID: J0MQ3SZ_5qhVbCDQEVH2Xb_cAnuQe7o)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (1 exits found)
+    Progress: 20/100 (6 exits found)
+    Progress: 30/100 (10 exits found)
+    Progress: 40/100 (14 exits found)
+    Progress: 50/100 (19 exits found)
+    Progress: 60/100 (24 exits found)
+    Progress: 70/100 (28 exits found)
+    Progress: 80/100 (33 exits found)
+    Progress: 90/100 (40 exits found)
+  📊 Processed 46 exits from 100 persons for Francisco Partners
+
+  ⏱️  Time elapsed: 108m 37s
+  📈 Total exits so far: 1644
+  📊 Total persons enriched: 2771
+  🔢 Total API calls: 2841
+  ⏳ Est. remaining: 131m 36s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 53/115 [====================]
+
+🔍 Searching for company: Insight Partners
+  ✅ Found: Insight Partners (ID: DozidiGKf6vvNJU5YAH7oY1_L5xPdDo)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (3 exits found)
+    Progress: 20/100 (10 exits found)
+    Progress: 30/100 (14 exits found)
+    Progress: 40/100 (20 exits found)
+    Progress: 50/100 (21 exits found)
+    Progress: 60/100 (25 exits found)
+    Progress: 70/100 (31 exits found)
+    Progress: 80/100 (34 exits found)
+    Progress: 90/100 (39 exits found)
+  📊 Processed 47 exits from 100 persons for Insight Partners
+
+  ⏱️  Time elapsed: 112m 1s
+  📈 Total exits so far: 1691
+  📊 Total persons enriched: 2871
+  🔢 Total API calls: 2943
+  ⏳ Est. remaining: 131m 2s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 54/115 [====================]
+
+🔍 Searching for company: JMI Equity
+  ✅ Found: JMI Equity (ID: JNVoy-2nnD0W0Ioaf3WijMir44gosWA)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (5 exits found)
+    Progress: 20/100 (14 exits found)
+    Progress: 30/100 (20 exits found)
+    Progress: 40/100 (29 exits found)
+    Progress: 50/100 (36 exits found)
+    Progress: 60/100 (45 exits found)
+    Progress: 70/100 (53 exits found)
+    Progress: 80/100 (59 exits found)
+    Progress: 90/100 (67 exits found)
+  📊 Processed 73 exits from 100 persons for JMI Equity
+
+  ⏱️  Time elapsed: 115m 20s
+  📈 Total exits so far: 1764
+  📊 Total persons enriched: 2971
+  🔢 Total API calls: 3045
+  ⏳ Est. remaining: 130m 17s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 55/115 [====================]
+
+🔍 Searching for company: Bridgewater Associates
+  ✅ Found: Bridgewater Associates (ID: 5kN7ofEyu__59MqAoivl1h4hSZmeZjq)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (8 exits found)
+    Progress: 20/100 (14 exits found)
+    Progress: 30/100 (21 exits found)
+    Progress: 40/100 (30 exits found)
+    Progress: 50/100 (38 exits found)
+    Progress: 60/100 (47 exits found)
+    Progress: 70/100 (56 exits found)
+    Progress: 80/100 (65 exits found)
+    Progress: 90/100 (73 exits found)
+  📊 Processed 80 exits from 100 persons for Bridgewater Associates
+
+  ⏱️  Time elapsed: 119m 2s
+  📈 Total exits so far: 1844
+  📊 Total persons enriched: 3071
+  🔢 Total API calls: 3147
+  ⏳ Est. remaining: 129m 51s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 56/115 [====================]
+
+🔍 Searching for company: Citadel
+  ✅ Found: Citadel (ID: mfT-SaUHeOSyWPkguuilwPfJhqpUjKQ)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (5 exits found)
+    Progress: 20/100 (10 exits found)
+    Progress: 30/100 (16 exits found)
+    Progress: 40/100 (22 exits found)
+    Progress: 50/100 (29 exits found)
+    Progress: 60/100 (34 exits found)
+    Progress: 70/100 (40 exits found)
+    Progress: 80/100 (47 exits found)
+    Progress: 90/100 (55 exits found)
+  📊 Processed 62 exits from 100 persons for Citadel
+
+  ⏱️  Time elapsed: 122m 52s
+  📈 Total exits so far: 1906
+  📊 Total persons enriched: 3171
+  🔢 Total API calls: 3249
+  ⏳ Est. remaining: 129m 27s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 57/115 [====================]
+
+🔍 Searching for company: Two Sigma
+  ✅ Found: Two Sigma (ID: bSFPs4Nw3ZxZ5fgGo1bKenMGH04hQS5)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (5 exits found)
+    Progress: 20/100 (12 exits found)
+    Progress: 30/100 (19 exits found)
+    Progress: 40/100 (25 exits found)
+    Progress: 50/100 (29 exits found)
+    Progress: 60/100 (35 exits found)
+    Progress: 70/100 (41 exits found)
+    Progress: 80/100 (47 exits found)
+    Progress: 90/100 (55 exits found)
+  📊 Processed 60 exits from 100 persons for Two Sigma
+
+  ⏱️  Time elapsed: 126m 19s
+  📈 Total exits so far: 1966
+  📊 Total persons enriched: 3271
+  🔢 Total API calls: 3351
+  ⏳ Est. remaining: 128m 32s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 58/115 [====================]
+
+⏭️  Skipping DE Shaw - already have 297 exits in database
+
+  ⏱️  Time elapsed: 126m 21s
+  📈 Total exits so far: 1966
+  📊 Total persons enriched: 3271
+  🔢 Total API calls: 3351
+  ⏳ Est. remaining: 124m 10s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 59/115 [====================]
+
+🔍 Searching for company: Point72
+  ✅ Found: Point72 (ID: 0KF6mysotIhVBf-MLPdIMR8sHdjEqLh)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (3 exits found)
+    Progress: 20/100 (10 exits found)
+    Progress: 30/100 (14 exits found)
+    Progress: 40/100 (19 exits found)
+    Progress: 50/100 (24 exits found)
+    Progress: 60/100 (32 exits found)
+    Progress: 70/100 (38 exits found)
+    Progress: 80/100 (44 exits found)
+    Progress: 90/100 (50 exits found)
+  📊 Processed 58 exits from 100 persons for Point72
+
+  ⏱️  Time elapsed: 130m 0s
+  📈 Total exits so far: 2024
+  📊 Total persons enriched: 3371
+  🔢 Total API calls: 3453
+  ⏳ Est. remaining: 123m 23s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 60/115 [====================]
+
+🔍 Searching for company: Millennium Management
+  ✅ Found: Millennium (ID: _avMdu1P4kaOuRIPW0GNxq64eTbtx8F)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (4 exits found)
+    Progress: 20/100 (10 exits found)
+    Progress: 30/100 (14 exits found)
+    Progress: 40/100 (21 exits found)
+    Progress: 50/100 (28 exits found)
+    Progress: 60/100 (35 exits found)
+    Progress: 70/100 (39 exits found)
+    Progress: 80/100 (44 exits found)
+    Progress: 90/100 (48 exits found)
+  📊 Processed 53 exits from 100 persons for Millennium
+
+  ⏱️  Time elapsed: 133m 35s
+  📈 Total exits so far: 2077
+  📊 Total persons enriched: 3471
+  🔢 Total API calls: 3555
+  ⏳ Est. remaining: 122m 27s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 61/115 [====================]
+
+🔍 Searching for company: Elliott Management
+  ✅ Found: Elliott Investment Management L.P. (ID: hRnLQ-kE7p3ayCkmI70PR4l58UEVns0)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (9 exits found)
+    Progress: 20/100 (18 exits found)
+    Progress: 30/100 (27 exits found)
+    Progress: 40/100 (36 exits found)
+    Progress: 50/100 (43 exits found)
+    Progress: 60/100 (51 exits found)
+    Progress: 70/100 (60 exits found)
+    Progress: 80/100 (69 exits found)
+    Progress: 90/100 (79 exits found)
+  📊 Processed 87 exits from 100 persons for Elliott Investment Management L.P.
+
+  ⏱️  Time elapsed: 136m 54s
+  📈 Total exits so far: 2164
+  📊 Total persons enriched: 3571
+  🔢 Total API calls: 3657
+  ⏳ Est. remaining: 121m 11s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 62/115 [====================]
+
+🔍 Searching for company: Third Point
+  ✅ Found: Third Point Offshore Investors (ID: wE9VCly3RxETotWsI_gWGxb1hhGnfFj)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 1 employees (Total: 1)
+  ✅ Total former employees: 1
+  👤 Enriching employees and finding exits...
+  📊 Processed 0 exits from 1 persons for Third Point Offshore Investors
+
+  ⏱️  Time elapsed: 137m 2s
+  📈 Total exits so far: 2164
+  📊 Total persons enriched: 3572
+  🔢 Total API calls: 3660
+  ⏳ Est. remaining: 117m 8s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 63/115 [====================]
+
+🔍 Searching for company: Baupost Group
+  ✅ Found: The Baupost Group (ID: Jt9Sks45SvwyJsJxjr1MAbhIPSWrwpO)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (7 exits found)
+    Progress: 20/100 (13 exits found)
+    Progress: 30/100 (18 exits found)
+    Progress: 40/100 (24 exits found)
+    Progress: 50/100 (31 exits found)
+    Progress: 60/100 (36 exits found)
+    Progress: 70/100 (41 exits found)
+    Progress: 80/100 (44 exits found)
+    Progress: 90/100 (51 exits found)
+  📊 Processed 57 exits from 100 persons for The Baupost Group
+
+  ⏱️  Time elapsed: 140m 10s
+  📈 Total exits so far: 2221
+  📊 Total persons enriched: 3672
+  🔢 Total API calls: 3762
+  ⏳ Est. remaining: 115m 42s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 64/115 [====================]
+
+🔍 Searching for company: Tiger Global
+  ✅ Found: Tiger Global (ID: sf-KbjfMlSdXfHK6Ki_-xNAV-Sv1FCf)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (4 exits found)
+    Progress: 20/100 (10 exits found)
+    Progress: 30/100 (14 exits found)
+    Progress: 40/100 (15 exits found)
+    Progress: 50/100 (21 exits found)
+    Progress: 60/100 (24 exits found)
+    Progress: 70/100 (26 exits found)
+    Progress: 80/100 (32 exits found)
+    Progress: 90/100 (37 exits found)
+  📊 Processed 42 exits from 100 persons for Tiger Global
+
+  ⏱️  Time elapsed: 143m 18s
+  📈 Total exits so far: 2263
+  📊 Total persons enriched: 3772
+  🔢 Total API calls: 3864
+  ⏳ Est. remaining: 114m 12s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 65/115 [====================]
+
+🔍 Searching for company: Sequoia Capital
+  ✅ Found: Sequoia Capital (ID: oHtSZTBpwGERMDHQhlWnJu-3Y9ao4h2)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (2 exits found)
+    Progress: 20/100 (7 exits found)
+    Progress: 30/100 (13 exits found)
+    Progress: 40/100 (21 exits found)
+    Progress: 50/100 (28 exits found)
+    Progress: 60/100 (33 exits found)
+    Progress: 70/100 (38 exits found)
+    Progress: 80/100 (44 exits found)
+    Progress: 90/100 (51 exits found)
+  📊 Processed 59 exits from 100 persons for Sequoia Capital
+
+  ⏱️  Time elapsed: 146m 32s
+  📈 Total exits so far: 2322
+  📊 Total persons enriched: 3872
+  🔢 Total API calls: 3966
+  ⏳ Est. remaining: 112m 43s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 66/115 [====================]
+
+🔍 Searching for company: Andreessen Horowitz
+  ✅ Found: Andreessen Horowitz (ID: qIBEhSEC0AEoL6zxjMKHQvLU8XFm-pl)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (4 exits found)
+    Progress: 20/100 (7 exits found)
+    Progress: 30/100 (12 exits found)
+    Progress: 40/100 (18 exits found)
+    Progress: 50/100 (19 exits found)
+    Progress: 60/100 (25 exits found)
+    Progress: 70/100 (30 exits found)
+    Progress: 80/100 (33 exits found)
+    Progress: 90/100 (37 exits found)
+  📊 Processed 40 exits from 100 persons for Andreessen Horowitz
+
+  ⏱️  Time elapsed: 150m 15s
+  📈 Total exits so far: 2362
+  📊 Total persons enriched: 3972
+  🔢 Total API calls: 4068
+  ⏳ Est. remaining: 111m 33s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 67/115 [====================]
+
+🔍 Searching for company: Accel
+  ✅ Found: Accel (ID: jYd3Sfn-3GnSn5eq1NPNexwlxZCflef)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (3 exits found)
+    Progress: 20/100 (7 exits found)
+    Progress: 30/100 (11 exits found)
+    Progress: 40/100 (14 exits found)
+    Progress: 50/100 (17 exits found)
+    Progress: 60/100 (19 exits found)
+    Progress: 70/100 (24 exits found)
+    Progress: 80/100 (26 exits found)
+    Progress: 90/100 (31 exits found)
+  📊 Processed 33 exits from 100 persons for Accel
+
+  ⏱️  Time elapsed: 153m 8s
+  📈 Total exits so far: 2395
+  📊 Total persons enriched: 4072
+  🔢 Total API calls: 4170
+  ⏳ Est. remaining: 109m 42s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 68/115 [====================]
+
+🔍 Searching for company: Benchmark
+  ✅ Found: Benchmark (ID: NL7NOHFmQ6Nk-wdA8yQtYTBFRYLZDA0)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (5 exits found)
+    Progress: 20/100 (14 exits found)
+    Progress: 30/100 (21 exits found)
+    Progress: 40/100 (28 exits found)
+    Progress: 50/100 (32 exits found)
+    Progress: 60/100 (36 exits found)
+    Progress: 70/100 (43 exits found)
+    Progress: 80/100 (51 exits found)
+    Progress: 90/100 (59 exits found)
+  📊 Processed 69 exits from 100 persons for Benchmark
+
+  ⏱️  Time elapsed: 156m 54s
+  📈 Total exits so far: 2464
+  📊 Total persons enriched: 4172
+  🔢 Total API calls: 4272
+  ⏳ Est. remaining: 108m 27s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 69/115 [====================]
+
+🔍 Searching for company: Greylock Partners
+  ✅ Found: Greylock Partners (ID: Fmj8WKlr1UYqvWq1CdDQOD-Rvi5DtQP)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (4 exits found)
+    Progress: 20/100 (12 exits found)
+    Progress: 30/100 (18 exits found)
+    Progress: 40/100 (27 exits found)
+    Progress: 50/100 (35 exits found)
+    Progress: 60/100 (43 exits found)
+    Progress: 70/100 (50 exits found)
+    Progress: 80/100 (58 exits found)
+    Progress: 90/100 (66 exits found)
+  📊 Processed 72 exits from 100 persons for Greylock Partners
+
+  ⏱️  Time elapsed: 161m 7s
+  📈 Total exits so far: 2536
+  📊 Total persons enriched: 4272
+  🔢 Total API calls: 4374
+  ⏳ Est. remaining: 107m 25s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 70/115 [====================]
+
+🔍 Searching for company: Kleiner Perkins
+  ✅ Found: Kleiner Perkins (ID: 0j3hRqHG-6Ai6_6e8NM8s4MJrfwHcD3)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (1 exits found)
+    Progress: 20/100 (8 exits found)
+    Progress: 30/100 (16 exits found)
+    Progress: 40/100 (23 exits found)
+    Progress: 50/100 (31 exits found)
+    Progress: 60/100 (41 exits found)
+    Progress: 70/100 (48 exits found)
+    Progress: 80/100 (51 exits found)
+    Progress: 90/100 (57 exits found)
+  📊 Processed 64 exits from 100 persons for Kleiner Perkins
+
+  ⏱️  Time elapsed: 165m 14s
+  📈 Total exits so far: 2600
+  📊 Total persons enriched: 4372
+  🔢 Total API calls: 4476
+  ⏳ Est. remaining: 106m 13s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 71/115 [====================]
+
+🔍 Searching for company: Lightspeed Venture Partners
+  ✅ Found: Lightspeed (ID: KR0Gb2j3Gt20IQR8bg3Mo8Otnjj1sgr)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (6 exits found)
+    Progress: 20/100 (11 exits found)
+    Progress: 30/100 (17 exits found)
+    Progress: 40/100 (23 exits found)
+    Progress: 50/100 (30 exits found)
+    Progress: 60/100 (36 exits found)
+    Progress: 70/100 (42 exits found)
+    Progress: 80/100 (49 exits found)
+    Progress: 90/100 (54 exits found)
+  📊 Processed 61 exits from 100 persons for Lightspeed
+
+  ⏱️  Time elapsed: 169m 21s
+  📈 Total exits so far: 2661
+  📊 Total persons enriched: 4472
+  🔢 Total API calls: 4578
+  ⏳ Est. remaining: 104m 57s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 72/115 [====================]
+
+🔍 Searching for company: NEA
+  ✅ Found: Nearmap (ID: HiqffyejdxmG8U112vu68scqPV_5qdZ)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (7 exits found)
+    Progress: 20/100 (15 exits found)
+    Progress: 30/100 (19 exits found)
+    Progress: 40/100 (23 exits found)
+    Progress: 50/100 (31 exits found)
+    Progress: 60/100 (38 exits found)
+    Progress: 70/100 (42 exits found)
+    Progress: 80/100 (51 exits found)
+    Progress: 90/100 (56 exits found)
+  📊 Processed 62 exits from 100 persons for Nearmap
+
+  ⏱️  Time elapsed: 173m 42s
+  📈 Total exits so far: 2723
+  📊 Total persons enriched: 4572
+  🔢 Total API calls: 4680
+  ⏳ Est. remaining: 103m 44s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 73/115 [====================]
+
+🔍 Searching for company: Index Ventures
+  ✅ Found: Index Ventures (ID: ThVuomSBJESAZ_H_7-M2MYExBFApDfW)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (7 exits found)
+    Progress: 20/100 (12 exits found)
+    Progress: 30/100 (20 exits found)
+    Progress: 40/100 (25 exits found)
+    Progress: 50/100 (31 exits found)
+    Progress: 60/100 (36 exits found)
+    Progress: 70/100 (43 exits found)
+    Progress: 80/100 (50 exits found)
+    Progress: 90/100 (56 exits found)
+  📊 Processed 63 exits from 100 persons for Index Ventures
+
+  ⏱️  Time elapsed: 177m 24s
+  📈 Total exits so far: 2786
+  📊 Total persons enriched: 4672
+  🔢 Total API calls: 4782
+  ⏳ Est. remaining: 102m 4s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 74/115 [====================]
+
+⏭️  Skipping General Catalyst - already have 58 exits in database
+
+  ⏱️  Time elapsed: 177m 27s
+  📈 Total exits so far: 2786
+  📊 Total persons enriched: 4672
+  🔢 Total API calls: 4782
+  ⏳ Est. remaining: 98m 19s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 75/115 [====================]
+
+🔍 Searching for company: Bessemer Venture Partners
+  ✅ Found: Bessemer Venture Partners (ID: njJZ4ICvEsQ8r-LsSUiwXiac9irQEg_)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (2 exits found)
+    Progress: 20/100 (9 exits found)
+    Progress: 30/100 (18 exits found)
+    Progress: 40/100 (24 exits found)
+    Progress: 50/100 (30 exits found)
+    Progress: 60/100 (37 exits found)
+    Progress: 70/100 (45 exits found)
+    Progress: 80/100 (50 exits found)
+    Progress: 90/100 (57 exits found)
+  📊 Processed 64 exits from 100 persons for Bessemer Venture Partners
+
+  ⏱️  Time elapsed: 181m 9s
+  📈 Total exits so far: 2850
+  📊 Total persons enriched: 4772
+  🔢 Total API calls: 4884
+  ⏳ Est. remaining: 96m 37s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 76/115 [====================]
+
+🔍 Searching for company: GGV Capital
+  ✅ Found: GGV Capital (ID: e4O2Mhdd4U6SJsetysuOS3rnc0z8sdw)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (5 exits found)
+    Progress: 20/100 (14 exits found)
+    Progress: 30/100 (22 exits found)
+    Progress: 40/100 (30 exits found)
+    Progress: 50/100 (35 exits found)
+    Progress: 60/100 (42 exits found)
+    Progress: 70/100 (48 exits found)
+    Progress: 80/100 (52 exits found)
+    Progress: 90/100 (58 exits found)
+  📊 Processed 64 exits from 100 persons for GGV Capital
+
+  ⏱️  Time elapsed: 184m 52s
+  📈 Total exits so far: 2914
+  📊 Total persons enriched: 4872
+  🔢 Total API calls: 4986
+  ⏳ Est. remaining: 94m 52s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 77/115 [====================]
+
+🔍 Searching for company: Founders Fund
+  ✅ Found: Fairfax County Government (ID: InP82CImADaEEca6G4hHjr7RwHomzhX)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (6 exits found)
+    Progress: 20/100 (11 exits found)
+    Progress: 30/100 (17 exits found)
+    Progress: 40/100 (21 exits found)
+    Progress: 50/100 (25 exits found)
+    Progress: 60/100 (32 exits found)
+    Progress: 70/100 (36 exits found)
+    Progress: 80/100 (41 exits found)
+    Progress: 90/100 (46 exits found)
+  📊 Processed 53 exits from 100 persons for Fairfax County Government
+
+  ⏱️  Time elapsed: 188m 35s
+  📈 Total exits so far: 2967
+  📊 Total persons enriched: 4972
+  🔢 Total API calls: 5088
+  ⏳ Est. remaining: 93m 4s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 78/115 [====================]
+
+🔍 Searching for company: First Round Capital
+  ✅ Found: First Round Capital (ID: wiCDgPE__oikuDzKouCRSAoXaPQbR0x)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (6 exits found)
+    Progress: 20/100 (14 exits found)
+    Progress: 30/100 (20 exits found)
+    Progress: 40/100 (27 exits found)
+    Progress: 50/100 (33 exits found)
+    Progress: 60/100 (40 exits found)
+    Progress: 70/100 (46 exits found)
+    Progress: 80/100 (51 exits found)
+    Progress: 90/100 (57 exits found)
+  📊 Processed 64 exits from 100 persons for First Round Capital
+
+  ⏱️  Time elapsed: 192m 57s
+  📈 Total exits so far: 3031
+  📊 Total persons enriched: 5072
+  🔢 Total API calls: 5190
+  ⏳ Est. remaining: 91m 32s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 79/115 [====================]
+
+🔍 Searching for company: Union Square Ventures
+  ✅ Found: Union Square Ventures (ID: PuvFLnzfKvOgMsts6rBCypfq_28RuiO)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 100 employees (Total: 100)
+  ✅ Total former employees: 100
+  👤 Enriching employees and finding exits...
+    Progress: 10/100 (3 exits found)
+    Progress: 20/100 (10 exits found)
+    Progress: 30/100 (17 exits found)
+    Progress: 40/100 (24 exits found)
+    Progress: 50/100 (28 exits found)
+    Progress: 60/100 (32 exits found)
+TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at async fetchWithRetry (/Users/achalshah/Pathway/pathsearch/scripts/seedDatabase.ts:188:22)
+    at async enrichPerson (/Users/achalshah/Pathway/pathsearch/scripts/seedDatabase.ts:267:20)
+    at async processCompany (/Users/achalshah/Pathway/pathsearch/scripts/seedDatabase.ts:465:22)
+    at async main (/Users/achalshah/Pathway/pathsearch/scripts/seedDatabase.ts:571:20) {
+  [cause]: SocketError: other side closed
+      at TLSSocket.<anonymous> (node:internal/deps/undici/undici:6294:28)
+      at TLSSocket.emit (node:events:530:35)
+      at endReadableNT (node:internal/streams/readable:1698:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+    code: 'UND_ERR_SOCKET',
+    socket: {
+      localAddress: '192.168.86.34',
+      localPort: 50560,
+      remoteAddress: '142.250.189.243',
+      remotePort: 443,
+      remoteFamily: 'IPv4',
+      timeout: undefined,
+      bytesWritten: 23063,
+      bytesRead: 235953
+    }
+  }
+}
+[dotenv@17.2.3] injecting env (4) from .env.local -- tip: ✅ audit secrets and track compliance: https://dotenvx.com/ops
+════════════════════════════════════════════════════════════
+🚀 COMPREHENSIVE DATABASE SEED - STARTING
+════════════════════════════════════════════════════════════
+
+Companies to process: 115
+This will take a while. Sit back and relax...
+
+════════════════════════════════════════════════════════════
+
+[====================] COMPANY 1/115 [====================]
+
+⏭️  Skipping Bain & Company - already have 119 exits in database
+
+  ⏱️  Time elapsed: 0m 0s
+  📈 Total exits so far: 0
+  📊 Total persons enriched: 0
+  🔢 Total API calls: 0
+  ⏳ Est. remaining: 0m 0s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 2/115 [====================]
+
+⏭️  Skipping McKinsey & Company - already have 50 exits in database
+
+  ⏱️  Time elapsed: 0m 3s
+  📈 Total exits so far: 0
+  📊 Total persons enriched: 0
+  🔢 Total API calls: 0
+  ⏳ Est. remaining: 2m 50s
+  ⏳ Waiting 2s before next company...
+
+[====================] COMPANY 3/115 [====================]
+
+🔍 Searching for company: BCG
+  ✅ Found: Bamboo Capital (ID: fb27DSGqZUYmnLJ2nqbtpHPxZwOU76b)
+  💾 Saved company to database
+  📋 Getting former employees...
+    Page 1: Found 3 employees (Total: 3)
+  ✅ Total former employees: 3
+  👤 Enriching employees and finding exits...

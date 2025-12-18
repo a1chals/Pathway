@@ -1,0 +1,85 @@
+[dotenv@17.2.3] injecting env (4) from .env.local -- tip: 🗂️ backup and recover secrets: https://dotenvx.com/ops
+🚀 Starting database seed...
+
+Companies to process: 44
+══════════════════════════════════════════════════
+
+🔍 Searching for company: Bain & Company
+  ✅ Found: Bain & Company (ID: UsQ31Uk_ozV-595EVZog5XcCE6Tf4qQ)
+  ❌ Failed to save company: new row violates row-level security policy (USING expression) for table "companies"
+  📋 Getting former employees for Bain & Company...
+  ✅ Found 50 former employees
+  👤 Enriching Stefan Jung... ❌ new row violates row-level security policy (USING expression) for table "exits"
+  👤 Enriching Rani Yadav... ❌ new row violates row-level security policy (USING expression) for table "exits"
+  👤 Enriching Linda Tufts... ❌ new row violates row-level security policy (USING expression) for table "exits"
+  👤 Enriching Alessandro Biral... ❌ new row violates row-level security policy (USING expression) for table "exits"
+  👤 Enriching Rolf Mathies... ❌ new row violates row-level security policy (USING expression) for table "exits"
+  👤 Enriching Zvi Limon... ⚠️ No exit found
+  👤 Enriching Robert Maginn... ⚠️ No exit found
+  👤 Enriching Mike Armsby... ⚠️ No exit found
+  👤 Enriching Murthy Nukala... ❌ new row violates row-level security policy (USING expression) for table "exits"
+  👤 Enriching Daniel McCleary... ⚠️ No exit found
+  👤 Enriching Nagi Hamiyeh... ⚠️ No exit found
+  👤 Enriching Margaret Terry... ⚠️ No exit found
+  👤 Enriching Ling Chai Maginn... ⚠️ No exit found
+  👤 Enriching Mark Hartmann... ❌ new row violates row-level security policy (USING expression) for table "exits"
+  👤 Enriching Uwe Gleitz... ❌ new row violates row-level security policy (USING expression) for table "exits"
+  👤 Enriching James Simmons... ❌ new row violates row-level security policy (USING expression) for table "exits"
+  👤 Enriching Jonathan Quick... ❌ new row violates row-level security policy (USING expression) for table "exits"
+  👤 Enriching Anne Glover... ❌ new row violates row-level security policy (USING expression) for table "exits"
+  👤 Enriching Almaz Ayupov... ⚠️ No exit found
+  👤 Enriching Anastasia Liberman... ⚠️ No exit found
+  📊 Processed 0 exits for Bain & Company
+  ⏳ Waiting 3s before next company...
+
+🔍 Searching for company: McKinsey & Company
+  ✅ Found: McKinsey & Company (ID: nAcefOXGjzldXaYW-FIzZT__cIvy7Ak)
+  ❌ Failed to save company: new row violates row-level security policy (USING expression) for table "companies"
+  📋 Getting former employees for McKinsey & Company...
+  ✅ Found 50 former employees
+  👤 Enriching William J. Pade... ⚠️ No exit found
+  👤 Enriching Dennis Powers... ⚠️ No exit found
+  👤 Enriching Kasey Byrne... ❌ new row violates row-level security policy (USING expression) for table "exits"
+  👤 Enriching Scott Roza... ⚠️ No exit found
+  👤 Enriching Shinya Akamine... ⚠️ No exit found
+  👤 Enriching Rob Chandra... ❌ new row violates row-level security policy (USING expression) for table "exits"
+  👤 Enriching Tanya Khakbaz... ❌ new row violates row-level security policy (USING expression) for table "exits"
+  👤 Enriching Neha Mittal... ❌ new row violates row-level security policy (USING expression) for table "exits"
+  👤 Enriching Timo Hannay... ⚠️ No exit found
+  👤 Enriching Jan-Gisbert Schultze... ⚠️ No exit found
+  👤 Enriching Matt Clifford... ⚠️ No exit found
+  👤 Enriching Maciej Jarzab... ⚠️ No exit found
+  👤 Enriching Mood Rowghani... ⚠️ No exit found
+  👤 Enriching Sophie Dingreville... ❌ new row violates row-level security policy (USING expression) for table "exits"
+  👤 Enriching Dubai Integrated Economic Zones Authority DIEZ... ❌ new row violates row-level security policy (USING expression) for table "exits"
+  👤 Enriching Woody Mo... ⚠️ No exit found
+  👤 Enriching Wulf Schimmelmann... ⚠️ No exit found
+  👤 Enriching Christopher Bailey... ⚠️ No exit found
+  👤 Enriching Christopher Todd... ⚠️ No exit found
+  👤 Enriching Vish Narain... ⚠️ No exit found
+  📊 Processed 0 exits for McKinsey & Company
+  ⏳ Waiting 3s before next company...
+
+🔍 Searching for company: BCG
+  ✅ Found: Bamboo Capital (ID: fb27DSGqZUYmnLJ2nqbtpHPxZwOU76b)
+  💾 Saved company to database
+  📋 Getting former employees for Bamboo Capital...
+  ✅ Found 3 former employees
+  👤 Enriching Chau H. Dinh... ⚠️ No exit found
+  👤 Enriching MGM Hội An Dự án... ⚠️ No exit found
+  👤 Enriching Huy Lê... ⚠️ No exit found
+  📊 Processed 0 exits for Bamboo Capital
+  ⏳ Waiting 3s before next company...
+
+🔍 Searching for company: Goldman Sachs
+  ✅ Found: Goldman Sachs (ID: 9m4wdPHQgHnBB-vmzgMOMs3N-qEZUBn)
+  💾 Saved company to database
+  📋 Getting former employees for Goldman Sachs...
+  ❌ Failed to get employees
+  📊 Processed 0 exits for Goldman Sachs
+  ⏳ Waiting 3s before next company...
+
+🔍 Searching for company: Morgan Stanley
+  ✅ Found: Morgan Stanley (ID: z8AL3IlqAXsivibcOiOri8PbrUOmTPL)
+  💾 Saved company to database
+  📋 Getting former employees for Morgan Stanley...

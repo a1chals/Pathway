@@ -51,28 +51,26 @@ export default function HomePage() {
   };
 
   return (
-    <div className="h-screen bg-white checkered-bg flex flex-col overflow-hidden">
+    <div className="h-screen bg-white checkered-bg flex flex-col overflow-hidden pt-12">
       {/* Header */}
-      <header className="flex-shrink-0 border-b-2 border-gray-700 bg-white">
-        <div className="px-6 py-4">
-          <div className="flex items-center gap-3">
-            <div className="p-2 rounded-sm border-2 border-gray-700 bg-gray-700">
-              <MessageSquare className="h-5 w-5 text-white" />
-            </div>
-            <div>
-              <h1 className="text-xl font-bold text-gray-800 uppercase tracking-wide">
-                PathSearch
-              </h1>
-              <p className="text-xs text-gray-600 uppercase tracking-wide">
-                Discover where careers lead
-              </p>
-            </div>
+      <header className="flex-shrink-0 bg-white px-4 py-3">
+        <div className="flex items-center gap-3">
+          <div className="p-2 rounded-sm border-2 border-gray-700 bg-gray-700">
+            <MessageSquare className="h-5 w-5 text-white" />
+          </div>
+          <div>
+            <h1 className="text-lg font-bold text-gray-800 uppercase tracking-wide">
+              PathSearch
+            </h1>
+            <p className="text-xs text-gray-500">
+              Discover where careers lead
+            </p>
           </div>
         </div>
       </header>
 
       {/* Cards Grid - fills remaining space */}
-      <div className="flex-1 grid grid-cols-2 grid-rows-[1fr_1fr_auto] gap-3 p-3 pb-20 min-h-0">
+      <div className="flex-1 grid grid-cols-2 grid-rows-[1fr_1fr_auto] gap-3 px-3 pb-20 min-h-0">
         {FEATURED_QUERIES.map((item, index) => (
           <div
             key={index}
