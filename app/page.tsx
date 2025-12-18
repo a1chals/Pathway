@@ -72,18 +72,18 @@ export default function HomePage() {
       </header>
 
       {/* Cards Grid - fills remaining space */}
-      <div className="flex-1 grid grid-cols-2 grid-rows-[1fr_1fr_auto] gap-4 p-4 min-h-0">
+      <div className="flex-1 grid grid-cols-2 grid-rows-[1fr_1fr_auto] gap-3 p-3 pb-20 min-h-0">
         {FEATURED_QUERIES.map((item, index) => (
           <div
             key={index}
             onClick={() => handleCardClick(item.query)}
-            className="border-2 border-gray-700 bg-white rounded-sm p-4 cursor-pointer hover:bg-gray-50 transition-colors flex flex-col justify-between retro-outset hover:retro-pressed"
+            className="border-2 border-gray-700 bg-white rounded-sm p-3 cursor-pointer hover:bg-gray-50 transition-colors flex flex-col justify-between retro-outset hover:retro-pressed"
           >
-            <div className="w-fit rounded-sm border-2 border-gray-300 bg-gray-50 p-2">
+            <div className="w-fit rounded-sm border-2 border-gray-300 bg-gray-50 p-1.5">
               {item.icon}
             </div>
             <div className="mt-auto">
-              <h3 className="text-base font-bold text-gray-800 mb-1 uppercase tracking-wide">
+              <h3 className="text-sm font-bold text-gray-800 mb-0.5 uppercase tracking-wide">
                 {item.title}
               </h3>
               <p className="text-xs text-gray-600 line-clamp-2">
@@ -96,13 +96,13 @@ export default function HomePage() {
         {/* Ask Your Own - Bottom Card */}
         <div 
           onClick={() => handleCardClick()}
-          className="col-span-2 border-2 border-gray-700 bg-white rounded-sm p-4 cursor-pointer hover:bg-gray-50 transition-colors flex items-center gap-4 retro-outset hover:retro-pressed"
+          className="col-span-2 border-2 border-gray-700 bg-white rounded-sm p-3 cursor-pointer hover:bg-gray-50 transition-colors flex items-center gap-3 retro-outset hover:retro-pressed"
         >
-          <div className="w-fit rounded-sm border-2 border-gray-300 bg-gray-50 p-2 flex-shrink-0">
+          <div className="w-fit rounded-sm border-2 border-gray-300 bg-gray-50 p-1.5 flex-shrink-0">
             <Search className="h-4 w-4 text-gray-600" />
           </div>
           <div className="flex-1 min-w-0">
-            <h3 className="text-base font-bold text-gray-800 uppercase tracking-wide flex items-center gap-2">
+            <h3 className="text-sm font-bold text-gray-800 uppercase tracking-wide flex items-center gap-2">
               Ask your own question
               <ArrowRight className="h-4 w-4 text-gray-400" />
             </h3>
