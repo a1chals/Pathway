@@ -54,7 +54,7 @@ npm start
 ## 📁 Project Structure
 
 ```
-/pathsearch
+/pathway
   ├── /app
   │     ├── page.tsx              → main dashboard
   │     ├── layout.tsx            → site layout
@@ -127,7 +127,7 @@ The mock data in `data/bain_exits.json` follows this structure:
    - Import your GitHub repository
    - Vercel will automatically detect Next.js and deploy
 
-Your site will be live at `https://pathsearch.vercel.app` (or your custom domain).
+Your site will be live at `https://pathway.vercel.app` (or your custom domain).
 
 ## 🎨 UI Style Guide
 

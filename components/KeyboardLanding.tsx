@@ -224,7 +224,7 @@ export default function KeyboardLanding() {
               </svg>
               <div className="text-left">
                 <span className="text-sm font-bold text-white uppercase tracking-wider block">
-                  ASK PATHSEARCH AI
+                  ASK PATHWAY AI
                 </span>
                 <span className="text-[10px] text-white/80 uppercase tracking-wide">
                   &quot;Where do Bain consultants exit to?&quot;
