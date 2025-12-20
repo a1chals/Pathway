@@ -333,3 +333,5 @@ function escapeRegex(string: string): string {
 // Export for testing
 export { COMPANY_ALIASES, ROLE_PATTERNS, INDUSTRY_PATTERNS };
 
+
+

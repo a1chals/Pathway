@@ -27,9 +27,9 @@ const FEATURED_QUERIES = [
   },
   {
     icon: <GitCompare className="h-4 w-4 text-gray-600" />,
-    title: "Bain vs McKinsey for PE exits",
-    description: "Compare PE placement between consulting firms",
-    query: "Is Bain or McKinsey better for PE?",
+    title: "Compare Companies",
+    description: "Compare career paths between any two companies",
+    link: "/compare",
   },
   {
     icon: <Briefcase className="h-4 w-4 text-gray-600" />,

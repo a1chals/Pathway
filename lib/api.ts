@@ -245,3 +245,5 @@ export async function getCompanyId(companyName: string): Promise<string | null> 
   return null;
 }
 
+
+

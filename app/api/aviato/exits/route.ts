@@ -246,3 +246,5 @@ function categorizeCompany(companyName: string): string {
   return 'Other';
 }
 
+
+

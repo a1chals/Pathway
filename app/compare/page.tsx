@@ -1,12 +1,11 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, Search, TrendingUp, ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { heatmapData } from "@/lib/heatmapData";
-import { HeatmapCompany } from "@/lib/heatmapData";
 import { CompanyType } from "@/types";
+import { searchCompaniesFromDB, getCompanyExitData, CompanySearchResult, CompanyComparisonData } from "@/lib/compareUtils";
 
 const industryColors: Record<CompanyType, string> = {
   Tech: "#8b7dff",
@@ -19,67 +18,112 @@ const industryColors: Record<CompanyType, string> = {
   Other: "#94a3b8",
 };
 
-interface IndustryBreakdown {
-  [industry: string]: number;
-}
-
 export default function ComparePage() {
   const router = useRouter();
   const [searchQuery1, setSearchQuery1] = useState("");
   const [searchQuery2, setSearchQuery2] = useState("");
-  const [selectedCompany1, setSelectedCompany1] = useState<HeatmapCompany | null>(null);
-  const [selectedCompany2, setSelectedCompany2] = useState<HeatmapCompany | null>(null);
+  const [selectedCompany1, setSelectedCompany1] = useState<CompanySearchResult | null>(null);
+  const [selectedCompany2, setSelectedCompany2] = useState<CompanySearchResult | null>(null);
+  const [filteredCompanies1, setFilteredCompanies1] = useState<CompanySearchResult[]>([]);
+  const [filteredCompanies2, setFilteredCompanies2] = useState<CompanySearchResult[]>([]);
+  const [company1Data, setCompany1Data] = useState<CompanyComparisonData | null>(null);
+  const [company2Data, setCompany2Data] = useState<CompanyComparisonData | null>(null);
+  const [isLoading1, setIsLoading1] = useState(false);
+  const [isLoading2, setIsLoading2] = useState(false);
+  const [isLoadingData1, setIsLoadingData1] = useState(false);
+  const [isLoadingData2, setIsLoadingData2] = useState(false);
 
-  // Get all companies
-  const allCompanies = useMemo(() => {
-    return heatmapData.children.flatMap(group => group.children);
-  }, []);
-
-  // Filter companies for search 1
-  const filteredCompanies1 = useMemo(() => {
-    if (!searchQuery1) return [];
-    const query = searchQuery1.toLowerCase();
-    return allCompanies.filter(company =>
-      company.name.toLowerCase().includes(query)
-    ).slice(0, 10);
-  }, [searchQuery1, allCompanies]);
-
-  // Filter companies for search 2
-  const filteredCompanies2 = useMemo(() => {
-    if (!searchQuery2) return [];
-    const query = searchQuery2.toLowerCase();
-    return allCompanies.filter(company =>
-      company.name.toLowerCase().includes(query)
-    ).slice(0, 10);
-  }, [searchQuery2, allCompanies]);
-
-  // Calculate industry breakdown for a company
-  const getIndustryBreakdown = (company: HeatmapCompany): IndustryBreakdown => {
-    const breakdown: IndustryBreakdown = {};
-    
-    company.exits.forEach(exit => {
-      // Find the destination company to get its industry
-      const destCompany = allCompanies.find(c => 
-        c.name.toLowerCase() === exit.to.toLowerCase()
-      );
-      
-      if (destCompany) {
-        const industry = destCompany.industry;
-        breakdown[industry] = (breakdown[industry] || 0) + exit.count;
-      } else {
-        // If we can't find the company, categorize as "Other"
-        breakdown["Other"] = (breakdown["Other"] || 0) + exit.count;
+  // Search companies for input 1
+  useEffect(() => {
+    const searchCompanies = async () => {
+      if (!searchQuery1.trim()) {
+        setFilteredCompanies1([]);
+        return;
       }
+
+      setIsLoading1(true);
+      const results = await searchCompaniesFromDB(searchQuery1, 10);
+      setFilteredCompanies1(results);
+      setIsLoading1(false);
+    };
+
+    const timeoutId = setTimeout(searchCompanies, 300); // Debounce
+    return () => clearTimeout(timeoutId);
+  }, [searchQuery1]);
+
+  // Search companies for input 2
+  useEffect(() => {
+    const searchCompanies = async () => {
+      if (!searchQuery2.trim()) {
+        setFilteredCompanies2([]);
+        return;
+      }
+
+      setIsLoading2(true);
+      const results = await searchCompaniesFromDB(searchQuery2, 10);
+      setFilteredCompanies2(results);
+      setIsLoading2(false);
+    };
+
+    const timeoutId = setTimeout(searchCompanies, 300); // Debounce
+    return () => clearTimeout(timeoutId);
+  }, [searchQuery2]);
+
+  // Load exit data for company 1
+  useEffect(() => {
+    if (!selectedCompany1) {
+      setCompany1Data(null);
+      return;
+    }
+
+    const loadData = async () => {
+      setIsLoadingData1(true);
+      const data = await getCompanyExitData(selectedCompany1.name);
+      setCompany1Data(data);
+      setIsLoadingData1(false);
+    };
+
+    loadData();
+  }, [selectedCompany1]);
+
+  // Load exit data for company 2
+  useEffect(() => {
+    if (!selectedCompany2) {
+      setCompany2Data(null);
+      return;
+    }
+
+    const loadData = async () => {
+      setIsLoadingData2(true);
+      const data = await getCompanyExitData(selectedCompany2.name);
+      setCompany2Data(data);
+      setIsLoadingData2(false);
+    };
+
+    loadData();
+  }, [selectedCompany2]);
+
+  // Calculate industry breakdown
+  const company1Breakdown = useMemo(() => {
+    if (!company1Data) return {};
+    const breakdown: Record<string, number> = {};
+    company1Data.industryBreakdown.forEach(item => {
+      breakdown[item.industry] = item.count;
     });
-    
     return breakdown;
-  };
+  }, [company1Data]);
 
-  const company1Breakdown = selectedCompany1 ? getIndustryBreakdown(selectedCompany1) : {};
-  const company2Breakdown = selectedCompany2 ? getIndustryBreakdown(selectedCompany2) : {};
+  const company2Breakdown = useMemo(() => {
+    if (!company2Data) return {};
+    const breakdown: Record<string, number> = {};
+    company2Data.industryBreakdown.forEach(item => {
+      breakdown[item.industry] = item.count;
+    });
+    return breakdown;
+  }, [company2Data]);
 
-  const company1Total = Object.values(company1Breakdown).reduce((sum, val) => sum + val, 0);
-  const company2Total = Object.values(company2Breakdown).reduce((sum, val) => sum + val, 0);
+  const company1Total = company1Data?.totalExits || 0;
+  const company2Total = company2Data?.totalExits || 0;
 
   // Get all unique industries from both companies
   const allIndustries = Array.from(new Set([
@@ -147,37 +191,45 @@ export default function ComparePage() {
             </div>
 
             {/* Search Results 1 */}
-            {searchQuery1 && filteredCompanies1.length > 0 && !selectedCompany1 && (
+            {searchQuery1 && !selectedCompany1 && (
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 className="mt-2 max-h-60 overflow-y-auto rounded-sm border-2 border-gray-700 bg-white"
               >
-                {filteredCompanies1.map((company) => (
-                  <button
-                    key={company.id}
-                    onClick={() => {
-                      setSelectedCompany1(company);
-                      setSearchQuery1("");
-                    }}
-                    className="w-full px-4 py-3 text-left hover:bg-gray-100 transition-all border-b border-gray-300 last:border-b-0 flex items-center gap-3"
-                  >
-                    {company.logo && (
-                      <img
-                        src={company.logo}
-                        alt={company.name}
-                        className="w-8 h-8 rounded"
-                        onError={(e) => e.currentTarget.style.display = 'none'}
-                      />
-                    )}
-                    <div className="flex-1">
-                      <div className="text-sm font-bold text-gray-800 uppercase tracking-wide">
-                        {company.name}
+                {isLoading1 ? (
+                  <div className="px-4 py-3 text-sm text-gray-600 text-center">Searching...</div>
+                ) : filteredCompanies1.length > 0 ? (
+                  filteredCompanies1.map((company, index) => (
+                    <button
+                      key={`${company.name}-${index}`}
+                      onClick={() => {
+                        setSelectedCompany1(company);
+                        setSearchQuery1("");
+                      }}
+                      className="w-full px-4 py-3 text-left hover:bg-gray-100 transition-all border-b border-gray-300 last:border-b-0 flex items-center gap-3"
+                    >
+                      {company.logo && (
+                        <img
+                          src={company.logo}
+                          alt={company.name}
+                          className="w-8 h-8 rounded"
+                          onError={(e) => e.currentTarget.style.display = 'none'}
+                        />
+                      )}
+                      <div className="flex-1">
+                        <div className="text-sm font-bold text-gray-800 uppercase tracking-wide">
+                          {company.name}
+                        </div>
+                        <div className="text-xs text-gray-600">
+                          {company.industry || 'Unknown'} {company.totalExits && `• ${company.totalExits} exits`}
+                        </div>
                       </div>
-                      <div className="text-xs text-gray-600">{company.industry}</div>
-                    </div>
-                  </button>
-                ))}
+                    </button>
+                  ))
+                ) : (
+                  <div className="px-4 py-3 text-sm text-gray-600 text-center">No companies found</div>
+                )}
               </motion.div>
             )}
 
@@ -201,10 +253,16 @@ export default function ComparePage() {
                     <div className="text-base font-bold text-gray-800 uppercase tracking-wide">
                       {selectedCompany1.name}
                     </div>
-                    <div className="text-xs text-gray-600">{selectedCompany1.industry}</div>
+                    <div className="text-xs text-gray-600">
+                      {selectedCompany1.industry || 'Unknown'}
+                      {isLoadingData1 && ' • Loading data...'}
+                    </div>
                   </div>
                   <button
-                    onClick={() => setSelectedCompany1(null)}
+                    onClick={() => {
+                      setSelectedCompany1(null);
+                      setCompany1Data(null);
+                    }}
                     className="px-3 py-1 text-xs rounded-sm border-2 border-gray-700 bg-white hover:bg-gray-50 transition-colors retro-outset uppercase tracking-wide font-medium"
                   >
                     Clear
@@ -236,37 +294,45 @@ export default function ComparePage() {
             </div>
 
             {/* Search Results 2 */}
-            {searchQuery2 && filteredCompanies2.length > 0 && !selectedCompany2 && (
+            {searchQuery2 && !selectedCompany2 && (
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 className="mt-2 max-h-60 overflow-y-auto rounded-sm border-2 border-gray-700 bg-white"
               >
-                {filteredCompanies2.map((company) => (
-                  <button
-                    key={company.id}
-                    onClick={() => {
-                      setSelectedCompany2(company);
-                      setSearchQuery2("");
-                    }}
-                    className="w-full px-4 py-3 text-left hover:bg-gray-100 transition-all border-b border-gray-300 last:border-b-0 flex items-center gap-3"
-                  >
-                    {company.logo && (
-                      <img
-                        src={company.logo}
-                        alt={company.name}
-                        className="w-8 h-8 rounded"
-                        onError={(e) => e.currentTarget.style.display = 'none'}
-                      />
-                    )}
-                    <div className="flex-1">
-                      <div className="text-sm font-bold text-gray-800 uppercase tracking-wide">
-                        {company.name}
+                {isLoading2 ? (
+                  <div className="px-4 py-3 text-sm text-gray-600 text-center">Searching...</div>
+                ) : filteredCompanies2.length > 0 ? (
+                  filteredCompanies2.map((company, index) => (
+                    <button
+                      key={`${company.name}-${index}`}
+                      onClick={() => {
+                        setSelectedCompany2(company);
+                        setSearchQuery2("");
+                      }}
+                      className="w-full px-4 py-3 text-left hover:bg-gray-100 transition-all border-b border-gray-300 last:border-b-0 flex items-center gap-3"
+                    >
+                      {company.logo && (
+                        <img
+                          src={company.logo}
+                          alt={company.name}
+                          className="w-8 h-8 rounded"
+                          onError={(e) => e.currentTarget.style.display = 'none'}
+                        />
+                      )}
+                      <div className="flex-1">
+                        <div className="text-sm font-bold text-gray-800 uppercase tracking-wide">
+                          {company.name}
+                        </div>
+                        <div className="text-xs text-gray-600">
+                          {company.industry || 'Unknown'} {company.totalExits && `• ${company.totalExits} exits`}
+                        </div>
                       </div>
-                      <div className="text-xs text-gray-600">{company.industry}</div>
-                    </div>
-                  </button>
-                ))}
+                    </button>
+                  ))
+                ) : (
+                  <div className="px-4 py-3 text-sm text-gray-600 text-center">No companies found</div>
+                )}
               </motion.div>
             )}
 
@@ -290,10 +356,16 @@ export default function ComparePage() {
                     <div className="text-base font-bold text-gray-800 uppercase tracking-wide">
                       {selectedCompany2.name}
                     </div>
-                    <div className="text-xs text-gray-600">{selectedCompany2.industry}</div>
+                    <div className="text-xs text-gray-600">
+                      {selectedCompany2.industry || 'Unknown'}
+                      {isLoadingData2 && ' • Loading data...'}
+                    </div>
                   </div>
                   <button
-                    onClick={() => setSelectedCompany2(null)}
+                    onClick={() => {
+                      setSelectedCompany2(null);
+                      setCompany2Data(null);
+                    }}
                     className="px-3 py-1 text-xs rounded-sm border-2 border-gray-700 bg-white hover:bg-gray-50 transition-colors retro-outset uppercase tracking-wide font-medium"
                   >
                     Clear
@@ -305,8 +377,21 @@ export default function ComparePage() {
         </div>
       </div>
 
+      {/* Loading State - Companies selected but data loading */}
+      {selectedCompany1 && selectedCompany2 && (isLoadingData1 || isLoadingData2 || !company1Data || !company2Data) && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 text-center"
+        >
+          <div className="rounded-sm border-2 border-gray-700 bg-white p-12 retro-outset">
+            <div className="text-lg text-gray-600">Loading comparison data...</div>
+          </div>
+        </motion.div>
+      )}
+
       {/* Comparison Results */}
-      {selectedCompany1 && selectedCompany2 && (
+      {selectedCompany1 && selectedCompany2 && company1Data && company2Data && (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -318,19 +403,31 @@ export default function ComparePage() {
               <div className="text-sm text-gray-600 uppercase tracking-wide mb-2">
                 Total Exits from {selectedCompany1.name}
               </div>
-              <div className="text-4xl font-bold text-gray-800">{company1Total}</div>
-              <div className="text-xs text-gray-600 mt-1">
-                Avg. {selectedCompany1.avgYearsBeforeExit.toFixed(1)} years before exit
-              </div>
+              {isLoadingData1 ? (
+                <div className="text-sm text-gray-500">Loading...</div>
+              ) : (
+                <>
+                  <div className="text-4xl font-bold text-gray-800">{company1Total}</div>
+                  <div className="text-xs text-gray-600 mt-1">
+                    Avg. {company1Data?.avgYearsBeforeExit.toFixed(1) || '0.0'} years before exit
+                  </div>
+                </>
+              )}
             </div>
             <div className="rounded-sm border-2 border-gray-700 bg-white p-6 retro-outset">
               <div className="text-sm text-gray-600 uppercase tracking-wide mb-2">
                 Total Exits from {selectedCompany2.name}
               </div>
-              <div className="text-4xl font-bold text-gray-800">{company2Total}</div>
-              <div className="text-xs text-gray-600 mt-1">
-                Avg. {selectedCompany2.avgYearsBeforeExit.toFixed(1)} years before exit
-              </div>
+              {isLoadingData2 ? (
+                <div className="text-sm text-gray-500">Loading...</div>
+              ) : (
+                <>
+                  <div className="text-4xl font-bold text-gray-800">{company2Total}</div>
+                  <div className="text-xs text-gray-600 mt-1">
+                    Avg. {company2Data?.avgYearsBeforeExit.toFixed(1) || '0.0'} years before exit
+                  </div>
+                </>
+              )}
             </div>
           </div>
 
