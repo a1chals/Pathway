@@ -1,8 +1,8 @@
-# PathSearch — MVP v0.1
+# Pathway — MVP v0.1
 
 > See where your first job can take you.
 
-PathSearch is an interactive, data-driven platform where users can explore career exits from specific companies — starting with Bain & Company consultants.
+Pathway is an interactive, data-driven platform where users can explore career exits from specific companies — starting with Bain & Company consultants.
 
 ## 🎯 Overview
 

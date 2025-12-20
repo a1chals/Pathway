@@ -1,4 +1,4 @@
--- PathSearch Supabase Schema
+-- Pathway Supabase Schema
 -- Run this in your Supabase SQL Editor to create the tables
 
 -- Companies table - stores company metadata from Aviato

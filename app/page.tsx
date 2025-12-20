@@ -8,7 +8,8 @@ import {
   Briefcase, 
   Search,
   ArrowRight,
-  MessageSquare
+  MessageSquare,
+  Network
 } from "lucide-react";
 
 // The 4 best query types based on our Supabase data
@@ -32,10 +33,10 @@ const FEATURED_QUERIES = [
     link: "/compare",
   },
   {
-    icon: <Briefcase className="h-4 w-4 text-gray-600" />,
-    title: "Goldman Sachs exit opportunities",
-    description: "See where investment bankers go after GS",
-    query: "Where do Goldman Sachs bankers exit to?",
+    icon: <Network className="h-4 w-4 text-gray-600" />,
+    title: "Talent Exit Network",
+    description: "Visualize talent flow between companies",
+    link: "/network",
   },
 ];
 
@@ -66,7 +67,7 @@ export default function HomePage() {
           </div>
           <div>
             <h1 className="text-lg font-bold text-gray-800 uppercase tracking-wide">
-              PathSearch
+              Pathway
             </h1>
             <p className="text-xs text-gray-500">
               Discover where careers lead

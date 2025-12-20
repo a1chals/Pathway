@@ -1,5 +1,5 @@
 /**
- * Natural Language Query Parser for PathSearch Chatbot
+ * Natural Language Query Parser for Pathway Chatbot
  * 
  * Parses queries like:
  * - "where do consultants from bain exit to"

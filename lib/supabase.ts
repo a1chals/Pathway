@@ -1,5 +1,5 @@
 /**
- * Supabase Client for PathSearch
+ * Supabase Client for Pathway
  * 
  * Used for caching Aviato API responses to save credits
  * and enable faster queries

@@ -1,5 +1,5 @@
 /**
- * Supabase Query Service for PathSearch
+ * Supabase Query Service for Pathway
  * 
  * Executes SQL queries against our Supabase database
  * NO API calls - all data comes from our cached database!

@@ -1,5 +1,5 @@
 /**
- * Query Executor for PathSearch Chatbot
+ * Query Executor for Pathway Chatbot
  * 
  * Executes parsed queries against the Aviato API and formats results
  * Uses Supabase cache to minimize API calls

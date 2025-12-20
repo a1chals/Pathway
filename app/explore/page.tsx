@@ -404,7 +404,7 @@ function ExplorePageContent() {
             <div>
               <h3 className="font-semibold text-gray-800 mb-3">About</h3>
               <p className="text-sm text-gray-600">
-                PathSearch visualizes career transitions to help you understand
+                Pathway visualizes career transitions to help you understand
                 where your first job can lead.
               </p>
             </div>
@@ -425,7 +425,7 @@ function ExplorePageContent() {
             </div>
           </div>
           <div className="mt-8 pt-8 border-t border-gray-300 text-center text-sm text-gray-500">
-            <p>© 2024 PathSearch. Built with Next.js & TailwindCSS.</p>
+            <p>© 2024 Pathway. Built with Next.js & TailwindCSS.</p>
           </div>
         </div>
       </footer>

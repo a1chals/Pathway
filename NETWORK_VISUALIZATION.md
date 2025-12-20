@@ -2,7 +2,7 @@
 
 ## Overview
 
-A complete interactive network visualization feature has been added to PathSearch, allowing users to visually explore how people move between companies using a force-directed graph similar to TalentHunt's layout.
+A complete interactive network visualization feature has been added to Pathway, allowing users to visually explore how people move between companies using a force-directed graph similar to TalentHunt's layout.
 
 ## Features Implemented
 

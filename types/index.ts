@@ -34,3 +34,6 @@ export interface NetworkData {
   links: NetworkLink[];
 }
 
+// Re-export talent graph types
+export * from './talentGraph';
+

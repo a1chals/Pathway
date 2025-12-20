@@ -139,7 +139,7 @@ function ChatContent() {
               </div>
               <div>
                 <h1 className="text-xl font-bold text-gray-800 uppercase tracking-wide">
-                  PathSearch AI
+                  Pathway AI
                 </h1>
                 <p className="text-xs text-gray-600 uppercase tracking-wide">
                   Ask about career paths & exits

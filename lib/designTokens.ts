@@ -1,4 +1,4 @@
-// Design System Tokens for PathSearch Heatmap
+// Design System Tokens for Pathway Heatmap
 
 export const colors = {
   // Base colors (dark mode)

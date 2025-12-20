@@ -1,4 +1,4 @@
-# Environment Setup for PathSearch
+# Environment Setup for Pathway
 
 ## Required: Aviato API
 ```

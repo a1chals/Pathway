@@ -31,7 +31,7 @@ export interface CompanyComparisonData {
  * Database stores: "Education / MBA", "Venture Capital", "Private Equity", "Hedge Fund",
  * "Consulting", "Investment Banking", "Big Tech", "Startup", "Corporate", "Other"
  */
-function mapIndustryToType(industry: string): CompanyType {
+export function mapIndustryToType(industry: string): CompanyType {
   if (!industry) return 'Other';
   
   const normalized = industry.trim();
