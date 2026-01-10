@@ -1,7 +1,9 @@
 /**
- * Comprehensive Database Seed Script
+ * Focused Database Seed Script - 17 IB/Consulting Firms
  * 
- * Fetches ALL data from Aviato API and loads it into Supabase
+ * Fetches exit data from Aviato API for 17 target companies
+ * Filters: USA only, exits since 2020
+ * 
  * Run with: npx tsx scripts/seedDatabase.ts
  */
 
@@ -24,149 +26,248 @@ if (!AVIATO_API_KEY || !SUPABASE_URL || !SUPABASE_KEY) {
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
 // ============================================
-// COMPREHENSIVE COMPANY LIST - ALL MAJOR FIRMS
+// CONFIGURATION
 // ============================================
-const COMPANIES_TO_SEED = [
-  // ========== CONSULTING - MBB ==========
-  'Bain & Company',
-  'McKinsey & Company', 
-  'BCG',
+const MAX_EMPLOYEES_PER_COMPANY = 1500;  // Cap per company
+const EXIT_DATE_CUTOFF = new Date('2020-01-01');  // Only exits since 2020
+const RATE_LIMIT_MS = 400;  // Delay between API calls
+
+// ============================================
+// 17 TARGET COMPANIES WITH ALIASES
+// ============================================
+interface CompanyConfig {
+  searchName: string;  // Name to search in Aviato
+  displayName: string;  // Canonical name for our database
+  aliases: string[];   // Alternative names to match in experience data
+}
+
+const TARGET_COMPANIES: CompanyConfig[] = [
+  // Investment Banking
+  {
+    searchName: 'Goldman Sachs',
+    displayName: 'Goldman Sachs',
+    aliases: ['goldman sachs', 'gs', 'goldman', 'goldman sachs group', 'goldman sachs & co']
+  },
+  {
+    searchName: 'Morgan Stanley',
+    displayName: 'Morgan Stanley',
+    aliases: ['morgan stanley', 'ms', 'morgan stanley & co']
+  },
+  {
+    searchName: 'JPMorgan',
+    displayName: 'J.P. Morgan',
+    aliases: ['jpmorgan', 'jp morgan', 'jpm', 'jpmorgan chase', 'j.p. morgan', 'jpmorgan chase & co']
+  },
+  {
+    searchName: 'Centerview Partners',
+    displayName: 'Centerview Partners',
+    aliases: ['centerview partners', 'centerview']
+  },
+  {
+    searchName: 'Evercore',
+    displayName: 'Evercore',
+    aliases: ['evercore', 'evr', 'evercore isi', 'evercore partners']
+  },
+  {
+    searchName: 'PJT Partners',
+    displayName: 'PJT Partners',
+    aliases: ['pjt partners', 'pjt']
+  },
+  {
+    searchName: 'Lazard',
+    displayName: 'Lazard',
+    aliases: ['lazard', 'lazard freres', 'lazard asset management', 'lazard ltd']
+  },
   
-  // ========== CONSULTING - Big 4 ==========
-  'Deloitte Consulting',
-  'Accenture',
-  'PwC',
-  'EY',
-  'KPMG',
+  // Consulting - MBB
+  {
+    searchName: 'McKinsey & Company',
+    displayName: 'McKinsey & Company',
+    aliases: ['mckinsey', 'mckinsey & company', 'mck', 'mckinsey & co', 'mckinsey and company']
+  },
+  {
+    searchName: 'Boston Consulting Group',
+    displayName: 'Boston Consulting Group',
+    aliases: ['boston consulting group', 'bcg', 'the boston consulting group']
+  },
+  {
+    searchName: 'Bain & Company',
+    displayName: 'Bain & Company',
+    aliases: ['bain & company', 'bain', 'bain and company', 'bain & co']
+  },
   
-  // ========== CONSULTING - Tier 2 ==========
-  'Oliver Wyman',
-  'LEK Consulting',
-  'Roland Berger',
-  'Kearney',
-  'Strategy&',
-  'Booz Allen Hamilton',
-  'AlixPartners',
+  // Consulting - Big 4
+  {
+    searchName: 'Deloitte',
+    displayName: 'Deloitte',
+    aliases: ['deloitte', 'deloitte consulting', 'deloitte advisory', 'monitor deloitte', 'monitor group', 'deloitte llp']
+  },
+  {
+    searchName: 'PwC',
+    displayName: 'PwC',
+    aliases: ['pwc', 'pricewaterhousecoopers', 'strategy&', 'strategyand', 'strategy and', 'pwc advisory']
+  },
+  {
+    searchName: 'EY',
+    displayName: 'EY',
+    aliases: ['ey', 'ernst & young', 'ernst and young', 'ey-parthenon', 'parthenon group', 'parthenon-ey', 'ey parthenon']
+  },
+  {
+    searchName: 'KPMG',
+    displayName: 'KPMG',
+    aliases: ['kpmg', 'kpmg advisory', 'kpmg strategy', 'kpmg llp']
+  },
   
-  // ========== INVESTMENT BANKS - Bulge Bracket ==========
-  'Goldman Sachs',
-  'Morgan Stanley',
-  'JPMorgan',
-  'Bank of America Merrill Lynch',
-  'Citigroup',
-  'Credit Suisse',
-  'Deutsche Bank',
-  'Barclays',
-  'UBS',
-  
-  // ========== INVESTMENT BANKS - Elite Boutique ==========
-  'Evercore',
-  'Lazard',
-  'Centerview Partners',
-  'Moelis & Company',
-  'PJT Partners',
-  'Perella Weinberg Partners',
-  'Qatalyst Partners',
-  'Greenhill',
-  'Rothschild',
-  
-  // ========== PRIVATE EQUITY - Mega Funds ==========
-  'Blackstone',
-  'KKR',
-  'Carlyle Group',
-  'Apollo Global Management',
-  'TPG',
-  'Bain Capital',
-  'Warburg Pincus',
-  'General Atlantic',
-  'Advent International',
-  'CVC Capital Partners',
-  'EQT Partners',
-  'Hellman & Friedman',
-  'Silver Lake',
-  'Vista Equity Partners',
-  'Thoma Bravo',
-  
-  // ========== PRIVATE EQUITY - Growth Equity ==========
-  'Providence Equity Partners',
-  'TA Associates',
-  'Summit Partners',
-  'Francisco Partners',
-  'Insight Partners',
-  'JMI Equity',
-  
-  // ========== HEDGE FUNDS ==========
-  'Bridgewater Associates',
-  'Citadel',
-  'Two Sigma',
-  'DE Shaw',
-  'Point72',
-  'Millennium Management',
-  'Elliott Management',
-  'Third Point',
-  'Baupost Group',
-  'Tiger Global',
-  
-  // ========== VENTURE CAPITAL ==========
-  'Sequoia Capital',
-  'Andreessen Horowitz',
-  'Accel',
-  'Benchmark',
-  'Greylock Partners',
-  'Kleiner Perkins',
-  'Lightspeed Venture Partners',
-  'NEA',
-  'Index Ventures',
-  'General Catalyst',
-  'Bessemer Venture Partners',
-  'GGV Capital',
-  'Founders Fund',
-  'First Round Capital',
-  'Union Square Ventures',
-  
-  // ========== BIG TECH - FAANG+ ==========
-  'Google',
-  'Meta',
-  'Amazon',
-  'Microsoft',
-  'Apple',
-  'Netflix',
-  
-  // ========== TECH - Unicorns & Scale-ups ==========
-  'Uber',
-  'Airbnb',
-  'Stripe',
-  'Salesforce',
-  'Snowflake',
-  'Databricks',
-  'Palantir',
-  'SpaceX',
-  'OpenAI',
-  'Notion',
-  'Figma',
-  'Slack',
-  'Zoom',
-  'Shopify',
-  'Square',
-  'Robinhood',
-  'Coinbase',
-  'Instacart',
-  'DoorDash',
-  'Lyft',
-  
-  // ========== CORPORATES - Fortune 500 ==========
-  'Procter & Gamble',
-  'Johnson & Johnson',
-  'Pfizer',
-  'Nike',
-  'Coca-Cola',
-  'PepsiCo',
-  'Unilever',
-  'Nestle',
-  'Disney',
-  'Warner Bros',
+  // Consulting - Boutique
+  {
+    searchName: 'Oliver Wyman',
+    displayName: 'Oliver Wyman',
+    aliases: ['oliver wyman', 'oliverwyman']
+  },
+  {
+    searchName: 'L.E.K. Consulting',
+    displayName: 'L.E.K. Consulting',
+    aliases: ['l.e.k. consulting', 'lek consulting', 'lek', 'l.e.k.']
+  },
+  {
+    searchName: 'Kearney',
+    displayName: 'Kearney',
+    aliases: ['kearney', 'a.t. kearney', 'at kearney', 'a t kearney']
+  },
 ];
 
+// ============================================
+// USA LOCATION DETECTION
+// ============================================
+const US_STATES = [
+  'alabama', 'alaska', 'arizona', 'arkansas', 'california', 'colorado', 'connecticut',
+  'delaware', 'florida', 'georgia', 'hawaii', 'idaho', 'illinois', 'indiana', 'iowa',
+  'kansas', 'kentucky', 'louisiana', 'maine', 'maryland', 'massachusetts', 'michigan',
+  'minnesota', 'mississippi', 'missouri', 'montana', 'nebraska', 'nevada', 'new hampshire',
+  'new jersey', 'new mexico', 'new york', 'north carolina', 'north dakota', 'ohio',
+  'oklahoma', 'oregon', 'pennsylvania', 'rhode island', 'south carolina', 'south dakota',
+  'tennessee', 'texas', 'utah', 'vermont', 'virginia', 'washington', 'west virginia',
+  'wisconsin', 'wyoming', 'district of columbia', 'dc', 'd.c.'
+];
+
+const US_STATE_ABBREVS = [
+  'al', 'ak', 'az', 'ar', 'ca', 'co', 'ct', 'de', 'fl', 'ga', 'hi', 'id', 'il', 'in',
+  'ia', 'ks', 'ky', 'la', 'me', 'md', 'ma', 'mi', 'mn', 'ms', 'mo', 'mt', 'ne', 'nv',
+  'nh', 'nj', 'nm', 'ny', 'nc', 'nd', 'oh', 'ok', 'or', 'pa', 'ri', 'sc', 'sd', 'tn',
+  'tx', 'ut', 'vt', 'va', 'wa', 'wv', 'wi', 'wy'
+];
+
+const US_CITIES = [
+  'new york', 'nyc', 'manhattan', 'brooklyn', 'los angeles', 'chicago', 'houston',
+  'phoenix', 'philadelphia', 'san antonio', 'san diego', 'dallas', 'san jose',
+  'austin', 'jacksonville', 'fort worth', 'columbus', 'charlotte', 'san francisco',
+  'indianapolis', 'seattle', 'denver', 'boston', 'nashville', 'detroit', 'portland',
+  'las vegas', 'memphis', 'louisville', 'baltimore', 'milwaukee', 'albuquerque',
+  'tucson', 'fresno', 'sacramento', 'atlanta', 'miami', 'oakland', 'minneapolis',
+  'stamford', 'greenwich', 'jersey city', 'hoboken', 'palo alto', 'menlo park'
+];
+
+function isUSALocation(location: string | null | undefined): boolean {
+  if (!location) return false;
+  
+  const loc = location.toLowerCase();
+  
+  // Direct country match
+  if (loc.includes('united states') || loc.includes('usa') || loc.includes('u.s.a') || loc.includes('u.s.')) {
+    return true;
+  }
+  
+  // Check for US states
+  for (const state of US_STATES) {
+    if (loc.includes(state)) return true;
+  }
+  
+  // Check for state abbreviations (with word boundaries)
+  for (const abbrev of US_STATE_ABBREVS) {
+    const regex = new RegExp(`\\b${abbrev}\\b`, 'i');
+    if (regex.test(loc)) return true;
+  }
+  
+  // Check for major US cities
+  for (const city of US_CITIES) {
+    if (loc.includes(city)) return true;
+  }
+  
+  return false;
+}
+
+// ============================================
+// INDUSTRY CATEGORIZATION
+// ============================================
+function categorizeCompany(companyName: string): string {
+  const name = companyName.toLowerCase();
+
+  // Education / MBA
+  if (/business school|mba|university|stanford|harvard|wharton|insead|columbia|booth|kellogg|sloan|haas|tuck|darden|fuqua|ross|stern|anderson|yale school|said business|london business|cambridge judge|mit|berkeley|cornell|duke|northwestern|upenn|chicago/i.test(name)) {
+    return 'Education / MBA';
+  }
+  
+  // Check if it's one of our 17 source companies (lateral move)
+  for (const company of TARGET_COMPANIES) {
+    for (const alias of company.aliases) {
+      if (name.includes(alias) || alias.includes(name)) {
+        if (company.displayName.includes('Goldman') || company.displayName.includes('Morgan') || 
+            company.displayName.includes('JPMorgan') || company.displayName.includes('Centerview') ||
+            company.displayName.includes('Evercore') || company.displayName.includes('PJT') ||
+            company.displayName.includes('Lazard')) {
+          return 'Investment Banking';
+        }
+        return 'Consulting';
+      }
+    }
+  }
+  
+  // Private Equity
+  if (/private equity|blackstone|kkr|carlyle|apollo|tpg|bain capital|warburg|general atlantic|advent|cvc|eqt|hellman|silver lake|vista equity|thoma bravo|providence equity|ta associates|summit partners|francisco partners|insight partners|permira|ardian|cinven|pai partners|bridgepoint|apax|charterhouse|bc partners|nordic capital|triton|montagu/i.test(name)) {
+    return 'Private Equity';
+  }
+  
+  // Venture Capital
+  if (/venture|sequoia|andreessen|a16z|accel|greylock|benchmark|kleiner|lightspeed|nea|index ventures|general catalyst|bessemer|ggv|founders fund|first round|union square|khosla|battery ventures|spark capital|redpoint|ivp|norwest|menlo ventures|canaan|felicis|forerunner|lowercase|ribbit|craft ventures/i.test(name)) {
+    return 'Venture Capital';
+  }
+  
+  // Hedge Funds
+  if (/hedge fund|bridgewater|citadel|two sigma|de shaw|point72|millennium|elliott management|third point|baupost|tiger global|renaissance|jane street|hudson river|jump trading|virtu|susquehanna|drw|akuna|optiver|imc|flow traders|sig|wolverine/i.test(name)) {
+    return 'Hedge Fund';
+  }
+  
+  // Investment Banking (other banks)
+  if (/investment bank|goldman sachs|morgan stanley|jpmorgan|jp morgan|bank of america|merrill lynch|citigroup|citi|credit suisse|deutsche bank|barclays|ubs|evercore|lazard|centerview|moelis|pjt partners|perella weinberg|qatalyst|greenhill|rothschild|jefferies|hsbc|nomura|wells fargo|rbc|td securities|baird|houlihan|william blair|raymond james|guggenheim|cowen|stifel|piper sandler/i.test(name)) {
+    return 'Investment Banking';
+  }
+  
+  // Consulting
+  if (/consult|mckinsey|bain & company|bain and company|bcg|boston consulting|deloitte|accenture|pwc|ey|kpmg|oliver wyman|lek consulting|roland berger|kearney|strategy&|booz allen|alixpartners|monitor|parthenon|fti|huron|navigant|alvarez|analysis group|charles river|cornerstone|nera|compass lexecon|brattle/i.test(name)) {
+    return 'Consulting';
+  }
+  
+  // Big Tech
+  if (/google|alphabet|meta|facebook|amazon|microsoft|apple|netflix|uber|airbnb|stripe|salesforce|snowflake|databricks|palantir|spacex|openai|notion|figma|slack|zoom|shopify|square|block|robinhood|coinbase|instacart|doordash|lyft|twitter|linkedin|oracle|sap|adobe|ibm|intel|nvidia|amd|tesla|snap|pinterest|dropbox|twilio|okta|crowdstrike|datadog|cloudflare|mongo|elastic|splunk/i.test(name)) {
+    return 'Big Tech';
+  }
+  
+  // Startups (general tech companies)
+  if (/startup|founded|seed|series|stealth|labs|\.io|\.ai|tech|software|platform|app\b|saas|fintech|healthtech|edtech|proptech|insurtech|biotech|medtech/i.test(name)) {
+    return 'Startup';
+  }
+  
+  // Corporate / Fortune 500
+  if (/procter|p&g|johnson & johnson|j&j|pfizer|nike|coca-cola|pepsi|unilever|nestle|disney|warner|nbc|fox|viacom|comcast|walmart|target|costco|home depot|lowes|cvs|walgreens|exxon|chevron|shell|bp|3m|general electric|ge|honeywell|caterpillar|boeing|lockheed|raytheon|northrop|general dynamics|united technologies|kraft|mondelez|kellogg|general mills|mars|hershey|starbucks|mcdonald|yum brands/i.test(name)) {
+    return 'Corporate';
+  }
+
+  return 'Other';
+}
+
+// ============================================
+// API HELPERS
+// ============================================
 interface AviatoHeaders {
   'Authorization': string;
   'Content-Type': string;
@@ -179,16 +280,15 @@ function getHeaders(): AviatoHeaders {
   };
 }
 
-// Helper to wait
 const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
-// Retry wrapper for API calls with exponential backoff
+// Retry wrapper with exponential backoff
 async function fetchWithRetry(url: string, options: RequestInit, retries = 5): Promise<Response> {
   for (let i = 0; i < retries; i++) {
     const response = await fetch(url, options);
     
     if (response.status === 429) {
-      const waitTime = Math.pow(2, i + 1) * 1000; // Exponential backoff: 2s, 4s, 8s, 16s, 32s
+      const waitTime = Math.pow(2, i + 1) * 1000;
       console.log(`  ⏳ Rate limited, waiting ${waitTime/1000}s...`);
       await sleep(waitTime);
       continue;
@@ -197,19 +297,25 @@ async function fetchWithRetry(url: string, options: RequestInit, retries = 5): P
     return response;
   }
   
-  // Final attempt
   return fetch(url, options);
 }
 
-// Track API usage
+// ============================================
+// TRACKING STATS
+// ============================================
 let totalApiCalls = 0;
 let totalExitsFound = 0;
 let totalPersonsEnriched = 0;
+let totalSkippedNonUSA = 0;
+let totalSkippedPre2020 = 0;
 
+// ============================================
+// AVIATO API FUNCTIONS
+// ============================================
 async function searchCompany(name: string) {
-  console.log(`\n🔍 Searching for company: ${name}`);
+  console.log(`\n🔍 Searching for: ${name}`);
   
-  await sleep(500); // Rate limiting
+  await sleep(RATE_LIMIT_MS);
   
   const response = await fetchWithRetry(`${AVIATO_BASE_URL}/company/search`, {
     method: 'POST',
@@ -227,7 +333,7 @@ async function searchCompany(name: string) {
 
   if (!response.ok) {
     const errorText = await response.text();
-    console.error(`  ❌ Failed to search for ${name}: ${response.status} - ${errorText}`);
+    console.error(`  ❌ Failed: ${response.status} - ${errorText}`);
     return null;
   }
 
@@ -237,12 +343,12 @@ async function searchCompany(name: string) {
     return data.items[0];
   }
   
-  console.log(`  ⚠️ No results for ${name}`);
+  console.log(`  ⚠️ No results`);
   return null;
 }
 
-async function getFormerEmployees(companyId: string, companyName: string, page: number = 1) {
-  await sleep(500); // Rate limiting
+async function getFormerEmployees(companyId: string, page: number = 1) {
+  await sleep(RATE_LIMIT_MS);
   
   const response = await fetchWithRetry(
     `${AVIATO_BASE_URL}/company/employees?id=${companyId}&perPage=100&page=${page}&current=false`,
@@ -257,12 +363,11 @@ async function getFormerEmployees(companyId: string, companyName: string, page: 
     return { employees: [], pages: 0 };
   }
 
-  const data = await response.json();
-  return data;
+  return response.json();
 }
 
 async function enrichPerson(personId: string): Promise<any> {
-  await sleep(300); // Rate limiting - faster for enrichment
+  await sleep(RATE_LIMIT_MS);
   
   const response = await fetchWithRetry(
     `${AVIATO_BASE_URL}/person/enrich?id=${personId}`,
@@ -279,58 +384,9 @@ async function enrichPerson(personId: string): Promise<any> {
   return response.json();
 }
 
-function categorizeCompany(companyName: string): string {
-  const name = companyName.toLowerCase();
-
-  // Education
-  if (/business school|mba|university|stanford|harvard|wharton|insead|columbia|booth|kellogg|sloan|haas|tuck|darden|fuqua|ross|stern|anderson|yale school|said business|london business|cambridge judge/i.test(name)) {
-    return 'Education / MBA';
-  }
-  
-  // Venture Capital
-  if (/capital|ventures|partners|vc|sequoia|andreessen|a16z|accel|greylock|benchmark|kleiner|lightspeed|nea|index ventures|general catalyst|bessemer|ggv|founders fund|first round|union square|khosla|battery ventures|spark capital/i.test(name)) {
-    if (/private equity|buyout/i.test(name)) return 'Private Equity';
-    return 'Venture Capital';
-  }
-  
-  // Private Equity
-  if (/private equity|blackstone|kkr|carlyle|apollo|tpg|bain capital|warburg|general atlantic|advent|cvc|eqt|hellman|silver lake|vista equity|thoma bravo|providence equity|ta associates|summit partners|francisco partners|insight partners/i.test(name)) {
-    return 'Private Equity';
-  }
-  
-  // Hedge Funds
-  if (/hedge fund|bridgewater|citadel|two sigma|de shaw|point72|millennium|elliott management|third point|baupost|tiger global|renaissance|jane street|hudson river|jump trading/i.test(name)) {
-    return 'Hedge Fund';
-  }
-  
-  // Consulting
-  if (/mckinsey|bain & company|bain and company|bcg|boston consulting|deloitte|accenture|pwc|ey|kpmg|oliver wyman|lek consulting|roland berger|kearney|strategy&|booz allen|alixpartners|monitor|parthenon/i.test(name)) {
-    return 'Consulting';
-  }
-  
-  // Investment Banking
-  if (/goldman sachs|morgan stanley|jpmorgan|jp morgan|bank of america|merrill lynch|citigroup|citi|credit suisse|deutsche bank|barclays|ubs|evercore|lazard|centerview|moelis|pjt partners|perella weinberg|qatalyst|greenhill|rothschild|jefferies|hsbc|nomura|wells fargo/i.test(name)) {
-    return 'Investment Banking';
-  }
-  
-  // Big Tech
-  if (/google|alphabet|meta|facebook|amazon|microsoft|apple|netflix|uber|airbnb|stripe|salesforce|snowflake|databricks|palantir|spacex|openai|notion|figma|slack|zoom|shopify|square|block|robinhood|coinbase|instacart|doordash|lyft|twitter|linkedin|oracle|sap|adobe|ibm|intel|nvidia|amd|tesla/i.test(name)) {
-    return 'Big Tech';
-  }
-  
-  // Startups
-  if (/startup|founded|co-founder|seed|series a|series b|stealth|labs|.io|.ai|tech/i.test(name)) {
-    return 'Startup';
-  }
-  
-  // Corporate
-  if (/procter|p&g|johnson & johnson|j&j|pfizer|nike|coca-cola|pepsi|unilever|nestle|disney|warner|nbc|fox|viacom|comcast/i.test(name)) {
-    return 'Corporate';
-  }
-
-  return 'Other';
-}
-
+// ============================================
+// DATABASE FUNCTIONS
+// ============================================
 async function saveCompany(company: any) {
   const { error } = await supabase
     .from('companies')
@@ -388,7 +444,7 @@ async function saveExperiences(personId: string, experiences: any[]) {
       }, { onConflict: 'person_id,company_name,title,start_date' });
     
     if (error && !error.message.includes('duplicate')) {
-      // Silently continue on duplicates
+      // Silently continue
     }
   }
 }
@@ -406,64 +462,91 @@ async function saveExit(exitData: any) {
   return true;
 }
 
-async function processCompany(companyName: string) {
-  // Check if we already have exits for this company (resume feature)
-  const { count: existingExits } = await supabase
-    .from('exits')
-    .select('*', { count: 'exact', head: true })
-    .ilike('source_company_name', `%${companyName.split(' ')[0]}%`);
+// ============================================
+// CHECK IF COMPANY NAME MATCHES TARGET
+// ============================================
+function matchesTargetCompany(companyName: string, targetConfig: CompanyConfig): boolean {
+  const name = companyName.toLowerCase().trim();
   
-  if (existingExits && existingExits >= 30) {
-    console.log(`\n⏭️  Skipping ${companyName} - already have ${existingExits} exits in database`);
-    return { exits: existingExits, persons: 0, skipped: true };
+  for (const alias of targetConfig.aliases) {
+    if (name.includes(alias) || alias.includes(name)) {
+      return true;
+    }
   }
+  
+  return false;
+}
 
-  // Step 1: Search for company
-  const company = await searchCompany(companyName);
-  if (!company) return { exits: 0, persons: 0 };
+// ============================================
+// MAIN PROCESSING
+// ============================================
+async function processCompany(config: CompanyConfig) {
+  console.log(`\n${'═'.repeat(60)}`);
+  console.log(`📊 Processing: ${config.displayName}`);
+  console.log(`${'═'.repeat(60)}`);
 
-  // Step 2: Save company to Supabase
-  const companySaved = await saveCompany(company);
-  if (companySaved) {
+  // Search for company
+  const company = await searchCompany(config.searchName);
+  if (!company) return { exits: 0, persons: 0, skippedUSA: 0, skipped2020: 0 };
+
+  // Save company
+  const saved = await saveCompany(company);
+  if (saved) {
     console.log(`  💾 Saved company to database`);
   }
 
-  // Step 3: Get ALL former employees (paginate through all pages)
+  // Get ALL former employees (with pagination)
   let allEmployees: any[] = [];
   let currentPage = 1;
   let totalPages = 1;
   
-  console.log(`  📋 Getting former employees...`);
+  console.log(`  📋 Fetching former employees...`);
   
   do {
-    const result = await getFormerEmployees(company.id, company.name, currentPage);
+    const result = await getFormerEmployees(company.id, currentPage);
     if (result.employees && result.employees.length > 0) {
       allEmployees = allEmployees.concat(result.employees);
       totalPages = result.pages || 1;
-      console.log(`    Page ${currentPage}: Found ${result.employees.length} employees (Total: ${allEmployees.length})`);
+      console.log(`    Page ${currentPage}/${totalPages}: +${result.employees.length} (Total: ${allEmployees.length})`);
     }
     currentPage++;
-  } while (currentPage <= totalPages && allEmployees.length < 100); // Limit to 100 employees per company for MVP
+    
+    // Check if we've hit our cap
+    if (allEmployees.length >= MAX_EMPLOYEES_PER_COMPANY) {
+      console.log(`    ⚠️ Hit cap of ${MAX_EMPLOYEES_PER_COMPANY} employees`);
+      allEmployees = allEmployees.slice(0, MAX_EMPLOYEES_PER_COMPANY);
+      break;
+    }
+  } while (currentPage <= totalPages);
   
-  console.log(`  ✅ Total former employees: ${allEmployees.length}`);
+  console.log(`  ✅ Total employees to process: ${allEmployees.length}`);
 
-  // Step 4: Enrich each person and find exits
+  // Process each employee
   let exitsProcessed = 0;
   let personsProcessed = 0;
+  let skippedNonUSA = 0;
+  let skippedPre2020 = 0;
   
   console.log(`  👤 Enriching employees and finding exits...`);
   
   for (let i = 0; i < allEmployees.length; i++) {
     const emp = allEmployees[i];
-    const personName = emp.person?.fullName || emp.personID;
     
-    // Progress indicator every 10 people
-    if (i > 0 && i % 10 === 0) {
-      console.log(`    Progress: ${i}/${allEmployees.length} (${exitsProcessed} exits found)`);
+    // Progress indicator
+    if (i > 0 && i % 50 === 0) {
+      console.log(`    Progress: ${i}/${allEmployees.length} | Exits: ${exitsProcessed} | Skipped (non-USA): ${skippedNonUSA} | Skipped (pre-2020): ${skippedPre2020}`);
     }
     
+    // Enrich person
     const enriched = await enrichPerson(emp.personID);
     if (!enriched || !enriched.experienceList) {
+      continue;
+    }
+    
+    // Check if person is in USA
+    if (!isUSALocation(enriched.location)) {
+      skippedNonUSA++;
+      totalSkippedNonUSA++;
       continue;
     }
     
@@ -475,7 +558,7 @@ async function processCompany(companyName: string) {
     // Save all experiences
     await saveExperiences(emp.personID, enriched.experienceList);
 
-    // Find where they went after this company
+    // Find exit from source company
     const experiences = enriched.experienceList || [];
     const sortedExp = [...experiences].sort((a: any, b: any) => {
       const dateA = a.startDate ? new Date(a.startDate).getTime() : 0;
@@ -483,10 +566,9 @@ async function processCompany(companyName: string) {
       return dateB - dateA; // Most recent first
     });
 
-    // Find source company experience
-    const companyFirstWord = company.name.toLowerCase().split(' ')[0];
-    const sourceExp = sortedExp.find((exp: any) =>
-      exp.companyName?.toLowerCase().includes(companyFirstWord)
+    // Find source company experience using aliases
+    const sourceExp = sortedExp.find((exp: any) => 
+      matchesTargetCompany(exp.companyName || '', config)
     );
 
     if (!sourceExp || !sourceExp.endDate) {
@@ -494,20 +576,26 @@ async function processCompany(companyName: string) {
     }
 
     const sourceEndDate = new Date(sourceExp.endDate);
+    
+    // Check if exit is since 2020
+    if (sourceEndDate < EXIT_DATE_CUTOFF) {
+      skippedPre2020++;
+      totalSkippedPre2020++;
+      continue;
+    }
 
     // Find the FIRST job after leaving source company
     let nextJob = null;
     for (const exp of sortedExp) {
-      // Skip if same company
-      if (exp.companyName?.toLowerCase().includes(companyFirstWord)) {
+      // Skip if same company (using alias matching)
+      if (matchesTargetCompany(exp.companyName || '', config)) {
         continue;
       }
       
       const expStart = exp.startDate ? new Date(exp.startDate) : null;
       
-      // Must start after leaving source company (within reasonable window)
+      // Must start after leaving source company
       if (expStart && expStart >= sourceEndDate) {
-        // Find the earliest job after leaving
         if (!nextJob || expStart < new Date(nextJob.startDate)) {
           nextJob = exp;
         }
@@ -519,18 +607,18 @@ async function processCompany(companyName: string) {
     }
 
     // Calculate years at source
-    let yearsAtSource = 2; // default
+    let yearsAtSource = 0;
     if (sourceExp.startDate && sourceExp.endDate) {
       const start = new Date(sourceExp.startDate);
       const end = new Date(sourceExp.endDate);
       yearsAtSource = (end.getTime() - start.getTime()) / (365.25 * 24 * 60 * 60 * 1000);
     }
 
-    // Save exit to Supabase
+    // Build exit data
     const exitData = {
       person_id: emp.personID,
       source_company_id: company.id,
-      source_company_name: company.name,
+      source_company_name: config.displayName,  // Use canonical name
       source_role: emp.positionList?.[0]?.title || sourceExp.positionList?.[0]?.title || 'Unknown',
       source_start_date: sourceExp.startDate?.split('T')[0] || null,
       source_end_date: sourceExp.endDate?.split('T')[0] || null,
@@ -542,90 +630,97 @@ async function processCompany(companyName: string) {
       years_at_source: Math.round(yearsAtSource * 100) / 100,
     };
 
-    const saved = await saveExit(exitData);
-    if (saved) {
+    const savedExit = await saveExit(exitData);
+    if (savedExit) {
       exitsProcessed++;
       totalExitsFound++;
     }
   }
 
-  console.log(`  📊 Processed ${exitsProcessed} exits from ${personsProcessed} persons for ${company.name}`);
-  return { exits: exitsProcessed, persons: personsProcessed };
+  console.log(`\n  📊 Results for ${config.displayName}:`);
+  console.log(`     Persons processed (USA): ${personsProcessed}`);
+  console.log(`     Exits found (since 2020): ${exitsProcessed}`);
+  console.log(`     Skipped (non-USA): ${skippedNonUSA}`);
+  console.log(`     Skipped (pre-2020): ${skippedPre2020}`);
+  
+  return { exits: exitsProcessed, persons: personsProcessed, skippedUSA: skippedNonUSA, skipped2020: skippedPre2020 };
 }
 
+// ============================================
+// MAIN ENTRY POINT
+// ============================================
 async function main() {
-  console.log('═'.repeat(60));
-  console.log('🚀 COMPREHENSIVE DATABASE SEED - STARTING');
-  console.log('═'.repeat(60));
-  console.log(`\nCompanies to process: ${COMPANIES_TO_SEED.length}`);
-  console.log('This will take a while. Sit back and relax...\n');
-  console.log('═'.repeat(60));
+  console.log('╔════════════════════════════════════════════════════════════╗');
+  console.log('║  PATHWAY DATABASE SEED - 17 IB/CONSULTING FIRMS            ║');
+  console.log('║  USA Only | Exits Since 2020                               ║');
+  console.log('╚════════════════════════════════════════════════════════════╝');
+  console.log(`\n📋 Companies to process: ${TARGET_COMPANIES.length}`);
+  console.log(`📊 Max employees per company: ${MAX_EMPLOYEES_PER_COMPANY}`);
+  console.log(`📅 Exit date cutoff: ${EXIT_DATE_CUTOFF.toISOString().split('T')[0]}`);
+  console.log(`\n⏳ Estimated time: ${Math.round(TARGET_COMPANIES.length * MAX_EMPLOYEES_PER_COMPANY * RATE_LIMIT_MS / 60000)} minutes (worst case)`);
+  console.log('\n' + '═'.repeat(60));
 
   const startTime = Date.now();
   const results: { company: string; exits: number; persons: number }[] = [];
 
-  for (let i = 0; i < COMPANIES_TO_SEED.length; i++) {
-    const company = COMPANIES_TO_SEED[i];
-    console.log(`\n[${'='.repeat(20)}] COMPANY ${i + 1}/${COMPANIES_TO_SEED.length} [${'='.repeat(20)}]`);
+  for (let i = 0; i < TARGET_COMPANIES.length; i++) {
+    const config = TARGET_COMPANIES[i];
+    console.log(`\n[${'▓'.repeat(Math.round((i+1)/TARGET_COMPANIES.length * 20))}${'░'.repeat(20 - Math.round((i+1)/TARGET_COMPANIES.length * 20))}] ${i + 1}/${TARGET_COMPANIES.length}`);
     
-    const result = await processCompany(company);
-    results.push({ company, ...result });
+    const result = await processCompany(config);
+    results.push({ company: config.displayName, exits: result.exits, persons: result.persons });
     
     // Progress summary
     const elapsed = Math.round((Date.now() - startTime) / 1000);
     const avgPerCompany = elapsed / (i + 1);
-    const remaining = Math.round(avgPerCompany * (COMPANIES_TO_SEED.length - i - 1));
+    const remaining = Math.round(avgPerCompany * (TARGET_COMPANIES.length - i - 1));
     
-    console.log(`\n  ⏱️  Time elapsed: ${Math.floor(elapsed/60)}m ${elapsed%60}s`);
-    console.log(`  📈 Total exits so far: ${totalExitsFound}`);
-    console.log(`  📊 Total persons enriched: ${totalPersonsEnriched}`);
-    console.log(`  🔢 Total API calls: ${totalApiCalls}`);
-    console.log(`  ⏳ Est. remaining: ${Math.floor(remaining/60)}m ${remaining%60}s`);
+    console.log(`\n  ⏱️  Elapsed: ${Math.floor(elapsed/60)}m ${elapsed%60}s | Remaining: ~${Math.floor(remaining/60)}m ${remaining%60}s`);
+    console.log(`  📊 Running totals: ${totalExitsFound} exits | ${totalPersonsEnriched} enriched | ${totalApiCalls} API calls`);
     
-    // Wait between companies to avoid rate limiting
-    if (i < COMPANIES_TO_SEED.length - 1) {
-      console.log(`  ⏳ Waiting 2s before next company...`);
-      await sleep(2000);
+    // Wait between companies
+    if (i < TARGET_COMPANIES.length - 1) {
+      console.log(`  ⏳ Waiting 3s before next company...`);
+      await sleep(3000);
     }
   }
 
   const totalTime = Math.round((Date.now() - startTime) / 1000);
 
-  console.log('\n' + '═'.repeat(60));
-  console.log('✅ DATABASE SEEDING COMPLETE!');
-  console.log('═'.repeat(60));
+  // Final database stats
+  const { count: exitCount } = await supabase.from('exits').select('*', { count: 'exact', head: true });
+  const { count: companyCount } = await supabase.from('companies').select('*', { count: 'exact', head: true });
+  const { count: personCount } = await supabase.from('persons').select('*', { count: 'exact', head: true });
+  const { count: experienceCount } = await supabase.from('experiences').select('*', { count: 'exact', head: true });
+
+  console.log('\n' + '╔════════════════════════════════════════════════════════════╗');
+  console.log('║  ✅ SEEDING COMPLETE                                         ║');
+  console.log('╚════════════════════════════════════════════════════════════╝');
   
-  // Final stats from Supabase
-  const { count: exitCount } = await supabase
-    .from('exits')
-    .select('*', { count: 'exact', head: true });
-  
-  const { count: companyCount } = await supabase
-    .from('companies')
-    .select('*', { count: 'exact', head: true });
-
-  const { count: personCount } = await supabase
-    .from('persons')
-    .select('*', { count: 'exact', head: true });
-
-  const { count: experienceCount } = await supabase
-    .from('experiences')
-    .select('*', { count: 'exact', head: true });
-
   console.log(`\n📊 FINAL DATABASE STATS:`);
-  console.log(`   Companies:   ${companyCount}`);
-  console.log(`   Persons:     ${personCount}`);
-  console.log(`   Experiences: ${experienceCount}`);
-  console.log(`   Exits:       ${exitCount}`);
+  console.log(`   ├─ Companies:   ${companyCount}`);
+  console.log(`   ├─ Persons:     ${personCount}`);
+  console.log(`   ├─ Experiences: ${experienceCount}`);
+  console.log(`   └─ Exits:       ${exitCount}`);
+  
+  console.log(`\n📈 PROCESSING STATS:`);
+  console.log(`   ├─ Total API calls:     ${totalApiCalls}`);
+  console.log(`   ├─ Persons enriched:    ${totalPersonsEnriched}`);
+  console.log(`   ├─ Skipped (non-USA):   ${totalSkippedNonUSA}`);
+  console.log(`   ├─ Skipped (pre-2020):  ${totalSkippedPre2020}`);
+  console.log(`   └─ Valid exits found:   ${totalExitsFound}`);
+  
   console.log(`\n⏱️  Total time: ${Math.floor(totalTime/60)}m ${totalTime%60}s`);
-  console.log(`🔢 Total API calls: ${totalApiCalls}`);
   
   console.log('\n📋 RESULTS BY COMPANY:');
-  console.log('-'.repeat(60));
+  console.log('─'.repeat(60));
+  console.log(`${'Company'.padEnd(30)} | ${'Persons'.padStart(8)} | ${'Exits'.padStart(8)}`);
+  console.log('─'.repeat(60));
   for (const r of results) {
-    console.log(`   ${r.company.padEnd(35)} | ${r.persons} persons | ${r.exits} exits`);
+    console.log(`${r.company.padEnd(30)} | ${r.persons.toString().padStart(8)} | ${r.exits.toString().padStart(8)}`);
   }
-  console.log('-'.repeat(60));
+  console.log('─'.repeat(60));
+  console.log(`${'TOTAL'.padEnd(30)} | ${results.reduce((a, b) => a + b.persons, 0).toString().padStart(8)} | ${results.reduce((a, b) => a + b.exits, 0).toString().padStart(8)}`);
 }
 
 main().catch(console.error);

@@ -248,3 +248,6 @@ function categorizeCompany(companyName: string): string {
 
 
 
+
+
+

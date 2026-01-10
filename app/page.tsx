@@ -36,7 +36,7 @@ const FEATURED_QUERIES = [
     icon: <Network className="h-4 w-4 text-gray-600" />,
     title: "Talent Exit Network",
     description: "Visualize talent flow between companies",
-    link: "/network",
+    link: "/talent-exit-network",
   },
 ];
 
